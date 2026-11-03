@@ -8,21 +8,22 @@ use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\Theme\Paragraph\FieldMapper;
 use Drupal\civictheme\Theme\Views\AutomatedListManager;
-use Drupal\civictheme\Utility\CivicthemeFieldHelper;
-use Drupal\civictheme\Utility\CivicthemeMediaHelper;
+use Drupal\civictheme\Utility\CivicthemeField;
+use Drupal\civictheme\Utility\CivicthemeMedia;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\node\NodeInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Paragraph preprocess hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.TooManyMethods)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.TooManyMethods")
+ * @SuppressWarnings("PHPMD.TooManyPublicMethods")
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
 class ParagraphHooks {
 
@@ -38,11 +39,11 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldBackground($variables);
 
     /** @var \Drupal\paragraphs\Entity\Paragraph[] $panels */
-    $panels = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_panels', build: $variables) ?? [];
+    $panels = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_panels', build: $variables) ?? [];
     foreach ($panels as $panel) {
       $panel_variables = [
-        'expanded' => CivicthemeFieldHelper::getValue($panel, 'field_c_p_expand'),
-        'title' => CivicthemeFieldHelper::getValue($panel, 'field_c_p_title'),
+        'expanded' => CivicthemeField::getValue($panel, 'field_c_p_expand'),
+        'title' => CivicthemeField::getValue($panel, 'field_c_p_title'),
       ];
       $panel_variables['paragraph'] = $panel;
       FieldMapper::paragraphFieldContent($panel_variables);
@@ -50,7 +51,7 @@ class ParagraphHooks {
       $variables['panels'][] = $panel_variables;
     }
 
-    $variables['expand_all'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_expand') ?? FALSE;
+    $variables['expand_all'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_expand') ?? FALSE;
   }
 
   /**
@@ -64,9 +65,9 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldVerticalSpacing($variables);
     FieldMapper::paragraphFieldBackground($variables);
 
-    $attachments = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_attachments', build: $variables) ?? [];
+    $attachments = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_attachments', build: $variables) ?? [];
     foreach ($attachments as $attachment) {
-      $vars = CivicthemeMediaHelper::getVariables($attachment);
+      $vars = CivicthemeMedia::getVariables($attachment);
       if ($vars) {
         if ($this->configManager()->load('components.attachment.use_media_name', TRUE)) {
           $vars['name'] = $vars['media_name'];
@@ -116,15 +117,15 @@ class ParagraphHooks {
     $settings['paragraph'] = $paragraph;
     $settings['cache_tags'] = $paragraph->getCacheTags();
     // Settings provided by the CivicTheme Automated List paragraph's fields.
-    $settings['type'] = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_list_type');
-    $settings['content_type'] = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_list_content_type');
-    $settings['limit'] = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_list_limit');
-    $settings['limit_type'] = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_list_limit_type');
-    $settings['filters_exp'] = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_list_filters_exp', TRUE, '');
-    $settings['view_as'] = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_list_item_view_as');
-    $settings['item_theme'] = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_list_item_theme');
-    $settings['topics'] = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_list_topics', build: $variables);
-    $settings['site_sections'] = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_list_site_sections', build: $variables);
+    $settings['type'] = CivicthemeField::getValue($paragraph, 'field_c_p_list_type');
+    $settings['content_type'] = CivicthemeField::getValue($paragraph, 'field_c_p_list_content_type');
+    $settings['limit'] = CivicthemeField::getValue($paragraph, 'field_c_p_list_limit');
+    $settings['limit_type'] = CivicthemeField::getValue($paragraph, 'field_c_p_list_limit_type');
+    $settings['filters_exp'] = CivicthemeField::getValue($paragraph, 'field_c_p_list_filters_exp', TRUE, '');
+    $settings['view_as'] = CivicthemeField::getValue($paragraph, 'field_c_p_list_item_view_as');
+    $settings['item_theme'] = CivicthemeField::getValue($paragraph, 'field_c_p_list_item_theme');
+    $settings['topics'] = CivicthemeField::getValue($paragraph, 'field_c_p_list_topics', build: $variables);
+    $settings['site_sections'] = CivicthemeField::getValue($paragraph, 'field_c_p_list_site_sections', build: $variables);
     $settings['theme'] = $variables['theme'];
     FieldMapper::paragraphFieldTheme($settings);
     FieldMapper::paragraphFieldTitle($settings);
@@ -133,11 +134,10 @@ class ParagraphHooks {
 
     // Get view with already set display.
     try {
-      /** @var \Drupal\views\ViewExecutable $view */
       $view = AutomatedListManager::getView($settings);
     }
-    catch (\Exception $e) {
-      \Drupal::logger('civictheme')->error($e->getMessage());
+    catch (\Exception $exception) {
+      \Drupal::logger('civictheme')->error($exception->getMessage());
       return;
     }
 
@@ -159,7 +159,7 @@ class ParagraphHooks {
     // Pass the CSS class from the view display to the template.
     $css_class = $view->getDisplay()->getOption('css_class');
     if (!empty($css_class)) {
-      $variables['modifier_class'] = $variables['modifier_class'] ?? '' . $css_class;
+      $variables['modifier_class'] = trim(($variables['modifier_class'] ?? '') . ' ' . $css_class);
     }
 
     // Add unique HTML ID.
@@ -219,9 +219,9 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldTitle($variables);
     FieldMapper::paragraphFieldSummary($variables);
     FieldMapper::paragraphFieldLink($variables);
-    $media = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_icon', TRUE);
+    $media = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_icon', TRUE);
     if ($media) {
-      $variables['image'] = CivicthemeMediaHelper::getImageVariables($media);
+      $variables['image'] = CivicthemeMedia::getImageVariables($media);
     }
   }
 
@@ -234,11 +234,11 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldVerticalSpacing($variables);
     FieldMapper::paragraphFieldBackground($variables);
 
-    $variables['url'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_url');
-    $width = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_width');
-    $variables['width'] = !empty($width) ? (int) $width : NULL;
-    $height = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_height');
-    $variables['height'] = !empty($height) ? (int) $height : NULL;
+    $variables['url'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_url');
+    $width = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_width');
+    $variables['width'] = empty($width) ? NULL : (int) $width;
+    $height = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_height');
+    $variables['height'] = empty($height) ? NULL : (int) $height;
   }
 
   /**
@@ -263,13 +263,13 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldBackground($variables);
 
     $variables += [
-      'card_theme' => CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_list_item_theme'),
+      'card_theme' => CivicthemeField::getValue($paragraph, 'field_c_p_list_item_theme'),
       'cache_tags' => $paragraph->getCacheTags(),
     ];
     $variables['#cache']['tags'] = $variables['cache_tags'];
 
     /** @var \Drupal\Core\Entity\ContentEntityInterface[] $items */
-    $items = CivicthemeFieldHelper::getReferencedEntities($paragraph, 'field_c_p_list_items', $variables);
+    $items = CivicthemeField::getReferencedEntities($paragraph, 'field_c_p_list_items', $variables);
     $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
     if ($items) {
       foreach ($items as $item) {
@@ -277,7 +277,7 @@ class ParagraphHooks {
           $variables['rows'][] = $builder->view($item);
           continue;
         }
-        $referenced_item = CivicthemeFieldHelper::getReferencedEntity($item, 'field_c_p_reference', $variables);
+        $referenced_item = CivicthemeField::getReferencedEntity($item, 'field_c_p_reference', $variables);
         if ($referenced_item instanceof EntityInterface) {
           $variables['rows'][] = $builder->view($item);
         }
@@ -300,15 +300,15 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldBackground($variables);
 
     /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-    $link = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_embed_url', TRUE);
+    $link = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_embed_url', TRUE);
     if ($link !== NULL) {
       $variables['url'] = $link->getUrl()->toString();
     }
 
-    $variables['address'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_address', default: '');
+    $variables['address'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_address', default: '');
 
     /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $view_link */
-    $view_link = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_view_link', TRUE);
+    $view_link = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_view_link', TRUE);
     if ($view_link !== NULL) {
       $variables['view_url'] = $view_link->getUrl()->toString();
     }
@@ -325,7 +325,7 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldVerticalSpacing($variables);
     FieldMapper::paragraphFieldBackground($variables);
 
-    $variables['type'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_message_type');
+    $variables['type'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_message_type');
     $variables['has_aria'] = FALSE;
   }
 
@@ -366,7 +366,7 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldTopics($variables);
     FieldMapper::paragraphFieldTheme($variables);
 
-    $variables['subtitle'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_subtitle', TRUE);
+    $variables['subtitle'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_subtitle', TRUE);
   }
 
   /**
@@ -374,12 +374,7 @@ class ParagraphHooks {
    */
   #[Hook('preprocess_paragraph__civictheme_promo_card_ref')]
   public function promoCardRef(array &$variables): void {
-    FieldMapper::nodeFieldImage($variables, CivicthemeConstants::PROMO_CARD_IMAGE_STYLE);
-    FieldMapper::nodeFieldTitle($variables);
-    FieldMapper::nodeFieldSummary($variables);
-    FieldMapper::nodeFieldLink($variables);
-    FieldMapper::nodeFieldTopics($variables);
-    FieldMapper::paragraphFieldTheme($variables);
+    $this->referencedNodeCard($variables, 'civictheme_promo_card');
   }
 
   /**
@@ -395,22 +390,18 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldTopics($variables);
     FieldMapper::paragraphFieldTheme($variables);
 
-    $variables['location'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_location', TRUE);
+    $variables['location'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_location', TRUE);
   }
 
   /**
    * Implements template_preprocess_paragraph() for civictheme_event_card_ref.
+   *
+   * The node is rendered in the Promo card view mode: the node render
+   * pipeline swaps event nodes to the Event card component.
    */
   #[Hook('preprocess_paragraph__civictheme_event_card_ref')]
   public function eventCardRef(array &$variables): void {
-    FieldMapper::nodeFieldImage($variables, CivicthemeConstants::EVENT_CARD_IMAGE_STYLE);
-    FieldMapper::nodeFieldTitle($variables);
-    FieldMapper::nodeFieldLocation($variables);
-    FieldMapper::nodeFieldSummary($variables);
-    FieldMapper::nodeFieldLink($variables);
-    FieldMapper::nodeFieldDateRange($variables);
-    FieldMapper::nodeFieldTopics($variables);
-    FieldMapper::paragraphFieldTheme($variables);
+    $this->referencedNodeCard($variables, 'civictheme_promo_card');
   }
 
   /**
@@ -424,7 +415,7 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldLink($variables);
     FieldMapper::paragraphFieldTheme($variables);
 
-    $variables['image_as_icon'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_show_image_as_icon') ?? FALSE;
+    $variables['image_as_icon'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_show_image_as_icon') ?? FALSE;
   }
 
   /**
@@ -432,11 +423,7 @@ class ParagraphHooks {
    */
   #[Hook('preprocess_paragraph__civictheme_navigation_card_ref')]
   public function navigationCardRef(array &$variables): void {
-    FieldMapper::nodeFieldTitle($variables);
-    FieldMapper::nodeFieldSummary($variables);
-    FieldMapper::nodeFieldImage($variables, CivicthemeConstants::NAVIGATION_CARD_IMAGE_STYLE);
-    FieldMapper::nodeFieldLink($variables);
-    FieldMapper::paragraphFieldTheme($variables);
+    $this->referencedNodeCard($variables, 'civictheme_navigation_card');
   }
 
   /**
@@ -449,9 +436,9 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldSummary($variables);
     FieldMapper::paragraphFieldTheme($variables);
 
-    $document = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_document', TRUE, build: $variables) ?? NULL;
+    $document = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_document', TRUE, build: $variables) ?? NULL;
     if ($document) {
-      $vars = CivicthemeMediaHelper::getVariables($document);
+      $vars = CivicthemeMedia::getVariables($document);
       if ($vars) {
         if ($this->configManager()->load('components.publication_card.use_media_name', TRUE)) {
           $vars['name'] = $vars['media_name'];
@@ -477,10 +464,7 @@ class ParagraphHooks {
    */
   #[Hook('preprocess_paragraph__civictheme_subject_card_ref')]
   public function subjectCardRef(array &$variables): void {
-    FieldMapper::nodeFieldImage($variables, CivicthemeConstants::SUBJECT_CARD_IMAGE_STYLE);
-    FieldMapper::nodeFieldTitle($variables);
-    FieldMapper::nodeFieldLink($variables);
-    FieldMapper::paragraphFieldTheme($variables);
+    $this->referencedNodeCard($variables, 'civictheme_subject_card');
   }
 
   /**
@@ -533,12 +517,12 @@ class ParagraphHooks {
   public function sliderSlide(array &$variables): void {
     /** @var \Drupal\paragraphs\Entity\Paragraph|null $paragraph */
     $paragraph = $variables['paragraph'] ?? NULL;
-    if ($paragraph === NULL || !$paragraph instanceof Paragraph) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
     $parent = $paragraph->getParentEntity();
     if ($parent instanceof Paragraph && $parent->bundle() === 'civictheme_slider') {
-      $variables['heading_level'] = CivicthemeFieldHelper::hasValue($parent, 'field_c_p_title') ? 3 : 2;
+      $variables['heading_level'] = CivicthemeField::hasValue($parent, 'field_c_p_title') ? 3 : 2;
     }
 
     FieldMapper::paragraphFieldImage($variables, CivicthemeConstants::SLIDER_SLIDE_IMAGE_STYLE);
@@ -554,7 +538,7 @@ class ParagraphHooks {
   /**
    * Implements preprocess for civictheme_slider_slide_ref.
    *
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   #[Hook('preprocess_paragraph__civictheme_slider_slide_ref')]
   public function sliderSlideRef(array &$variables): void {
@@ -562,17 +546,17 @@ class ParagraphHooks {
 
     /** @var \Drupal\paragraphs\Entity\Paragraph|null $paragraph */
     $paragraph = $variables['paragraph'] ?? NULL;
-    if ($paragraph === NULL || !$paragraph instanceof Paragraph) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
     $parent = $paragraph->getParentEntity();
     if ($parent instanceof Paragraph && $parent->bundle() === 'civictheme_slider') {
-      $variables['heading_level'] = CivicthemeFieldHelper::hasValue($parent, 'field_c_p_title') ? 3 : 2;
+      $variables['heading_level'] = CivicthemeField::hasValue($parent, 'field_c_p_title') ? 3 : 2;
     }
 
     /** @var \Drupal\node\NodeInterface|null $node */
-    $node = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_reference', TRUE, build: $variables);
+    $node = CivicthemeField::getValue($paragraph, 'field_c_p_reference', TRUE, build: $variables);
     if (empty($node)) {
       return;
     }
@@ -597,7 +581,7 @@ class ParagraphHooks {
     $variables['content'] = $variables['summary'] ?? FALSE;
     unset($variables['summary']);
 
-    $link_text = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_link_text', TRUE);
+    $link_text = CivicthemeField::getValue($paragraph, 'field_c_p_link_text', TRUE);
     if ($link_text) {
       $variables['links'][] = [
         'text' => $link_text,
@@ -625,11 +609,7 @@ class ParagraphHooks {
    */
   #[Hook('preprocess_paragraph__civictheme_snippet_ref')]
   public function snippetRef(array &$variables): void {
-    FieldMapper::nodeFieldTitle($variables);
-    FieldMapper::nodeFieldSummary($variables);
-    FieldMapper::nodeFieldLink($variables);
-    FieldMapper::nodeFieldTopics($variables);
-    FieldMapper::paragraphFieldTheme($variables);
+    $this->referencedNodeCard($variables, 'civictheme_snippet');
   }
 
   /**
@@ -642,9 +622,46 @@ class ParagraphHooks {
     FieldMapper::paragraphFieldBackground($variables);
 
     $paragraph = $variables['paragraph'] ?? NULL;
-    if ($paragraph && CivicthemeFieldHelper::hasValue($paragraph, 'field_c_p_webform')) {
+    if ($paragraph && CivicthemeField::hasValue($paragraph, 'field_c_p_webform')) {
       $variables['referenced_webform'] = $paragraph->get('field_c_p_webform')->view();
     }
+  }
+
+  /**
+   * Builds a rendered entity for a node reference card paragraph.
+   *
+   * The referenced node is rendered in the given card view mode so that the
+   * card preprocessing is shared with automated lists through the node
+   * render pipeline (NodeHooks view-mode preprocess hooks and node card
+   * templates). The paragraph's theme is propagated to the node the same way
+   * the automated list views integration does.
+   *
+   * @param array $variables
+   *   Paragraph preprocess variables; 'reference' is set to the render array.
+   * @param string $view_mode
+   *   The node view mode to render the referenced node in.
+   *
+   * @see \Drupal\civictheme\Hook\Preprocess\ViewsHooks
+   */
+  protected function referencedNodeCard(array &$variables, string $view_mode): void {
+    /** @var \Drupal\paragraphs\Entity\Paragraph|null $paragraph */
+    $paragraph = $variables['paragraph'] ?? NULL;
+    if (!$paragraph instanceof Paragraph) {
+      return;
+    }
+
+    $node = CivicthemeField::getValue($paragraph, 'field_c_p_reference', TRUE, build: $variables);
+    if (!$node instanceof NodeInterface) {
+      return;
+    }
+
+    // Dynamic entity property, shared convention with the automated list
+    // views integration and read by the node card preprocess hooks.
+    $node->component_theme = CivicthemeField::getValue($paragraph, 'field_c_p_theme') ?? CivicthemeConstants::THEME_LIGHT;
+
+    $variables['reference'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('node')
+      ->view($node, $view_mode);
   }
 
   /**

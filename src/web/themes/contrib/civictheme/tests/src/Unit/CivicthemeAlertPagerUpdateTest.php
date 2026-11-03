@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\civictheme\Unit;
 
+use PHPUnit\Framework\Attributes\Group;
 use Drupal\Core\Config\Config;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
@@ -15,6 +16,7 @@ use Symfony\Component\Yaml\Yaml;
  *
  * @group CivicTheme
  */
+#[Group('CivicTheme')]
 class CivicthemeAlertPagerUpdateTest extends UnitTestCase {
 
   /**

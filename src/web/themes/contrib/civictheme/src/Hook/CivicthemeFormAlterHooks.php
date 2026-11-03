@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\civictheme\Hook;
 
 use Drupal\civictheme\Theme\Form\FormElementHelper;
-use Drupal\civictheme\Utility\CivicthemeFieldHelper;
+use Drupal\civictheme\Utility\CivicthemeField;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Element;
@@ -17,7 +17,7 @@ use Drupal\views\ViewExecutable;
 /**
  * Form alter hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class CivicthemeFormAlterHooks {
 
@@ -36,7 +36,7 @@ class CivicthemeFormAlterHooks {
   /**
    * Implements hook_form_FORM_ID_alter() for views_exposed_form.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   #[Hook('form_views_exposed_form_alter')]
   public function viewsExposedFormAlter(array &$form, FormStateInterface $form_state): void {
@@ -69,9 +69,9 @@ class CivicthemeFormAlterHooks {
         }
       }
     }
-    catch (\Throwable $e) {
+    catch (\Throwable $throwable) {
       \Drupal::logger('civictheme')->warning('Exposed form alter failed: @message', [
-        '@message' => $e->getMessage(),
+        '@message' => $throwable->getMessage(),
       ]);
     }
   }
@@ -89,7 +89,7 @@ class CivicthemeFormAlterHooks {
       $source = $webform_submission->getSourceEntity();
 
       if ($source instanceof Paragraph && !empty($form['elements'])) {
-        $theme = CivicthemeFieldHelper::getThemeValue($source);
+        $theme = CivicthemeField::getThemeValue($source);
         // The webform theme wrapper renders the form tag from the form root:
         // carry the theme there as well as through the element tree.
         $form['#attributes']['#civictheme_theme'] = $theme;
@@ -126,7 +126,7 @@ class CivicthemeFormAlterHooks {
    * eg link and html_tag. This method provides the ability to alter these
    * elements if required.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   protected function alterNonFormElements(array &$elements): void {
     $element_keys = Element::children($elements);
@@ -182,15 +182,11 @@ class CivicthemeFormAlterHooks {
    * @return int[]
    *   Term IDs from the contextual argument, or empty if none/any.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
    */
   protected function getTopicsContextualArgumentTids(ViewExecutable $view): array {
     $display = $view->getDisplay();
-    if (!method_exists($display, 'getOption')) {
-      return [];
-    }
-
     $argument_options = $display->getOption('arguments') ?? [];
     if (!is_array($argument_options)) {
       return [];
@@ -240,9 +236,7 @@ class CivicthemeFormAlterHooks {
     $terms = Term::loadMultiple($tids);
     $options = [];
     foreach ($terms as $term) {
-      if ($term !== NULL) {
-        $options[$term->id()] = (string) $term->label();
-      }
+      $options[$term->id()] = (string) $term->label();
     }
 
     return $options;

@@ -14,7 +14,7 @@ use Drupal\views\ViewExecutable;
  * Internal to CivicTheme: shared by views-view and views-exposed-form
  * preprocessors.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 final class SelectedFiltersBuilder {
 
@@ -28,7 +28,7 @@ final class SelectedFiltersBuilder {
    *   Array with keys 'selected_filters' and 'selected_filters_clear_link'.
    */
   public static function getData(ViewExecutable $view): array {
-    $selected_filters = static::buildList($view);
+    $selected_filters = self::buildList($view);
     $clear_link = NULL;
     if (!empty($selected_filters)) {
       $clear_link = [
@@ -57,7 +57,7 @@ final class SelectedFiltersBuilder {
    *   filters).
    */
   public static function buildList(ViewExecutable $view): array {
-    $exposed_filters = static::getFilterTypes($view);
+    $exposed_filters = self::getFilterTypes($view);
     $request_query = \Drupal::request()->query->all();
     $base_url = Url::fromRoute('<current>')->toString();
 
@@ -67,10 +67,10 @@ final class SelectedFiltersBuilder {
         continue;
       }
       if (is_string($submitted_value)) {
-        static::addSingle($chips, $base_url, $request_query, $filter_id, $submitted_value, $exposed_filters);
+        self::addSingle($chips, $base_url, $request_query, $filter_id, $submitted_value, $exposed_filters);
       }
       elseif (is_array($submitted_value)) {
-        static::addMulti($chips, $base_url, $request_query, $filter_id, $submitted_value, $exposed_filters);
+        self::addMulti($chips, $base_url, $request_query, $filter_id, $submitted_value, $exposed_filters);
       }
     }
 
@@ -86,7 +86,7 @@ final class SelectedFiltersBuilder {
     }
     $remaining_query = $request_query;
     unset($remaining_query[$filter_id]);
-    $chips[$filter_id] = static::createFilterUrl(
+    $chips[$filter_id] = self::createFilterUrl(
       $base_url, $remaining_query, $filter_id, $submitted_value, $exposed_filters
     );
   }
@@ -99,7 +99,7 @@ final class SelectedFiltersBuilder {
    */
   protected static function addMulti(array &$chips, string $base_url, array $request_query, string $filter_id, array $submitted_values, array $exposed_filters): void {
     foreach ($submitted_values as $value_index => $value) {
-      if ($value === '' || $value === NULL) {
+      if (!is_string($value) || $value === '') {
         continue;
       }
       $remaining_query = $request_query;
@@ -108,7 +108,7 @@ final class SelectedFiltersBuilder {
         unset($remaining_query[$filter_id]);
       }
       $chip_key = sprintf('%s.%s', $filter_id, $value_index);
-      $chips[$chip_key] = static::createFilterUrl(
+      $chips[$chip_key] = self::createFilterUrl(
         $base_url, $remaining_query, $filter_id, $value, $exposed_filters
       );
     }
@@ -122,9 +122,9 @@ final class SelectedFiltersBuilder {
    */
   protected static function createFilterUrl(string $base_url, array $query_params, string $key, string|int $value, array $filter_types): array {
     $query = http_build_query($query_params);
-    $text = static::createFilterLabel($key, $value, $filter_types);
+    $text = self::createFilterLabel($key, $value, $filter_types);
     return [
-      'url' => !empty($query) ? ($base_url . '?' . $query) : $base_url,
+      'url' => empty($query) ? ($base_url) : $base_url . '?' . $query,
       'text' => $text,
       'label' => t('Remove filter: @filter', ['@filter' => $text])->__toString(),
     ];

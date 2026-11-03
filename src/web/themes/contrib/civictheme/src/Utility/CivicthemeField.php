@@ -12,16 +12,17 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 
 /**
  * Entity field value helpers.
  *
  * The procedural civictheme_*field*() functions delegate here.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
-final class CivicthemeFieldHelper {
+final class CivicthemeField {
 
   /**
    * Checks whether the field exists and has a value on a given entity.
@@ -62,14 +63,14 @@ final class CivicthemeFieldHelper {
    * @return mixed|null
    *   Whether the field exists and is not empty.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   public static function getValue(FieldableEntityInterface $entity, string $field_name, bool $only_first = FALSE, mixed $default = NULL, array &$build = []): mixed {
     $value = $default;
 
-    if (!static::hasValue($entity, $field_name)) {
+    if (!self::hasValue($entity, $field_name)) {
       return $value;
     }
 
@@ -109,10 +110,10 @@ final class CivicthemeFieldHelper {
       case 'entity_reference':
       case 'entity_reference_revisions':
         if ($only_first) {
-          $value = static::getReferencedEntity($entity, $field_name, $build);
+          $value = self::getReferencedEntity($entity, $field_name, $build);
         }
         else {
-          $value = static::getReferencedEntities($entity, $field_name, $build);
+          $value = self::getReferencedEntities($entity, $field_name, $build);
         }
         break;
 
@@ -143,14 +144,14 @@ final class CivicthemeFieldHelper {
    * @return array<int|string, \Drupal\Core\Entity\EntityInterface>
    *   Referenced entities.
    *
-   * @SuppressWarnings(PHPMD.ErrorControlOperator)
+   * @SuppressWarnings("PHPMD.ErrorControlOperator")
    */
   public static function getReferencedEntities(FieldableEntityInterface $entity, string $field_name, array &$build = []): array {
     $trigger_bc = empty($build);
     if ($trigger_bc) {
       @trigger_error('Calling civictheme_get_field_referenced_entities() without the $build argument is deprecated in civictheme:1.12.0 It will be required in civictheme:1.13.0. Triggered when getting entity for ' . $field_name . '. See https://www.drupal.org/node/3552745', E_USER_DEPRECATED);
     }
-    if (static::hasValue($entity, $field_name)) {
+    if (self::hasValue($entity, $field_name)) {
       /** @var \Drupal\Core\Entity\EntityInterface[] $referenced_entities */
       $referenced_entities = $entity->get($field_name)->referencedEntities();
       if (empty($referenced_entities)) {
@@ -167,12 +168,16 @@ final class CivicthemeFieldHelper {
           $access_checked_referenced_entities[$referenced_entity->id()] = $referenced_entity;
         }
       }
+      // Core's CacheableMetadata::applyTo() declares its by-ref parameter as
+      // a plain array, which would widen the declared type of $build.
+      // @phpstan-ignore parameterByRef.type
       $cacheability->applyTo($build);
       if ($trigger_bc && \Drupal::service('renderer')->hasRenderContext()) {
         // The calling code didn't pass a render array that we can attach
         // cacheable metadata to. There is a render context and $build has had
         // cacheability metadata added, so we can simply render it, and it
         // will bubble up to the current theme hook.
+        // @phpstan-ignore parameterByRef.type
         \Drupal::service('renderer')->render($build);
       }
     }
@@ -196,12 +201,9 @@ final class CivicthemeFieldHelper {
   public static function getReferencedEntity(FieldableEntityInterface $entity, string $field_name, array &$build = []): ?EntityInterface {
     $referenced_entity = NULL;
 
-    $entities = static::getReferencedEntities($entity, $field_name, $build);
+    $entities = self::getReferencedEntities($entity, $field_name, $build);
     if (!empty($entities)) {
       $referenced_entity = reset($entities);
-      if (!$referenced_entity instanceof EntityInterface) {
-        $referenced_entity = NULL;
-      }
     }
 
     return $referenced_entity;
@@ -222,11 +224,9 @@ final class CivicthemeFieldHelper {
    */
   public static function getReferencedEntityLabels(FieldableEntityInterface $entity, string $field_name, array &$build = []): array {
     $labels = [];
-    $referenced_entities = static::getReferencedEntities($entity, $field_name, $build);
+    $referenced_entities = self::getReferencedEntities($entity, $field_name, $build);
     foreach ($referenced_entities as $referenced_entity) {
-      if ($referenced_entity instanceof EntityInterface) {
-        $labels[] = Xss::filter((string) $referenced_entity->label());
-      }
+      $labels[] = Xss::filter((string) $referenced_entity->label());
     }
 
     return $labels;
@@ -294,7 +294,7 @@ final class CivicthemeFieldHelper {
         break;
     }
 
-    return $field_name ? (string) static::getValue($entity, $field_name, TRUE, $default) : $default;
+    return $field_name ? (string) self::getValue($entity, $field_name, TRUE, $default) : $default;
   }
 
   /**
@@ -313,7 +313,7 @@ final class CivicthemeFieldHelper {
     if ($field_definition === NULL || empty($field_definition['class'])) {
       return FALSE;
     }
-    return is_subclass_of($field_definition['class'], '\Drupal\text\Plugin\Field\FieldType\TextItemBase');
+    return is_subclass_of($field_definition['class'], TextItemBase::class);
   }
 
 }

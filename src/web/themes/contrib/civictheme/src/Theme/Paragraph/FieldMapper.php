@@ -7,9 +7,9 @@ namespace Drupal\civictheme\Theme\Paragraph;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\Theme\FeatureOptout;
-use Drupal\civictheme\Utility\CivicthemeDateHelper;
-use Drupal\civictheme\Utility\CivicthemeFieldHelper;
-use Drupal\civictheme\Utility\CivicthemeMediaHelper;
+use Drupal\civictheme\Utility\CivicthemeDate;
+use Drupal\civictheme\Utility\CivicthemeField;
+use Drupal\civictheme\Utility\CivicthemeMedia;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Component\Utility\Xss;
 use Drupal\media\MediaInterface;
@@ -23,10 +23,10 @@ use Drupal\text\TextSummary;
  * For readability, similar paragraph and node methods are grouped together
  * and sorted alphabetically.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.TooManyMethods)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.TooManyMethods")
+ * @SuppressWarnings("PHPMD.TooManyPublicMethods")
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
 final class FieldMapper {
 
@@ -34,31 +34,31 @@ final class FieldMapper {
    * Pre-process for With background paragraph field.
    */
   public static function paragraphFieldBackground(array &$variables): void {
-    $variables['with_background'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_background');
+    $variables['with_background'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_background');
   }
 
   /**
    * Pre-process for Column count paragraph field.
    */
   public static function paragraphFieldColumnCount(array &$variables): void {
-    $variables['column_count'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_list_column_count', TRUE, 1);
+    $variables['column_count'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_list_column_count', TRUE, 1);
   }
 
   /**
    * Pre-process for Content paragraph field.
    */
   public static function paragraphFieldContent(array &$variables): void {
-    $variables['content'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_content');
+    $variables['content'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_content');
   }
 
   /**
    * Pre-process for Date paragraph field.
    */
   public static function paragraphFieldDate(array &$variables): void {
-    $date = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_date', TRUE);
+    $date = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_date', TRUE);
     if ($date) {
-      $variables['date'] = CivicthemeDateHelper::format($date->get('value')->getDateTime(), 'civictheme_short_date');
-      $variables['date_iso'] = CivicthemeDateHelper::formatIso($date->get('value')->getDateTime());
+      $variables['date'] = CivicthemeDate::format($date->get('value')->getDateTime(), 'civictheme_short_date');
+      $variables['date_iso'] = CivicthemeDate::formatIso($date->get('value')->getDateTime());
     }
   }
 
@@ -66,10 +66,10 @@ final class FieldMapper {
    * Pre-process for Date node field.
    */
   public static function nodeFieldDate(array &$variables): void {
-    $node = $variables['node'] ?? CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
+    $node = $variables['node'] ?? CivicthemeField::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
     if ($node) {
-      $variables['date'] = CivicthemeDateHelper::format($node->getChangedTime(), 'civictheme_short_date');
-      $variables['date_iso'] = CivicthemeDateHelper::formatIso($node->getChangedTime());
+      $variables['date'] = CivicthemeDate::format($node->getChangedTime(), 'civictheme_short_date');
+      $variables['date_iso'] = CivicthemeDate::formatIso($node->getChangedTime());
     }
   }
 
@@ -77,13 +77,13 @@ final class FieldMapper {
    * Pre-process for Date range paragraph field.
    */
   public static function paragraphFieldDateRange(array &$variables): void {
-    $date = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_date_range', TRUE);
+    $date = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_date_range', TRUE);
     if ($date) {
-      $variables['date'] = CivicthemeDateHelper::format($date->get('value')->getDateTime());
-      $variables['date_iso'] = CivicthemeDateHelper::formatIso($date->get('value')->getDateTime());
+      $variables['date'] = CivicthemeDate::format($date->get('value')->getDateTime());
+      $variables['date_iso'] = CivicthemeDate::formatIso($date->get('value')->getDateTime());
       if ($date->get('end_value')->getDateTime()) {
-        $variables['date_end'] = CivicthemeDateHelper::format($date->get('end_value')->getDateTime());
-        $variables['date_end_iso'] = CivicthemeDateHelper::formatIso($date->get('end_value')->getDateTime());
+        $variables['date_end'] = CivicthemeDate::format($date->get('end_value')->getDateTime());
+        $variables['date_end_iso'] = CivicthemeDate::formatIso($date->get('end_value')->getDateTime());
       }
     }
   }
@@ -92,15 +92,15 @@ final class FieldMapper {
    * Pre-process for Date range node field.
    */
   public static function nodeFieldDateRange(array &$variables): void {
-    $node = $variables['node'] ?? CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
+    $node = $variables['node'] ?? CivicthemeField::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
     if ($node) {
-      $date = CivicthemeFieldHelper::getValue($node, 'field_c_n_date_range', TRUE);
+      $date = CivicthemeField::getValue($node, 'field_c_n_date_range', TRUE);
       if ($date) {
-        $variables['date'] = CivicthemeDateHelper::format($date->get('value')->getDateTime());
-        $variables['date_iso'] = CivicthemeDateHelper::formatIso($date->get('value')->getDateTime());
+        $variables['date'] = CivicthemeDate::format($date->get('value')->getDateTime());
+        $variables['date_iso'] = CivicthemeDate::formatIso($date->get('value')->getDateTime());
         if ($date->get('end_value')->getDateTime()) {
-          $variables['date_end'] = CivicthemeDateHelper::format($date->get('end_value')->getDateTime());
-          $variables['date_end_iso'] = CivicthemeDateHelper::formatIso($date->get('end_value')->getDateTime());
+          $variables['date_end'] = CivicthemeDate::format($date->get('end_value')->getDateTime());
+          $variables['date_end_iso'] = CivicthemeDate::formatIso($date->get('end_value')->getDateTime());
         }
       }
     }
@@ -110,16 +110,16 @@ final class FieldMapper {
    * Pre-process for Fill width paragraph field.
    */
   public static function paragraphFieldFillWidth(array &$variables): void {
-    $variables['fill_width'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_list_fill_width', TRUE, FALSE);
+    $variables['fill_width'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_list_fill_width', TRUE, FALSE);
   }
 
   /**
    * Pre-process for Image paragraph field.
    */
   public static function paragraphFieldImage(array &$variables, ?string $image_style = NULL): void {
-    $media = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_image', TRUE, build: $variables);
+    $media = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_image', TRUE, build: $variables);
     if ($media) {
-      $variables['image'] = CivicthemeMediaHelper::getImageVariables($media, $image_style);
+      $variables['image'] = CivicthemeMedia::getImageVariables($media, $image_style);
     }
   }
 
@@ -127,11 +127,11 @@ final class FieldMapper {
    * Pre-process for Thumbnail node field.
    */
   public static function nodeFieldImage(array &$variables, ?string $image_style = NULL): void {
-    $node = $variables['node'] ?? CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
+    $node = $variables['node'] ?? CivicthemeField::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
     if ($node) {
-      $media = CivicthemeFieldHelper::getValue($node, 'field_c_n_thumbnail', TRUE, build: $variables);
+      $media = CivicthemeField::getValue($node, 'field_c_n_thumbnail', TRUE, build: $variables);
       if ($media instanceof MediaInterface && $media->getSource()->getPluginId() === 'image') {
-        $variables['image'] = CivicthemeMediaHelper::getImageVariables($media, $image_style);
+        $variables['image'] = CivicthemeMedia::getImageVariables($media, $image_style);
       }
     }
   }
@@ -140,7 +140,7 @@ final class FieldMapper {
    * Pre-process for Image position paragraph field.
    */
   public static function paragraphFieldImagePosition(array &$variables): void {
-    $variables['image_position'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_image_position');
+    $variables['image_position'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_image_position');
   }
 
   /**
@@ -148,7 +148,7 @@ final class FieldMapper {
    */
   public static function paragraphFieldLink(array &$variables): void {
     /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-    $link = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_link', TRUE);
+    $link = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_link', TRUE);
     if ($link !== NULL) {
       $variables['link'] = [
         'text' => html_entity_decode(Xss::filter($link->get('title')->getString())),
@@ -164,7 +164,7 @@ final class FieldMapper {
    */
   public static function paragraphFieldLinkAbove(array &$variables): void {
     /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-    $link = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_list_link_above', TRUE);
+    $link = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_list_link_above', TRUE);
     if ($link !== NULL) {
       $variables['link_above'] = [
         'text' => $link->get('title')->getString(),
@@ -180,7 +180,7 @@ final class FieldMapper {
    */
   public static function paragraphFieldLinkBelow(array &$variables): void {
     /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-    $link = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_list_link_below', TRUE);
+    $link = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_list_link_below', TRUE);
     if ($link !== NULL) {
       $variables['link_below'] = [
         'text' => $link->get('title')->getString(),
@@ -195,7 +195,7 @@ final class FieldMapper {
    * Pre-process for Link node field.
    */
   public static function nodeFieldLink(array &$variables): void {
-    $node = $variables['node'] ?? CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
+    $node = $variables['node'] ?? CivicthemeField::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
     if ($node) {
       $variables['link'] = [
         'text' => $node->getTitle(),
@@ -211,7 +211,7 @@ final class FieldMapper {
    */
   public static function paragraphFieldLinks(array &$variables): void {
     /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem[]|null $links */
-    $links = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_links');
+    $links = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_links');
     if ($links) {
       foreach ($links as $link) {
         $variables['links'][] = [
@@ -230,13 +230,13 @@ final class FieldMapper {
   public static function nodeFieldLocation(array &$variables): void {
     // Location is a field on the paragraph attached to an Event node through
     // 'field_c_n_location' field. We are only using a first location.
-    $node = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
+    $node = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
     if ($node) {
       /** @var \Drupal\paragraphs\Entity\Paragraph[] $locations */
-      $locations = CivicthemeFieldHelper::getValue($node, 'field_c_n_location', build: $variables);
+      $locations = CivicthemeField::getValue($node, 'field_c_n_location', build: $variables);
       if (!empty($locations)) {
         foreach ($locations as $location) {
-          $address = CivicthemeFieldHelper::getValue($location, 'field_c_p_address', TRUE);
+          $address = CivicthemeField::getValue($location, 'field_c_p_address', TRUE);
           if (!empty($address)) {
             $variables['location'] = $address;
 
@@ -251,9 +251,9 @@ final class FieldMapper {
    * Pre-process for Summary paragraph field.
    */
   public static function paragraphFieldSummary(array &$variables): void {
-    $summary = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_summary', TRUE);
+    $summary = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_summary', TRUE);
     if (!empty($summary)) {
-      $variables['summary'] = static::trimSummary($summary, $variables['paragraph']->bundle());
+      $variables['summary'] = self::trimSummary($summary, $variables['paragraph']->bundle());
     }
   }
 
@@ -261,11 +261,11 @@ final class FieldMapper {
    * Pre-process for Summary node field.
    */
   public static function nodeFieldSummary(array &$variables, ?string $bundle = NULL, string $field_name = 'field_c_n_summary'): void {
-    $node = $variables['node'] ?? CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
+    $node = $variables['node'] ?? CivicthemeField::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
     if ($node) {
-      $summary = CivicthemeFieldHelper::getValue($node, $field_name, TRUE);
+      $summary = CivicthemeField::getValue($node, $field_name, TRUE);
       if (!empty($summary)) {
-        $variables['summary'] = static::trimSummary($summary, $bundle ?? (empty($variables['paragraph']) ? 'none' : $variables['paragraph']->bundle()));
+        $variables['summary'] = self::trimSummary($summary, $bundle ?? (empty($variables['paragraph']) ? 'none' : $variables['paragraph']->bundle()));
       }
     }
   }
@@ -274,21 +274,21 @@ final class FieldMapper {
    * Pre-process for Theme paragraph field.
    */
   public static function paragraphFieldTheme(array &$variables): void {
-    $variables['theme'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_theme');
+    $variables['theme'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_theme');
   }
 
   /**
    * Pre-process for Title paragraph field.
    */
   public static function paragraphFieldTitle(array &$variables): void {
-    $variables['title'] = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_title');
+    $variables['title'] = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_title');
   }
 
   /**
    * Pre-process for Title node field.
    */
   public static function nodeFieldTitle(array &$variables): void {
-    $node = $variables['node'] ?? CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
+    $node = $variables['node'] ?? CivicthemeField::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
     if ($node) {
       $variables['title'] = $node->getTitle();
     }
@@ -298,18 +298,18 @@ final class FieldMapper {
    * Pre-process for Topics paragraph field.
    */
   public static function paragraphFieldTopics(array &$variables): void {
-    $labels = CivicthemeFieldHelper::getReferencedEntityLabels($variables['paragraph'], 'field_c_p_topics', build: $variables);
-    $variables['tags'] = array_map(static fn($label) => ['content' => (string) $label], $labels);
+    $labels = CivicthemeField::getReferencedEntityLabels($variables['paragraph'], 'field_c_p_topics', build: $variables);
+    $variables['tags'] = array_map(static fn(string $label): array => ['content' => $label], $labels);
   }
 
   /**
    * Pre-process for Topics node field.
    */
   public static function nodeFieldTopics(array &$variables): void {
-    $node = $variables['node'] ?? CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
+    $node = $variables['node'] ?? CivicthemeField::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
     if ($node) {
-      $labels = CivicthemeFieldHelper::getReferencedEntityLabels($node, 'field_c_n_topics', $variables);
-      $variables['tags'] = array_map(static fn($label) => ['content' => (string) $label], $labels);
+      $labels = CivicthemeField::getReferencedEntityLabels($node, 'field_c_n_topics', $variables);
+      $variables['tags'] = array_map(static fn(string $label): array => ['content' => $label], $labels);
     }
   }
 
@@ -317,7 +317,7 @@ final class FieldMapper {
    * Pre-process for Vertical spacing paragraph field.
    */
   public static function paragraphFieldVerticalSpacing(array &$variables): void {
-    $value = CivicthemeFieldHelper::getValue($variables['paragraph'], 'field_c_p_vertical_spacing');
+    $value = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_vertical_spacing');
     if (in_array($value, ['top', 'bottom', 'both'], TRUE)) {
       $variables['vertical_spacing'] = $value;
     }
@@ -337,7 +337,7 @@ final class FieldMapper {
   protected static function trimSummary(mixed $summary, string $bundle): string {
     $length = CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH;
 
-    $component_name = static::getConfigurableComponentNameFromBundle($bundle);
+    $component_name = self::getConfigurableComponentNameFromBundle($bundle);
     if ($component_name) {
       /** @var \Drupal\civictheme\CivicthemeConfigManager $theme_config_manager */
       $theme_config_manager = \Drupal::classResolver(CivicthemeConfigManager::class);

@@ -21,14 +21,14 @@ final class MenuTreeMapper {
    * @param bool $expand_all
    *   Whether to mark every item as expanded.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   public static function processMenuItems(array &$items, bool $expand_all = FALSE): void {
     foreach ($items as &$item) {
       $item += [
-        'is_new_window' => $item['url'] instanceof Url ? $item['url']->isExternal() : FALSE,
-        'is_external' => $item['url'] instanceof Url ? $item['url']->isExternal() : FALSE,
+        'is_new_window' => $item['url'] instanceof Url && $item['url']->isExternal(),
+        'is_external' => $item['url'] instanceof Url && $item['url']->isExternal(),
       ];
 
       // Set as expanded based on $expand_all or item's own value or FALSE.
@@ -43,7 +43,7 @@ final class MenuTreeMapper {
       }
 
       if (!empty($item['below'])) {
-        static::processMenuItems($item['below'], $expand_all);
+        self::processMenuItems($item['below'], $expand_all);
       }
     }
   }

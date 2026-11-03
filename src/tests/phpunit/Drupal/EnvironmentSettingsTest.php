@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\DataProvider;
+
 /**
  * Class EnvironmentSettingsTest.
  *
@@ -19,6 +22,11 @@ namespace Drupal;
  * phpcs:disable Squiz.WhiteSpace.FunctionSpacing.AfterLast
  * phpcs:disable Drupal.Classes.ClassDeclaration.CloseBraceAfterBody
  */
+#[Group('drupal_settings
+phpcs:disable Squiz.WhiteSpace.FunctionSpacing.Before
+phpcs:disable Squiz.WhiteSpace.FunctionSpacing.After
+phpcs:disable Squiz.WhiteSpace.FunctionSpacing.AfterLast
+phpcs:disable Drupal.Classes.ClassDeclaration.CloseBraceAfterBody')]
 class EnvironmentSettingsTest extends SettingsTestCase {
 
   /**
@@ -26,6 +34,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
    *
    * @dataProvider dataProviderEnvironmentTypeResolution
    */
+  #[DataProvider('dataProviderEnvironmentTypeResolution')]
   public function testEnvironmentTypeResolution(array $vars, string $expected_env): void {
     // Deployed environment types enforce the presence of DB and hash salt
     // variables; provide them so resolution can be tested in isolation.
@@ -371,6 +380,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
    *
    * @dataProvider dataProviderDeployedDerivesHashSalt
    */
+  #[DataProvider('dataProviderDeployedDerivesHashSalt')]
   public function testDeployedDerivesHashSalt(string $env_type): void {
     $vars = static::serverRequiredVars();
     unset($vars['DRUPAL_HASH_SALT']);

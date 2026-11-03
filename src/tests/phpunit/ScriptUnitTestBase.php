@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -11,8 +12,9 @@ use PHPUnit\Framework\TestCase;
  *
  * @group scripts
  *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
+#[Group('scripts')]
 abstract class ScriptUnitTestBase extends TestCase {
 
   /**
@@ -49,7 +51,7 @@ abstract class ScriptUnitTestBase extends TestCase {
   /**
    * {@inheritdoc}
    *
-   * @SuppressWarnings(PHPMD.ErrorControlOperator)
+   * @SuppressWarnings("PHPMD.ErrorControlOperator")
    */
   protected function tearDown(): void {
     parent::tearDown();
@@ -71,7 +73,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    *   - code: (int) Exit code.
    *   - output: (string) Output.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
    */
   protected function runScript(array $args = [], $verbose = FALSE): array {
     putenv('SCRIPT_RUN_SKIP=0');
@@ -227,7 +229,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    *   - key: (string) Source path (the key from $file_structure).
    *   - value: (string) Path to a fixture file to use.
    *
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   protected function replaceFixturePaths(array $fixture_map, ?string $prefix = NULL): array {
     foreach ($fixture_map as $k => $v) {
@@ -285,9 +287,9 @@ abstract class ScriptUnitTestBase extends TestCase {
    * @return bool
    *   TRUE if the result of copy was successful, FALSE otherwise.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   public function fileCopyRecursively(string $src, string $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE): bool {
     $parent = dirname($dst);
@@ -307,8 +309,9 @@ abstract class ScriptUnitTestBase extends TestCase {
 
       chdir($parent);
       $ret = TRUE;
-      if (!is_readable(basename($dst)) && !empty(readlink($src))) {
-        $ret = symlink(readlink($src), basename($dst));
+      $src_target = readlink($src);
+      if (!is_readable(basename($dst)) && !empty($src_target)) {
+        $ret = symlink($src_target, basename($dst));
       }
       chdir($cur_dir);
 
@@ -334,7 +337,7 @@ abstract class ScriptUnitTestBase extends TestCase {
 
     $dir = dir($src);
     while ($dir && FALSE !== $entry = $dir->read()) {
-      if ($entry == '.' || $entry == '..' || in_array($entry, $exclude)) {
+      if ($entry === '.' || $entry === '..' || in_array($entry, $exclude)) {
         continue;
       }
       $this->fileCopyRecursively($src . DIRECTORY_SEPARATOR . $entry, $dst . DIRECTORY_SEPARATOR . $entry, $exclude, $permissions, $copy_empty_dirs);

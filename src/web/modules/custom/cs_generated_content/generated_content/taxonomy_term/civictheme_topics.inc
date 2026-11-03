@@ -28,7 +28,7 @@ function cs_generated_content_generated_content_create_taxonomy_term_civictheme_
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
  *
  * @phpstan-ignore-next-line
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function cs_generated_content_generated_content_create_taxonomy_term_civictheme_topics(): array {
   $total_terms_count = 10;

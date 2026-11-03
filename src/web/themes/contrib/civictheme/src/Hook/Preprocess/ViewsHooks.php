@@ -22,8 +22,8 @@ use Drupal\views\Views;
 /**
  * Views and pager preprocess hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
 class ViewsHooks {
 
@@ -93,7 +93,7 @@ class ViewsHooks {
       }
     }
 
-    if ($field_count == 1) {
+    if ($field_count === 1) {
       // Use inline filter on search and auto pages if a single text field
       // exists.
       if ($this->exposedFormInlineFilter($variables, $view, $fields)) {
@@ -160,7 +160,7 @@ class ViewsHooks {
   /**
    * Preprocess for a view pager.
    *
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   protected function preprocessViewPager(array &$variables): void {
     if (empty($variables['pager'])) {
@@ -425,7 +425,7 @@ class ViewsHooks {
    *
    * Handles all types of pagers.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   protected function preprocessPagerGeneric(array &$variables): void {
     $element = $variables['pager']['#element'] ?? $variables['element'] ?? NULL;
@@ -509,7 +509,7 @@ class ViewsHooks {
       $items_per_page[] = [
         'type' => 'option',
         'label' => $value,
-        'value' => (string) $value,
+        'value' => $value,
         'selected' => (int) $value === $current_items_per_page,
       ];
     }

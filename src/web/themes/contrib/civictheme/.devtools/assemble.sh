@@ -23,12 +23,12 @@ set -eu
 
 # Drupal core version to use. If not provided - the latest stable version will be used.
 # Must be coupled with DRUPAL_PROJECT_SHA below.
-DRUPAL_VERSION="${DRUPAL_VERSION:-10}"
+DRUPAL_VERSION="${DRUPAL_VERSION:-11.4.*}"
 
 # Commit SHA of the drupal-project to install custom core version. If not
 # provided - the latest version will be used.
 # Must be coupled with DRUPAL_VERSION above.
-DRUPAL_PROJECT_SHA="${DRUPAL_PROJECT_SHA:-10.x}"
+DRUPAL_PROJECT_SHA="${DRUPAL_PROJECT_SHA:-11.x}"
 
 # Repository for "drupal-composer/drupal-project" project.
 # May be overwritten to use forked repos that may have not been accepted

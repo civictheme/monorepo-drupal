@@ -11,9 +11,9 @@ use Drupal\Core\Datetime\DrupalDateTime;
  *
  * The procedural civictheme_format_datetime*() functions delegate here.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
-final class CivicthemeDateHelper {
+final class CivicthemeDate {
 
   /**
    * Format date and time.
@@ -58,7 +58,7 @@ final class CivicthemeDateHelper {
    *   Formatted date and time.
    */
   public static function formatIso(int|string|DrupalDateTime $datetime): string {
-    return static::format($datetime, 'c');
+    return self::format($datetime, 'c');
   }
 
 }

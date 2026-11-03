@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\DataProvider;
+
 /**
  * Class CivicthemeCreateSubthemeScriptUnitTest.
  *
@@ -13,6 +16,10 @@ declare(strict_types=1);
  * phpcs:disable Drupal.Commenting.DocComment.MissingShort
  * phpcs:disable Drupal.Commenting.FunctionComment.Missing
  */
+#[Group('site:unit')]
+#[Group('scripts
+phpcs:disable Drupal.Commenting.DocComment.MissingShort
+phpcs:disable Drupal.Commenting.FunctionComment.Missing')]
 class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
 
   /**
@@ -31,6 +38,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderMain
    * @runInSeparateProcess
    */
+  #[DataProvider('dataProviderMain')]
   public function testMain(string|array $args, int $expected_code, string $expected_output): void {
     $args = is_array($args) ? $args : [$args];
     $result = $this->runScript($args, TRUE);
@@ -82,6 +90,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderTestLocation
    * @runInSeparateProcess
    */
+  #[DataProvider('dataProviderTestLocation')]
   public function testLocation(string $civictheme_dir, string $newtheme_rel_dir, string $expected_newtheme_dir): void {
     $newtheme_name = 'new_theme';
 
@@ -275,6 +284,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderFileGetRelativeDir
    * @runInSeparateProcess
    */
+  #[DataProvider('dataProviderFileGetRelativeDir')]
   public function testFileGetRelativeDir(string $from, string $to, string $expected): void {
     $this->assertEquals($expected, file_get_relative_dir($from, $to));
   }
@@ -305,6 +315,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderFilePathCanonicalize
    * @runInSeparateProcess
    */
+  #[DataProvider('dataProviderFilePathCanonicalize')]
   public function testFilePathCanonicalize(string $path, string $expected): void {
     $this->assertEquals($expected, file_path_canonicalize($path));
   }

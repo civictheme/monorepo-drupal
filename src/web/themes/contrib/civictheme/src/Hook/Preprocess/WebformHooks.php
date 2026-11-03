@@ -6,14 +6,14 @@ namespace Drupal\civictheme\Hook\Preprocess;
 
 use Drupal\civictheme\Theme\Form\FormElementHelper;
 use Drupal\civictheme\Theme\HtmlContentProcessor;
-use Drupal\civictheme\Utility\CivicthemeOptionsHelper;
+use Drupal\civictheme\Utility\CivicthemeOptions;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Template\Attribute;
 
 /**
  * Webform preprocess hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class WebformHooks {
 
@@ -69,7 +69,7 @@ class WebformHooks {
     }
     if (isset($attributes['#civictheme_theme'])) {
       $civictheme_theme = (string) $attributes['#civictheme_theme']->value();
-      if (in_array($civictheme_theme, CivicthemeOptionsHelper::themeOptions(TRUE))) {
+      if (in_array($civictheme_theme, CivicthemeOptions::themeOptions(TRUE))) {
         $variables['theme'] = $civictheme_theme;
       }
     }

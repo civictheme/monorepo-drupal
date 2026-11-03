@@ -10,9 +10,9 @@ use Drupal\node\NodeInterface;
 /**
  * Node helpers.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
-final class CivicthemeNodeHelper {
+final class CivicthemeNode {
 
   /**
    * Load node or the node revision if the route is a node revision.
@@ -37,16 +37,16 @@ final class CivicthemeNodeHelper {
    * Determine last updated date for a page.
    */
   public static function getUpdatedDate(NodeInterface $node, string $format = 'civictheme_short_date'): ?string {
-    $show_last_updated = CivicthemeFieldHelper::getValue($node, 'field_c_n_show_last_updated');
-    $custom_updated_value = CivicthemeFieldHelper::getValue($node, 'field_c_n_custom_last_updated', TRUE);
+    $show_last_updated = CivicthemeField::getValue($node, 'field_c_n_show_last_updated');
+    $custom_updated_value = CivicthemeField::getValue($node, 'field_c_n_custom_last_updated', TRUE);
 
     $date = NULL;
 
     if ($show_last_updated && !empty($custom_updated_value)) {
-      $date = CivicthemeDateHelper::format($custom_updated_value->get('value')->getDateTime(), $format);
+      $date = CivicthemeDate::format($custom_updated_value->get('value')->getDateTime(), $format);
     }
     elseif ($show_last_updated) {
-      $date = CivicthemeDateHelper::format($node->getChangedTime(), $format);
+      $date = CivicthemeDate::format($node->getChangedTime(), $format);
     }
 
     return $date;
@@ -66,7 +66,7 @@ final class CivicthemeNodeHelper {
    * @return array<string, mixed>
    *   An array of Layout Builder settings keyed by view mode.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
    */
   public static function getLayoutBuilderSettingsPerViewMode(string $entity_type_id, string $bundle, $only_enabled = TRUE): array {
     $settings_per_mode = [];

@@ -11,9 +11,9 @@ use Drupal\Component\Utility\UrlHelper;
  *
  * The procedural civictheme_url_*() functions delegate here.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
-final class CivicthemeLinkHelper {
+final class CivicthemeLink {
 
   /**
    * Check if the provided link is external.
@@ -30,7 +30,7 @@ final class CivicthemeLinkHelper {
    *   valid URL.
    */
   public static function urlIsExternal(string $url, string $base_url, array $override_domains = []): bool {
-    if (!static::urlIsValid($url)) {
+    if (!self::urlIsValid($url)) {
       return FALSE;
     }
 
@@ -40,9 +40,9 @@ final class CivicthemeLinkHelper {
 
     $override_domains[] = $base_url;
     foreach ($override_domains as $override_domain) {
-      $override_domain = static::normalizeDomain($override_domain);
+      $override_domain = self::normalizeDomain($override_domain);
 
-      if (!static::urlIsValid($override_domain, TRUE)) {
+      if (!self::urlIsValid($override_domain, TRUE)) {
         continue;
       }
 
@@ -70,7 +70,7 @@ final class CivicthemeLinkHelper {
    * @return bool
    *   TRUE if the provided URL is valid.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
    */
   public static function urlIsValid(string $url, bool $absolute = FALSE): bool {
     if (empty($url) || !UrlHelper::isValid($url, $absolute)) {
@@ -79,7 +79,7 @@ final class CivicthemeLinkHelper {
 
     $url_parts = parse_url($url);
 
-    return !(!empty($url_parts['scheme']) && empty($url_parts['host']));
+    return empty($url_parts['scheme']) || !empty($url_parts['host']);
   }
 
   /**

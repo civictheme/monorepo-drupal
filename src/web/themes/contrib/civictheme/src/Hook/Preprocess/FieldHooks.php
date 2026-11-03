@@ -9,7 +9,7 @@ use Drupal\civictheme\CivicthemeUtility;
 use Drupal\civictheme\Theme\FeatureOptout;
 use Drupal\civictheme\Theme\HtmlContentProcessor;
 use Drupal\civictheme\Theme\Paragraph\FieldMapper;
-use Drupal\civictheme\Utility\CivicthemeFieldHelper;
+use Drupal\civictheme\Utility\CivicthemeField;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Element;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -18,7 +18,7 @@ use Drupal\Core\Template\Attribute;
 /**
  * Field and table preprocess hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class FieldHooks {
 
@@ -34,9 +34,9 @@ class FieldHooks {
   /**
    * Implements template_preprocess_table().
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   #[Hook('preprocess_table')]
   public function preprocessTable(array &$variables): void {
@@ -120,10 +120,10 @@ class FieldHooks {
    * Add post-processing for all WYSIWYG fields.
    */
   protected function preprocessWysiwygField(array &$variables): void {
-    if (isset($variables['field_name'], $variables['field_type']) && CivicthemeFieldHelper::isWysiwygFieldType($variables['field_type'])) {
+    if (isset($variables['field_name'], $variables['field_type']) && CivicthemeField::isWysiwygFieldType($variables['field_type'])) {
       foreach (Element::children($variables['items']) as $item) {
         if (!empty($variables['items'][$item]['content']['#text'])) {
-          $theme = empty($variables['element']['#object']) ? NULL : CivicthemeFieldHelper::getThemeValue($variables['element']['#object']);
+          $theme = empty($variables['element']['#object']) ? NULL : CivicthemeField::getThemeValue($variables['element']['#object']);
           $variables['items'][$item]['content']['#text'] = HtmlContentProcessor::processHtmlContent($variables['items'][$item]['content']['#text'], [
             'theme' => $theme,
           ], $variables['items'][$item]['content']['#format'] ?? NULL);

@@ -10,7 +10,7 @@ use Drupal\Core\Hook\Attribute\Hook;
 /**
  * Theme suggestions hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class CivicthemeSuggestionsHooks {
 

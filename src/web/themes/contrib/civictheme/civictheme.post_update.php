@@ -25,7 +25,7 @@ require_once __DIR__ . '/includes/civictheme.api.inc';
 /**
  * Updates vertical spacing on nodes and components where it has not been set.
  *
- * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings("PHPMD.UnusedFormalParameter")
  */
 function civictheme_post_update_set_vertical_spacing_empty_value(array &$sandbox): ?string {
   return \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
@@ -87,7 +87,7 @@ function civictheme_post_update_set_vertical_spacing_empty_value(array &$sandbox
 /**
  * Renames 'Column count' and 'Fill width' List fields and updates content.
  *
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
  */
 function civictheme_post_update_rename_list_fields(array &$sandbox): ?string {
   $field_mapping = [
@@ -466,7 +466,7 @@ function civictheme_post_update_disable_moderated_content_view(): void {
 /**
  * Convert a quote component to a content component with markup.
  *
- * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings("PHPMD.UnusedFormalParameter")
  */
 function civictheme_post_update_convert_quote_to_content_component(array &$sandbox): ?string {
   $old_field_configs = [
@@ -629,7 +629,7 @@ function civictheme_post_update_enable_focal_point_configurations_2(): void {
 /**
  * Moves blocks from 'sidebar' to 'sidebar_top_left' region.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_move_blocks_to_sidebar_top_left(): string {
   $region_from = 'sidebar';
@@ -681,8 +681,8 @@ function civictheme_post_update_move_blocks_to_sidebar_top_left(): string {
 /**
  * Enables "civictheme_three_columns" layout for the Page/Event content type.
  *
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_enable_three_column_layout(): string {
   $outdated_layouts = [
@@ -711,7 +711,7 @@ function civictheme_post_update_enable_three_column_layout(): string {
         }
       }
 
-      if (count($entity_view_mode_restriction['allowed_layouts']) != count($allowed_layouts)) {
+      if (count($entity_view_mode_restriction['allowed_layouts']) !== count($allowed_layouts)) {
         $allowed_layouts[] = 'civictheme_three_columns';
 
         $entity_view_mode_restriction['allowed_layouts'] = array_values($allowed_layouts);
@@ -778,7 +778,7 @@ function civictheme_post_update_import_subject_card_view_mode(): void {
 /**
  * Update alert api view to strip tags from visibility validation.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_alert_visibility_validation(): string {
   $config_name = 'views.view.civictheme_alerts';
@@ -804,7 +804,7 @@ function civictheme_post_update_alert_visibility_validation(): string {
  * The raw values preserve path aliases containing HTML-sensitive characters,
  * including <front> and ampersands.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_alert_visibility_raw_output(): string {
   $config_name = 'views.view.civictheme_alerts';
@@ -830,7 +830,7 @@ function civictheme_post_update_alert_visibility_raw_output(): string {
 /**
  * Update the view mode 'civictheme_snippet' to 'civictheme_navigation_card'.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_update_view_mode_civictheme_navigation_card_ref_1(): string {
   $config_read = \Drupal::service('entity_type.manager')->getStorage('entity_view_display')->load('paragraph.civictheme_navigation_card_ref.default');
@@ -847,7 +847,7 @@ function civictheme_post_update_update_view_mode_civictheme_navigation_card_ref_
 /**
  * Add field_c_b_link_in_mobile_menu field config and update form view.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_add_search_link_field_to_search_component(): string {
   $block_field_configs = [
@@ -884,7 +884,7 @@ function civictheme_post_update_update_editor_allowed_field(): string {
   // Fetch the existing allowed tags.
   $allowed_tags = $config_object->get('settings.plugins.ckeditor5_sourceEditing.allowed_tags');
   if (is_array($allowed_tags)) {
-    $allowed_tags = array_filter($allowed_tags, function ($tag) {
+    $allowed_tags = array_filter($allowed_tags, function ($tag): bool {
       return $tag !== '<a hreflang target title class="ct-content-link ct-content-link--external ct-button--button ct-theme-dark">';
     });
     $config_object->set('settings.plugins.ckeditor5_sourceEditing.allowed_tags', $allowed_tags);
@@ -899,7 +899,7 @@ function civictheme_post_update_update_editor_allowed_field(): string {
 /**
  * Update civictheme_side_navigation to use civictheme_sidebar_navigation.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_update_sidebar_navigation_suggestion(): string {
   $config_factory = \Drupal::configFactory();
@@ -920,7 +920,7 @@ function civictheme_post_update_update_sidebar_navigation_suggestion(): string {
 /**
  * Add civictheme_message paragraph type and enable it for civictheme page.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_add_civictheme_message_paragraph(): string {
   $paragraph_type_config = \Drupal::config('paragraphs.paragraphs_type.civictheme_message');
@@ -998,7 +998,7 @@ function civictheme_post_update_update_field_c_p_background_description(): strin
 /**
  * Add civictheme_fast_fact_card paragraph type and enable it for manual list.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_add_fast_fact_card_paragraph_type(): string {
   $new_configs = [
@@ -1047,8 +1047,8 @@ function civictheme_post_update_add_fast_fact_card_paragraph_type(): string {
 /**
  * Removes 'field_c_p_attributes' from civictheme_iframe paragraph.
  *
- * @SuppressWarnings(PHPMD.UnusedFormalParameter)
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes_2(): string {
   $field_config_name = 'field.field.paragraph.civictheme_iframe.field_c_p_attributes';
@@ -1081,7 +1081,7 @@ function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes_2(
     // Get all config names with the prefix.
     $all_config_names = $config_storage->listAll($prefix);
     foreach ($all_config_names as $config_name) {
-      if (strpos($config_name, $prefix) === 0) {
+      if (str_starts_with($config_name, $prefix)) {
         $display_config = $config_factory->getEditable($config_name);
         $display = $display_config->get();
         $changed = FALSE;
@@ -1107,9 +1107,9 @@ function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes_2(
 /**
  * Migrate deprecated layouts to civictheme_three_columns.
  *
- * @SuppressWarnings(PHPMD.UnusedFormalParameter)
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+ * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_migrate_one_column_layouts(): string {
   $outdated_layouts = [
@@ -1177,9 +1177,9 @@ function civictheme_post_update_migrate_one_column_layouts(): string {
 /**
  * Migrate deprecated layouts to civictheme_three_columns.
  *
- * @SuppressWarnings(PHPMD.UnusedFormalParameter)
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+ * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_migrate_one_column_layouts_2(): string {
   $outdated_layouts = [
@@ -1249,7 +1249,7 @@ function civictheme_post_update_migrate_one_column_layouts_2(): string {
  *
  * Adds the field and places it under the Appearance group on the form display.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_add_field_c_n_hide_sidebar(): string {
   $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
@@ -1295,10 +1295,10 @@ function civictheme_post_update_add_field_c_n_hide_sidebar(): string {
  * Runs for CivicTheme and all its subthemes (themes that have civictheme
  * in their base theme chain).
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.NPathComplexity)
- * @SuppressWarnings(PHPMD.ElseExpression)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+ * @SuppressWarnings("PHPMD.NPathComplexity")
+ * @SuppressWarnings("PHPMD.ElseExpression")
  */
 function civictheme_post_update_migrate_logo_image_alt_to_per_type(): TranslatableMarkup {
   $config_factory = \Drupal::configFactory();
@@ -1352,7 +1352,7 @@ function civictheme_post_update_migrate_logo_image_alt_to_per_type(): Translatab
 /**
  * Create or refresh form display for civictheme_fast_fact_card paragraph.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_add_fast_fact_card_form_display(): string {
   $config_name = 'core.entity_form_display.paragraph.civictheme_fast_fact_card.default';
@@ -1391,7 +1391,7 @@ function civictheme_post_update_add_fast_fact_card_form_display(): string {
 /**
  * Return all active alerts before client-side page visibility matching.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_remove_alert_export_limit(): string {
   $config = \Drupal::configFactory()->getEditable('views.view.civictheme_alerts');
@@ -1418,7 +1418,7 @@ function civictheme_post_update_remove_alert_export_limit(): string {
  * values; opening and saving the colour picker in theme settings regenerates
  * it through the picker's engine.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_post_update_convert_colors_to_recipe(): string {
   $converted = [];

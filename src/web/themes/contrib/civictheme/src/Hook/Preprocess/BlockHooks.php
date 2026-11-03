@@ -10,9 +10,9 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\Theme\Block\BannerBuilder;
 use Drupal\civictheme\Theme\Block\MobileNavigationBuilder;
 use Drupal\civictheme\Theme\Navigation\MenuTreeMapper;
-use Drupal\civictheme\Utility\CivicthemeAttributeHelper;
-use Drupal\civictheme\Utility\CivicthemeFieldHelper;
-use Drupal\civictheme\Utility\CivicthemeMediaHelper;
+use Drupal\civictheme\Utility\CivicthemeAttribute;
+use Drupal\civictheme\Utility\CivicthemeField;
+use Drupal\civictheme\Utility\CivicthemeMedia;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Markup;
@@ -25,8 +25,8 @@ use Drupal\paragraphs\Entity\Paragraph;
 /**
  * Block preprocess hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
 class BlockHooks {
 
@@ -61,11 +61,11 @@ class BlockHooks {
 
     $variables['content'] = NULL;
     /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-    $link = CivicthemeFieldHelper::getValue($entity, 'field_c_b_link', TRUE);
+    $link = CivicthemeField::getValue($entity, 'field_c_b_link', TRUE);
     if ($link !== NULL) {
       $variables['url'] = $link->getUrl()->toString();
       $variables['text'] = $link->get('title')->getString();
-      if (CivicthemeFieldHelper::getValue($entity, 'field_c_b_link_in_mobile_menu')) {
+      if (CivicthemeField::getValue($entity, 'field_c_b_link_in_mobile_menu')) {
         // Hide search block on mobile view.
         $variables['modifier_class'] = 'hide-xxs show-m-flex';
       }
@@ -77,8 +77,8 @@ class BlockHooks {
   /**
    * Implements hook_preprocess_HOOK() for block__system_branding_block.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
    */
   #[Hook('preprocess_block__system_branding_block')]
   public function preprocessBlockSystemBrandingBlock(array &$variables): void {
@@ -100,7 +100,7 @@ class BlockHooks {
 
       $logo_type = $is_footer_region ? $this->configManager()->load('components.footer.logo_type') : $this->configManager()->load('components.header.logo_type');
       $variables['type'] = str_replace('_', '-', $logo_type ?? CivicthemeConstants::LOGO_TYPE_DEFAULT);
-      CivicthemeAttributeHelper::addModifierClass($variables, $is_footer_region ? 'ct-footer__logo' : 'ct-header__logo');
+      CivicthemeAttribute::addModifierClass($variables, $is_footer_region ? 'ct-footer__logo' : 'ct-header__logo');
 
       foreach (['primary', 'secondary'] as $type) {
         $logo_alt = $this->configManager()->load(sprintf('components.logo.%s.image_alt', $type)) ?? '';
@@ -129,7 +129,7 @@ class BlockHooks {
     $variables['theme'] = $this->configManager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
     $variables['items'] = $variables['content']['#items'] ?? [];
     $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
-    CivicthemeAttributeHelper::addModifierClass($variables, 'ct-flex-justify-content-end');
+    CivicthemeAttribute::addModifierClass($variables, 'ct-flex-justify-content-end');
     MenuTreeMapper::processMenuItems($variables['items'], FALSE);
   }
 
@@ -141,7 +141,7 @@ class BlockHooks {
     $variables['theme'] = $this->configManager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
     $variables['items'] = $variables['content']['#items'] ?? [];
     $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
-    CivicthemeAttributeHelper::addModifierClass($variables, 'ct-flex-justify-content-end');
+    CivicthemeAttribute::addModifierClass($variables, 'ct-flex-justify-content-end');
     MenuTreeMapper::processMenuItems($variables['items'], FALSE);
   }
 
@@ -200,7 +200,7 @@ class BlockHooks {
   /**
    * Preprocess for navigation menu blocks.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   protected function preprocessBlockNavigation(array &$variables): void {
     if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
@@ -263,7 +263,7 @@ class BlockHooks {
   /**
    * Pre-process for Social Links block.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   protected function preprocessBlockSocialLinks(array &$variables): void {
     if ($variables['base_plugin_id'] != 'block_content') {
@@ -271,13 +271,13 @@ class BlockHooks {
     }
 
     $entity = $variables['elements']['content']['#block_content'];
-    if ($entity->bundle() != 'civictheme_social_links' || !CivicthemeFieldHelper::hasValue($entity, 'field_c_b_social_icons')) {
+    if ($entity->bundle() != 'civictheme_social_links' || !CivicthemeField::hasValue($entity, 'field_c_b_social_icons')) {
       return;
     }
 
     $items = [];
 
-    $paragraphs = CivicthemeFieldHelper::getReferencedEntities($entity, 'field_c_b_social_icons', $variables);
+    $paragraphs = CivicthemeField::getReferencedEntities($entity, 'field_c_b_social_icons', $variables);
     foreach ($paragraphs as $paragraph) {
       if (!$paragraph instanceof Paragraph) {
         continue;
@@ -285,17 +285,17 @@ class BlockHooks {
 
       $item = [];
 
-      $link = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_link', TRUE);
+      $link = CivicthemeField::getValue($paragraph, 'field_c_p_link', TRUE);
       if ($link instanceof LinkItem) {
         $item['url'] = $link->getUrl()->toString();
         $item['title'] = $link->get('title')->getString();
       }
 
-      $media = CivicthemeFieldHelper::getValue($paragraph, 'field_c_p_icon', TRUE, build: $variables);
+      $media = CivicthemeField::getValue($paragraph, 'field_c_p_icon', TRUE, build: $variables);
       if ($media instanceof MediaInterface) {
-        $image = CivicthemeMediaHelper::getImageVariables($media);
+        $image = CivicthemeMedia::getImageVariables($media);
         if ($image) {
-          $svg = CivicthemeMediaHelper::embedSvg($image['url'], ['ct-icon']);
+          $svg = CivicthemeMedia::embedSvg($image['url'], ['ct-icon']);
           $item['icon_html'] = $svg !== NULL ? Markup::create($svg) : '';
         }
       }
@@ -305,8 +305,8 @@ class BlockHooks {
 
     $variables['items'] = $items;
 
-    $variables['theme'] = CivicthemeFieldHelper::getThemeValue($entity);
-    $variables['with_border'] = CivicthemeFieldHelper::getValue($entity, 'field_c_b_with_border') ?? FALSE;
+    $variables['theme'] = CivicthemeField::getThemeValue($entity);
+    $variables['with_border'] = CivicthemeField::getValue($entity, 'field_c_b_with_border') ?? FALSE;
   }
 
   /**

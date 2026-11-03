@@ -7,7 +7,7 @@ namespace Drupal\civictheme\Hook;
 use Drupal\civictheme\CivicthemeColorRecipeManager;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\civictheme\Utility\CivicthemeAttributeHelper;
+use Drupal\civictheme\Utility\CivicthemeAttribute;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Component\Exception\ComponentNotFoundException;
@@ -15,7 +15,7 @@ use Drupal\Core\Render\Component\Exception\ComponentNotFoundException;
 /**
  * Theme-level hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class CivicthemeThemeHooks {
 
@@ -80,6 +80,18 @@ class CivicthemeThemeHooks {
    */
   #[Hook('theme_registry_alter')]
   public function themeRegistryAlter(array &$theme_registry): void {
+    // Attach suggestion preprocess implementations to all matching registry
+    // entries. Core only attaches a suggestion preprocess hook to its
+    // exact-name entry, and suggestion inheritance walks prefixes only
+    // (node__BUNDLE__VIEW_MODE inherits from node__BUNDLE and node, never
+    // from node__VIEW_MODE), so an entry created by a bundle-specific
+    // template would silently drop the view-mode preprocess without this.
+    // This also discovers sub-theme implementations across the theme chain.
+    $theme_names = $this->themeChainNames();
+    $this->registerNodeSuggestionPreprocess($theme_registry, $theme_names);
+    $this->registerSuggestionPreprocess($theme_registry, 'paragraph', $theme_names);
+    $this->registerSuggestionPreprocess($theme_registry, 'block', $theme_names);
+
     // Define a new preprocess callable that will always run last.
     $callable = static::class . '::preprocessLast';
 
@@ -106,6 +118,128 @@ class CivicthemeThemeHooks {
   }
 
   /**
+   * Gets all theme names in the active theme chain, base themes first.
+   *
+   * @return list<string>
+   *   Machine names of the base themes followed by the active theme.
+   */
+  protected function themeChainNames(): array {
+    $active_theme = \Drupal::theme()->getActiveTheme();
+    $theme_names = array_keys($active_theme->getBaseThemeExtensions());
+    $theme_names[] = $active_theme->getName();
+
+    return $theme_names;
+  }
+
+  /**
+   * Checks whether a preprocess implementation exists under a function name.
+   *
+   * Covers both procedural functions and class-based #[Hook] implementations:
+   * the registry's 'preprocess invokes' map holds the virtual function names
+   * core assigned to class-based suggestion preprocess hooks, and is the
+   * exact lookup the theme manager uses to invoke them at runtime.
+   *
+   * @param array $theme_registry
+   *   The theme registry being altered.
+   * @param string $function
+   *   Function name to check, e.g. 'civictheme_preprocess_node__full'.
+   */
+  protected function preprocessImplementationExists(array $theme_registry, string $function): bool {
+    return isset($theme_registry['preprocess invokes'][$function]) || function_exists($function);
+  }
+
+  /**
+   * Registers node view-mode preprocess implementations on node suggestions.
+   *
+   * For each node suggestion entry (e.g.
+   * node__civictheme_page__civictheme_promo_card), registers the view-mode
+   * preprocess implementation (e.g.
+   * civictheme_preprocess_node__civictheme_promo_card) and, for
+   * bundle+view_mode entries, the full-name implementation
+   * (e.g. civictheme_preprocess_node__civictheme_page__civictheme_promo_card)
+   * when one exists in any theme in the chain.
+   *
+   * @param array $theme_registry
+   *   The theme registry being altered.
+   * @param list<string> $theme_names
+   *   Theme machine names in the chain, base themes first.
+   */
+  protected function registerNodeSuggestionPreprocess(array &$theme_registry, array $theme_names): void {
+    foreach ($theme_registry as $name => $info) {
+      if (!is_string($name) || !str_starts_with($name, 'node__') || ($info['base hook'] ?? NULL) !== 'node') {
+        continue;
+      }
+
+      $parts = explode('__', $name);
+      // The view mode is the last part of entries like node__bundle__view_mode.
+      $view_mode = end($parts);
+
+      foreach ($theme_names as $theme_name) {
+        $candidates = [$theme_name . '_preprocess_node__' . $view_mode];
+        if (count($parts) >= 3) {
+          $candidates[] = $theme_name . '_preprocess_' . $name;
+        }
+        $this->appendPreprocessCandidates($theme_registry, $name, $candidates);
+      }
+    }
+  }
+
+  /**
+   * Registers suggestion preprocess implementations on suggestion entries.
+   *
+   * Builds all intermediate names from the suggestion parts: for
+   * 'paragraph__civictheme_content__preview' this checks
+   * THEME_preprocess_paragraph__civictheme_content and
+   * THEME_preprocess_paragraph__civictheme_content__preview for every theme
+   * in the chain.
+   *
+   * @param array $theme_registry
+   *   The theme registry being altered.
+   * @param string $base_hook
+   *   The base hook to process suggestions of, e.g. 'paragraph' or 'block'.
+   * @param list<string> $theme_names
+   *   Theme machine names in the chain, base themes first.
+   */
+  protected function registerSuggestionPreprocess(array &$theme_registry, string $base_hook, array $theme_names): void {
+    $prefix = $base_hook . '__';
+    foreach ($theme_registry as $name => $info) {
+      if (!is_string($name) || !str_starts_with($name, $prefix) || ($info['base hook'] ?? NULL) !== $base_hook) {
+        continue;
+      }
+
+      $parts = explode('__', $name);
+      foreach ($theme_names as $theme_name) {
+        $candidates = [];
+        $accumulated = $parts[0];
+        $counter = count($parts);
+        for ($i = 1; $i < $counter; $i++) {
+          $accumulated .= '__' . $parts[$i];
+          $candidates[] = $theme_name . '_preprocess_' . $accumulated;
+        }
+        $this->appendPreprocessCandidates($theme_registry, $name, $candidates);
+      }
+    }
+  }
+
+  /**
+   * Appends preprocess candidates that exist to a registry entry.
+   *
+   * @param array $theme_registry
+   *   The theme registry being altered.
+   * @param string $name
+   *   The registry entry name to append to.
+   * @param list<string> $candidates
+   *   Candidate preprocess function names.
+   */
+  protected function appendPreprocessCandidates(array &$theme_registry, string $name, array $candidates): void {
+    foreach ($candidates as $candidate) {
+      if ($this->preprocessImplementationExists($theme_registry, $candidate) && !in_array($candidate, $theme_registry[$name]['preprocess functions'] ?? [])) {
+        $theme_registry[$name]['preprocess functions'][] = $candidate;
+      }
+    }
+  }
+
+  /**
    * Preprocess callable registered to always run last for all theme hooks.
    *
    * @see self::themeRegistryAlter()
@@ -113,7 +247,7 @@ class CivicthemeThemeHooks {
   public static function preprocessLast(array &$variables): void {
     // Process attributes for all components before they are sent to
     // templates.
-    CivicthemeAttributeHelper::convertAttributesToModifierClass($variables);
+    CivicthemeAttribute::convertAttributesToModifierClass($variables);
   }
 
   /**
@@ -190,8 +324,8 @@ class CivicthemeThemeHooks {
       $alert = $component_plugin_manager->find('civictheme:alert');
       $attachments['#attached']['library'][] = $alert->getLibraryName();
     }
-    catch (ComponentNotFoundException $exception) {
-      \Drupal::logger('civictheme')->error('Unable to find alert component: %message', ['%message' => $exception->getMessage()]);
+    catch (ComponentNotFoundException $componentNotFoundException) {
+      \Drupal::logger('civictheme')->error('Unable to find alert component: %message', ['%message' => $componentNotFoundException->getMessage()]);
     }
     $attachments['#cache']['contexts'] = Cache::mergeContexts($attachments['#cache']['contexts'] ?? [], ['url.query_args']);
   }

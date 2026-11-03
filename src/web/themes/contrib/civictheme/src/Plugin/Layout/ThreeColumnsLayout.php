@@ -61,8 +61,8 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
   /**
    * {@inheritdoc}
    *
-   * @param array<string, mixed> $form
-   *   The form structure.
+   * @param array $form
+   *   The form structure. Declared plain to match the by-ref parent contract.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    */

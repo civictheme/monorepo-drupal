@@ -13,7 +13,7 @@ use Drupal\views\ViewExecutable;
  *
  * Internal to CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 final class FeatureOptout {
 
@@ -40,7 +40,7 @@ final class FeatureOptout {
           $view = $context;
           $tags = $view->storage->get('tag');
           $tags = empty($tags) ? [] : explode(',', (string) $tags);
-          $tags = array_map('trim', $tags);
+          $tags = array_map(trim(...), $tags);
 
           if (in_array($name, $tags)) {
             $optedout = TRUE;
@@ -55,7 +55,7 @@ final class FeatureOptout {
           $optouts = $theme_config_manager->load('optouts', []);
           // Additionally filter using available flags to ensure that only
           // correctly mapped flags are used.
-          if (array_key_exists($name, static::flags())) {
+          if (array_key_exists($name, self::flags())) {
             $optedout = in_array($name, $optouts);
           }
         }
