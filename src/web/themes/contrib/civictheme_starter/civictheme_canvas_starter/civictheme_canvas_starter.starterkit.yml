@@ -1,0 +1,26 @@
+# Marks this overlay theme as a starterkit source for core's generate-theme
+# command. A Canvas site generates the pair:
+#
+#   php core/scripts/dr generate-theme alpine_shire \
+#     --name "Alpine Shire" --starterkit civictheme_starter
+#   php core/scripts/dr generate-theme alpine_shire_canvas \
+#     --name "Alpine Shire Canvas" --starterkit civictheme_canvas_starter
+#
+# The generated overlay's machine name must end in `_canvas`: the
+# post-processor derives the main theme's name from it and rewrites every
+# main-kit reference (`base theme:`, `replaces:` keys) to the main theme.
+info:
+  # Core would otherwise reset the generated theme's requirement to the bare
+  # current major (`^11`) and the description to an empty string.
+  description: Canvas overlay theme.
+  core_version_requirement: ^11.4 || ^12
+  # Generated themes start their own versioning. Provenance is carried by the
+  # `generator: civictheme_canvas_starter:<version>` key core derives from
+  # this theme's own info.yml version.
+  version: 1.0.0
+ignore:
+  # Core's defaults, restated because a custom list replaces them. Unlike the
+  # main kit, components/ is source here (the overrides), not build output,
+  # so it ships into generated overlays.
+  - '/src/StarterKit.php'
+  - '/*.starterkit.yml'

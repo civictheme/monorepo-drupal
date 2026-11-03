@@ -1,4 +1,7 @@
-components
+# Anchored to the theme root: the nested canvas kit's components/ is source
+# (it ships into generated overlays), only this theme's uikit-installed copy
+# is a build artefact.
+/components
 node_modules
 # Remove the line below and commit the Storybook assets if your build system
 # does not allow to run NodeJS scripts.

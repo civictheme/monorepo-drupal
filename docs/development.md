@@ -58,6 +58,16 @@ case-form of `civictheme_starter` / "CivicTheme Starter" in file contents and
 names; bare `civictheme` tokens are not rename patterns and survive — that
 boundary is the naming contract enforced by `scripts/lint.naming-contract.sh`.
 
+A Canvas site generates a pair: the main theme plus a thin overlay from the
+nested `civictheme_canvas_starter` kit. The overlay's machine name is the
+main theme's plus `_canvas`; its post-processor rewrites `base theme:` and
+the component `replaces:` targets to the main theme:
+
+```bash
+php core/scripts/dr generate-theme alpine_shire_canvas --name "Alpine Shire Canvas" \
+  --starterkit civictheme_canvas_starter --path themes/custom
+```
+
 The `generation` CI job is the guard for that contract: on every push it
 generates a theme from the kit (via the isolated build), asserts the identity
 renamed and the content model survived, builds the generated theme's front

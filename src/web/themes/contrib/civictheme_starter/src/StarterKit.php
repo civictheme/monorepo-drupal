@@ -39,8 +39,9 @@ final class StarterKit implements StarterKitInterface {
    */
   public static function postProcess(string $working_dir, string $machine_name, string $theme_name): void {
     // Build-output and kit-only trees whose dot-leading entries escape the
-    // starterkit ignore globs.
-    foreach (['build', 'components', 'dist', 'node_modules', 'storybook-static', '.logs'] as $directory) {
+    // starterkit ignore globs. The nested canvas kit generates separately and
+    // never ships inside a generated main theme.
+    foreach (['build', 'components', 'dist', 'node_modules', 'storybook-static', '.logs', 'civictheme_canvas_starter'] as $directory) {
       self::removeDirectory($working_dir . '/' . $directory);
     }
 

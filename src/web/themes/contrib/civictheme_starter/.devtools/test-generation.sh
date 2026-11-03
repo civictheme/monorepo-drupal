@@ -40,6 +40,8 @@ pass() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\03
 fail() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\033[31m[FAIL] %s\033[0m\n" "${1}" || printf "[FAIL] %s\n" "${1}"; }
 # @formatter:on
 
+drush() { "build/vendor/bin/drush" -r "$(pwd)/build/web" -y "$@"; }
+
 #-------------------------------------------------------------------------------
 
 echo "==============================="
@@ -179,6 +181,75 @@ if echo "${homepage}" | grep -qE "${old_patterns}"; then
   exit 1
 fi
 pass "Homepage renders with the generated theme."
+
+#-------------------------------------------------------------------------------
+# Canvas overlay pair.
+#-------------------------------------------------------------------------------
+
+canvas_gen_dir="build/web/themes/custom/${GENERATED_NAME}_canvas"
+canvas_patterns='civictheme_canvas_starter|civicthemeCanvasStarter|CivicthemeCanvasStarter|Civictheme_canvas_starter|CivicTheme Canvas Starter|civicThemeCanvasStarter|CivicThemeCanvasStarter'
+
+info "Generating the canvas overlay from the nested kit."
+php build/vendor/bin/dr generate-theme "${GENERATED_NAME}_canvas" --name "${GENERATED_LABEL} Canvas" --starterkit civictheme_canvas_starter --path themes/custom
+[ -d "${canvas_gen_dir}" ] || { fail "Generated overlay directory ${canvas_gen_dir} not found."; exit 1; }
+pass "Overlay generated."
+
+info "Asserting the overlay post-processing rewrote both identities."
+canvas_leftovers="$(grep -rIniE "${old_patterns}|${canvas_patterns}" "${canvas_gen_dir}" | grep -v "${GENERATED_NAME}_canvas.info.yml:.*generator:" || true)"
+if [ -n "${canvas_leftovers}" ]; then
+  fail "Kit identity found in generated overlay content:"
+  echo "${canvas_leftovers}"
+  exit 1
+fi
+canvas_leftover_names="$(find "${canvas_gen_dir}" -name '*civictheme*' || true)"
+if [ -n "${canvas_leftover_names}" ]; then
+  fail "Kit identity found in overlay file names:"
+  echo "${canvas_leftover_names}"
+  exit 1
+fi
+# Core re-serializes the generated info.yml, quoting keys with spaces.
+grep -qE "^'?base theme'?: ${GENERATED_NAME}$" "${canvas_gen_dir}/${GENERATED_NAME}_canvas.info.yml" || { fail "base theme did not rewrite to the main theme."; exit 1; }
+grep -q "name: '${GENERATED_LABEL} Canvas'" "${canvas_gen_dir}/${GENERATED_NAME}_canvas.info.yml" || { fail "Overlay label did not apply."; exit 1; }
+grep -q "generator: 'civictheme_canvas_starter:" "${canvas_gen_dir}/${GENERATED_NAME}_canvas.info.yml" || { fail "Overlay generator provenance missing."; exit 1; }
+[ ! -e "${canvas_gen_dir}/src" ] || { fail "The overlay post-processor leaked into the generated overlay."; exit 1; }
+[ ! -f "${canvas_gen_dir}/${GENERATED_NAME}_canvas.starterkit.yml" ] || { fail "starterkit.yml leaked into the generated overlay."; exit 1; }
+[ -f "${canvas_gen_dir}/components/README.md" ] || { fail "The overrides directory did not ship."; exit 1; }
+pass "Overlay rewrote to the ${GENERATED_NAME} pair."
+
+info "Asserting an override component wins negotiation."
+# The kit ships near-empty, so prove the mechanics with a throwaway override
+# in the generated overlay: a component declaring it replaces the main
+# theme's button.
+mkdir -p "${canvas_gen_dir}/components/button"
+# Core refuses a replacement unless both sides declare a props schema
+# (ComponentPluginManager), so the throwaway carries an empty one.
+cat > "${canvas_gen_dir}/components/button/button.component.yml" <<YAML
+name: Button
+status: stable
+replaces: '${GENERATED_NAME}:button'
+props:
+  type: object
+  properties: {}
+YAML
+echo '<span class="generation-test-override"></span>' > "${canvas_gen_dir}/components/button/button.twig"
+drush theme:enable "${GENERATED_NAME}_canvas"
+drush config:set system.theme default "${GENERATED_NAME}_canvas"
+drush cr
+negotiated="$(drush php:eval "print \Drupal::service('Drupal\Core\Theme\ComponentNegotiator')->negotiate('${GENERATED_NAME}:button', \Drupal::service('plugin.manager.sdc')->getDefinitions()) ?? 'NONE';")"
+if [ "${negotiated}" != "${GENERATED_NAME}_canvas:button" ]; then
+  fail "Component negotiation returned '${negotiated}' instead of the overlay's override."
+  exit 1
+fi
+pass "Override component wins negotiation."
+
+info "Smoke-testing the overlay as default theme."
+homepage="$(curl -sf "http://${WEBSERVER_HOST}:${WEBSERVER_PORT}/")" || { fail "Homepage request failed with the overlay."; exit 1; }
+echo "${homepage}" | grep -q 'ct-' || { fail "Homepage does not render CivicTheme markup through the overlay."; exit 1; }
+if echo "${homepage}" | grep -qE "${old_patterns}|${canvas_patterns}"; then
+  fail "Homepage markup references a kit identity with the overlay active."
+  exit 1
+fi
+pass "Homepage renders through the overlay."
 
 echo
 echo "==============================="
