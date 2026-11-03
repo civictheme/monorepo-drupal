@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\civictheme_sdc\Unit;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Plugin\Component;
 use Drupal\Core\Render\Component\Exception\InvalidComponentException;
@@ -37,6 +38,7 @@ class SingleDirectoryComponentValidatorTest extends UnitTestCase {
    *
    * @throws \Drupal\Core\Render\Component\Exception\InvalidComponentException
    */
+  #[DataProvider('dataProviderValidateDefinitionValid')]
   public function testValidateDefinitionValid(array $definition): void {
     $component_validator = new ComponentValidator();
     $component_validator->setValidator();
@@ -66,6 +68,7 @@ class SingleDirectoryComponentValidatorTest extends UnitTestCase {
    *
    * @dataProvider dataProviderValidateDefinitionInvalid
    */
+  #[DataProvider('dataProviderValidateDefinitionInvalid')]
   public function testValidateDefinitionInvalid(array $definition): void {
     $this->expectException(InvalidComponentException::class);
     $component_validator = new ComponentValidator();
@@ -127,6 +130,7 @@ class SingleDirectoryComponentValidatorTest extends UnitTestCase {
    *
    * @throws \Drupal\Core\Render\Component\Exception\InvalidComponentException
    */
+  #[DataProvider('dataProviderValidatePropsValid')]
   public function testValidatePropsValid(array $context, string $component_id, array $definition): void {
     $component = new Component(
       ['app_root' => '/fake/path/root'],
@@ -190,6 +194,7 @@ class SingleDirectoryComponentValidatorTest extends UnitTestCase {
    *
    * @throws \Drupal\Core\Render\Component\Exception\InvalidComponentException
    */
+  #[DataProvider('dataProviderValidatePropsInvalid')]
   public function testValidatePropsInvalid(array $context, string $component_id, array $definition, string $expected_exception_message): void {
     $component = new Component(
       ['app_root' => '/fake/path/root'],
@@ -353,6 +358,7 @@ class SingleDirectoryComponentValidatorTest extends UnitTestCase {
    *
    * @throws \Drupal\Core\Render\Component\Exception\InvalidComponentException
    */
+  #[DataProvider('dataProviderValidateAllCivicThemeDefinitionsValid')]
   public function testValidateAllCivicThemeDefinitionsValid(array $definition): void {
     $component_validator = new ComponentValidator();
     $component_validator->setValidator();

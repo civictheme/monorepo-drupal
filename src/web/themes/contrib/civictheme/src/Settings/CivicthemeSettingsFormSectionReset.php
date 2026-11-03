@@ -21,7 +21,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
   /**
    * {@inheritdoc}
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function form(array &$form, FormStateInterface $form_state): void {
     $form['reset'] = [
@@ -75,8 +75,8 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
   /**
    * Validation callback.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function resetValidate(array &$form, FormStateInterface $form_state): void {
     if (!$form_state->getValue(['reset', 'confirm'])) {
@@ -87,8 +87,8 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
   /**
    * Submit callback.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function resetSubmit(array &$form, FormStateInterface $form_state): void {
     $triggering_element = $form_state->getTriggeringElement();

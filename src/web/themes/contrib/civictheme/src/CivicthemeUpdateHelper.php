@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * CivicTheme utilities.
  *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings("PHPMD.TooManyPublicMethods")
  */
 final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
@@ -65,7 +65,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    * @return string|null
    *   Return log message on the last pass of the update.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   public function update(array &$sandbox, $entity_type, array $entity_bundles, callable $start_callback, callable $process_callback, callable $finish_callback, int $batch_size = 10, ?int $limit = NULL): ?string {
     $storage = $this->entityTypeManager->getStorage($entity_type);
@@ -225,7 +225,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    *   View mode to update.
    */
   public function updateViewDisplayConfig(string $entity_type, string $bundle, array $field_config, ?array $group_config = NULL, string $view_mode = 'default'): void {
-    /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $view_display */
+    /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface|null $view_display */
     $view_display = $this->entityTypeManager
       ->getStorage('entity_view_display')
       ->load($entity_type . '.' . $bundle . '.' . $view_mode);

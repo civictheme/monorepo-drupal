@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\civictheme;
 
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
+use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Core\Theme\ThemeManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -52,7 +54,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class),
-      $container->has('Drupal\Core\Extension\ThemeSettingsProvider') ? $container->get('Drupal\Core\Extension\ThemeSettingsProvider') : NULL,
+      $container->has(ThemeSettingsProvider::class) ? $container->get(ThemeSettingsProvider::class) : NULL,
     );
   }
 
@@ -67,7 +69,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    * @return mixed|null
    *   The value of the requested setting, NULL if the setting does not exist.
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function load($key, mixed $default = NULL) {
     // Return site slogan from system site settings.
@@ -79,7 +81,12 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
     }
 
-    return theme_get_setting($key, $this->theme->getName()) ?? $default;
+    // Reached only when the ThemeSettingsProvider service could not be
+    // injected (pre-11.3 cores), so the service is resolved at runtime.
+    // phpcs:disable DrupalPractice.Objects.GlobalDrupal.GlobalDrupal
+    // @phpstan-ignore globalDrupalDependencyInjection.useDependencyInjection
+    return DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '11.3.0', fn() => \Drupal::service(ThemeSettingsProvider::class)->getSetting($key, $this->theme->getName()), fn() => theme_get_setting($key, $this->theme->getName())) ?? $default;
+    // phpcs:enable DrupalPractice.Objects.GlobalDrupal.GlobalDrupal
   }
 
   /**
@@ -95,7 +102,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    * @return mixed|null
    *   The value of the requested setting, NULL if the setting does not exist.
    */
-  public function loadForComponent($name, $key, mixed $default = NULL) {
+  public function loadForComponent(string $name, $key, mixed $default = NULL) {
     return $this->load(sprintf('components.%s.%s', $name, $key), $default);
   }
 

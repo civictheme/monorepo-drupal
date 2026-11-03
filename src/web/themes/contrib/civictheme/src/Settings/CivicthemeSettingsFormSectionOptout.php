@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\civictheme\Settings;
 
+use Drupal\civictheme\Theme\FeatureOptout;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * CivicTheme settings section to opt-out from features.
@@ -22,7 +24,7 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
   /**
    * {@inheritdoc}
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function form(array &$form, FormStateInterface $form_state): void {
     $form['optout_details'] = [
@@ -50,12 +52,12 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
 
     $form['optout_details']['mapping']['content'] = [
       '#theme' => 'item_list',
-      '#items' => array_map(static function ($key, $description): FormattableMarkup {
+      '#items' => array_map(static function (string $key, TranslatableMarkup $description): FormattableMarkup {
         return new FormattableMarkup('<code>@key</code>: @description', [
           '@key' => $key,
           '@description' => $description,
         ]);
-      }, array_keys(_civictheme_feature_optout_flags()), _civictheme_feature_optout_flags()),
+      }, array_keys(FeatureOptout::flags()), FeatureOptout::flags()),
     ];
   }
 
@@ -64,7 +66,7 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
    */
   public static function multilineToArray(array $element, FormStateInterface $form_state): void {
     $lines = is_array($element['#value']) ? $element['#value'] : explode("\n", str_replace("\r\n", "\n", (string) $element['#value']));
-    $form_state->setValueForElement($element, array_values(array_filter(array_map('trim', $lines))));
+    $form_state->setValueForElement($element, array_values(array_filter(array_map(trim(...), $lines))));
   }
 
 }

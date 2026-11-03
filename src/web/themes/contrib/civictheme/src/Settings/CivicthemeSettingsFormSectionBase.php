@@ -95,7 +95,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    * @return string
    *   Friendly path or original path if an invalid stream wrapper was provided.
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   protected function toFriendlyFilePath($path): string {
     if ($path && StreamWrapperManager::getScheme($path) == $this->getDefaultFileScheme()) {
@@ -132,7 +132,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
   /**
    * Validate file upload consisting of upload and path fields.
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   protected function validateFileUpload(array &$form, FormStateInterface $form_state, array $upload_field_name_key, array $path_field_name_key): void {
     // Check for a newly uploaded file and save it into the temp file in
@@ -176,7 +176,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
   /**
    * Submit file upload consisting of upload and path fields.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
    */
   protected function submitFileUpload(array &$form, FormStateInterface $form_state, string|array $upload_field_name_key, string|array $path_field_name_key): void {
     $uploaded_file = $form_state->getValue($upload_field_name_key);

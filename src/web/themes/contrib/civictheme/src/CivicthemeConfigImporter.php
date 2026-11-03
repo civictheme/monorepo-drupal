@@ -31,7 +31,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
  *
  * Imports configurations from specified files.
  *
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
  */
 final class CivicthemeConfigImporter implements ContainerInjectionInterface {
 
@@ -74,7 +74,7 @@ final class CivicthemeConfigImporter implements ContainerInjectionInterface {
    * @param \Drupal\Core\Extension\ThemeExtensionList $themeExtensionList
    *   The theme extension list.
    *
-   * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+   * @SuppressWarnings("PHPMD.ExcessiveParameterList")
    */
   public function __construct(protected EventDispatcherInterface $eventDispatcher, protected ConfigManagerInterface $configManager, protected LockBackendInterface $lockPersistent, protected TypedConfigManagerInterface $typedConfigManager, protected ModuleHandlerInterface $moduleHandler, protected ModuleInstallerInterface $moduleInstaller, protected ThemeHandlerInterface $themeHandler, protected TranslationInterface $stringTranslation, protected ModuleExtensionList $moduleExtensionList, protected StorageInterface $configStorage, protected CacheBackendInterface $cacheConfig, protected MessengerInterface $messenger, protected LoggerChannelInterface $logger, protected ThemeExtensionList $themeExtensionList) {
   }
@@ -195,7 +195,7 @@ final class CivicthemeConfigImporter implements ContainerInjectionInterface {
    * @throws \Exception
    *   If configuration file was not found in any specified location.
    *
-   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings("PHPMD.MissingImport")
    */
   public function readConfig(string $id, array $locations) {
     foreach ($locations as $path) {
@@ -221,7 +221,7 @@ final class CivicthemeConfigImporter implements ContainerInjectionInterface {
    * @return mixed
    *   Data with replaced tokens.
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   protected function replaceTokens(mixed $data, array $tokens = []) {
     foreach ($tokens as $k => $v) {

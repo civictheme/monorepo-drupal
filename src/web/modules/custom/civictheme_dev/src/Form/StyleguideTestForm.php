@@ -32,8 +32,8 @@ class StyleguideTestForm extends FormBase {
    * @return array<mixed>
    *   Form array.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function buildForm(array $form, FormStateInterface $form_state, array $form_elements = []): array {
     return array_merge($form_elements, $form);

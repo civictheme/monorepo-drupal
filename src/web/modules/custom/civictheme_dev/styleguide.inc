@@ -12,7 +12,7 @@ use Drupal\civictheme_dev\Form\StyleguideTestForm;
 /**
  * Styleguide textfield elements.
  *
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
  */
 function _civictheme_dev_styleguide__form_test__textfield(array &$items): void {
   $items['form-civictheme-test-textfield']['group'] = t('Form Civictheme Test');
@@ -91,7 +91,7 @@ function _civictheme_dev_styleguide__form_test__textfield(array &$items): void {
 /**
  * Styleguide textarea elements.
  *
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
  */
 function _civictheme_dev_styleguide__form_test__textarea(array &$items): void {
   $items['form-civictheme-test-textarea']['group'] = t('Form Civictheme Test');
@@ -169,7 +169,7 @@ function _civictheme_dev_styleguide__form_test__textarea(array &$items): void {
 /**
  * Styleguide select elements.
  *
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
  */
 function _civictheme_dev_styleguide__form_test__select(array &$items): void {
   $items['form-civictheme-test-select']['group'] = t('Form Civictheme Test');
@@ -275,7 +275,7 @@ function _civictheme_dev_styleguide__form_test__select(array &$items): void {
 /**
  * Styleguide checkbox element.
  *
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
  */
 function _civictheme_dev_styleguide__form_test__checkbox(array &$items): void {
   $items['form-civictheme-test-checkbox']['group'] = t('Form Civictheme Test');
@@ -350,7 +350,7 @@ function _civictheme_dev_styleguide__form_test__checkbox(array &$items): void {
 /**
  * Styleguide checkboxes elements.
  *
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
  */
 function _civictheme_dev_styleguide__form_test__checkboxes(array &$items): void {
   $items['form-civictheme-test-checkboxes']['group'] = t('Form Civictheme Test');
@@ -460,7 +460,7 @@ function _civictheme_dev_styleguide__form_test__checkboxes(array &$items): void 
 /**
  * Styleguide radios elements.
  *
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
  */
 function _civictheme_dev_styleguide__form_test__radios(array &$items): void {
   $items['form-civictheme-test-radios']['group'] = t('Form Civictheme Test');

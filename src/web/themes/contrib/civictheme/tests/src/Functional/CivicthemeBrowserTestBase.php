@@ -35,7 +35,7 @@ abstract class CivicthemeBrowserTestBase extends BrowserTestBase {
   /**
    * {@inheritdoc}
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   protected function setUp(): void {
     parent::setUp();

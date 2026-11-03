@@ -30,7 +30,7 @@ function cs_generated_content_generated_content_create_media_civictheme_video_tr
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
  *
  * @phpstan-ignore-next-line
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function cs_generated_content_generated_content_create_media_civictheme_video(): array {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */

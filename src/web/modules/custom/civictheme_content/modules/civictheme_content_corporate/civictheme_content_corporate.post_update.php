@@ -21,13 +21,13 @@ function civictheme_content_corporate_post_update_common(): void {
 /**
  * Sets homepage.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_content_corporate_post_update_set_homepage(): void {
   try {
     Helper::setHomepageFromNode('Protecting the environment');
   }
   catch (\Exception $exception) {
-    throw new UpdateException($exception->getMessage());
+    throw new UpdateException($exception->getMessage(), $exception->getCode(), $exception);
   }
 }

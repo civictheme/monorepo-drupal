@@ -28,8 +28,8 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
    * {@inheritdoc}
    *
    * @phpstan-ignore-next-line
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
    */
   public function filterWrite($name, array $data): array {
     // Exclude permissions and dependencies for user roles.
@@ -123,9 +123,7 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
       }
     }
 
-    array_filter($permissions);
-
-    return $permissions;
+    return array_filter($permissions);
   }
 
   /**
@@ -134,7 +132,7 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
    * @param string $role_name
    *   Role machine name.
    *
-   * @return array<int, int|string>.
+   * @return array<int, int|string>
    *   Array of excluded dependency modules.
    */
   protected function getExcludedRoleDependencyModules(string $role_name): array {
@@ -146,9 +144,7 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
       $modules = array_keys($map[$role_name]);
     }
 
-    array_filter($modules);
-
-    return $modules;
+    return array_filter($modules);
   }
 
   /**

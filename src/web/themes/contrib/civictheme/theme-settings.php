@@ -13,7 +13,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_form_system_theme_settings_alter().
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_form_system_theme_settings_alter(array &$form, FormStateInterface &$form_state): void {
   /** @var \Drupal\civictheme\CivicthemeSettingsFormManager $settings */
