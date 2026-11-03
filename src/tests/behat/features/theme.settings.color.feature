@@ -39,28 +39,28 @@ Feature: Colour settings are available in the theme settings
   Scenario: The colour overrides stylesheet is attached when the Colour Picker is used.
     Given I set the current theme setting "colors.css" to ":root{--ct-color-highlight:#ffcc00}"
     And I set the current theme setting "colors.use_color_selector" to "0"
-    And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme/src/Drush'
+    And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme_starter/src/Drush'
 
     When I go to the homepage
     Then the response should not contain "/sites/default/files/css-variables"
 
     When I set the current theme setting "colors.use_color_selector" to "1"
-    And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme/src/Drush'
+    And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme_starter/src/Drush'
 
     And I go to the homepage
     Then the response should contain "/sites/default/files/css-variables"
 
     When I set the current theme setting "colors.use_color_selector" to "0"
     And I set the current theme setting "colors.css" to ""
-    And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme/src/Drush'
+    And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme_starter/src/Drush'
 
   @api
   Scenario: The colour overrides stylesheet can be generated through a Drush command.
     Given I set the current theme setting "colors.css" to ":root{--ct-color-highlight:#ffcc00}"
-    And I run drush 'civictheme:stylesheet test' '--include=themes/contrib/civictheme/src/Drush'
+    And I run drush 'civictheme:stylesheet test' '--include=themes/contrib/civictheme_starter/src/Drush'
 
     When I go to "/sites/default/files/css-variables.test.css"
     Then the response should contain "--ct-color-highlight:#ffcc00"
 
     When I set the current theme setting "colors.css" to ""
-    And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme/src/Drush'
+    And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme_starter/src/Drush'

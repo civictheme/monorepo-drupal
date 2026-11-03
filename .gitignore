@@ -37,7 +37,7 @@ node_modules/
 # Contrib themes are Composer-managed, except CivicTheme — the product this
 # monorepo exists to develop — which is committed.
 /src/web/themes/contrib/*
-!/src/web/themes/contrib/civictheme
+!/src/web/themes/contrib/civictheme_starter
 
 # Custom themes are site-generated, never committed.
 /src/web/themes/custom/*

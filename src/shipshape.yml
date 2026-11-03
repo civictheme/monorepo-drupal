@@ -2,18 +2,18 @@ checks:
   file:
     - name: '[FILE] Illegal files'
       severity: high
-      path: web/themes/contrib/civictheme
+      path: web/themes/contrib/civictheme_starter
       disallowed-pattern: '^(adminer|phpmyadmin|bigdump)?\.php$'
     - name: '[FILE] Executable files'
       severity: normal
-      path: web/themes/contrib/civictheme
+      path: web/themes/contrib/civictheme_starter
       disallowed-pattern: '.*\.(bin|deb|dmg|elf|exe|msi|sh)+$'
       exclude-pattern: '^(vendor|web/core|web/modules/contrib)+.*'
       skip-dir:
       - node_modules
       - .devtools
     - name: '[FILE] Sensitive public files'
-      path: web/themes/contrib/civictheme
+      path: web/themes/contrib/civictheme_starter
       disallowed-pattern: '.*\.(sql|gz|tar|tgz|zip)+$'
       exclude-pattern: '.*\.(css|js)\.gz?$'
       skip-dir:
@@ -116,7 +116,7 @@ checks:
       ignore-missing: true
     - name: '[FILE] Yaml lint theme files'
       severity: high
-      path: web/themes/contrib/civictheme
+      path: web/themes/contrib/civictheme_starter
       pattern: ".*.yml"
       exclude-pattern: node_modules
       ignore-missing: true

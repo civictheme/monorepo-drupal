@@ -22,7 +22,7 @@ $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\TrailingSpaceRule());
 
 $finder = new TwigCsFixer\File\Finder();
 $finder->in(__DIR__ . '/web/modules/custom');
-$finder->in(__DIR__ . '/web/themes/contrib/civictheme/templates')->exclude([
+$finder->in(__DIR__ . '/web/themes/contrib/civictheme_starter/templates')->exclude([
   '.components-civictheme',
   'components_combined',
 ]);

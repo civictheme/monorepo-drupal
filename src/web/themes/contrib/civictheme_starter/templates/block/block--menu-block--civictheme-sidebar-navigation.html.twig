@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a Sidebar Navigation menu block.
+ */
+#}
+{% extends 'block.html.twig' %}
+
+{% block content_block %}
+  {% include 'civictheme_starter:side-navigation' with {
+    title: title,
+    theme: theme|default('light'),
+    items,
+    modifier_class: 'ct-sidebar-navigation ' ~ modifier_class|default(''),
+  } only %}
+{% endblock %}

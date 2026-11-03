@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation for Automated list.
+ */
+#}
+{% extends 'civictheme_starter:list' %}
+
+{% block rows_block %}
+  {% if rows -%}
+    {{ rows }}
+  {% endif %}
+{% endblock %}

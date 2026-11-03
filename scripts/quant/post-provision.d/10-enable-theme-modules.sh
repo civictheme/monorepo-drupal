@@ -30,7 +30,7 @@ rm -Rf "${APP_ROOT}"/web/sites/default/files/* >/dev/null 2>&1 || true
 echo "  > Enable modules required by CivicTheme."
 # Installs the modules the theme's optional config (block placements) depends
 # on; the recipes below install everything the content model needs.
-drush php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_enable_modules();"
+drush php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme_starter']->getPathname()) . '/theme-settings.provision.inc'; civictheme_enable_modules();"
 
 echo "  > Enable admin theme and set as default."
 if [ "${DRUPAL_INSTALL_PROFILE:-}" = "govcms" ]; then
@@ -46,11 +46,11 @@ fi
 echo "  > Enable CivicTheme theme and set as default."
 # The theme must be installed before the recipes apply: the entity display
 # config they ship uses layout plugins the theme provides.
-drush theme-enable civictheme
-drush config-set system.theme default civictheme
+drush theme-enable civictheme_starter
+drush config-set system.theme default civictheme_starter
 
 echo "  > Apply the CivicTheme content model recipes."
-theme_dir="${APP_ROOT}/web/themes/contrib/civictheme"
+theme_dir="${APP_ROOT}/web/themes/contrib/civictheme_starter"
 drush recipe:apply "${theme_dir}/recipes/civictheme_site"
 drush recipe:apply "${theme_dir}/recipes/civictheme_search"
 

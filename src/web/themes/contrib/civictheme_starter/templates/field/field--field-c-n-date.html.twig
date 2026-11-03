@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a Date field.
+ */
+#}
+{% if label_hidden %}
+  {% if multiple %}
+    <div{{ attributes }}>
+      {% for item in items %}
+        {% include 'civictheme_starter:paragraph' with {
+          content: item.content,
+        } only %}
+      {% endfor %}
+    </div>
+  {% else %}
+    {% for item in items %}
+      {% include 'civictheme_starter:paragraph' with {
+        content: item.content,
+      } only %}
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes }}>
+    {% include 'civictheme_starter:label' with {
+      content: label,
+    } only %}
+    {% if multiple %}
+    <div>
+      {% endif %}
+      {% for item in items %}
+        {% include 'civictheme_starter:paragraph' with {
+          content: item.content,
+        } only %}
+      {% endfor %}
+      {% if multiple %}
+    </div>
+    {% endif %}
+  </div>
+{% endif %}

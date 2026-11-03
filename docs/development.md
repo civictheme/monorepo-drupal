@@ -28,17 +28,17 @@ dependencies on other modules or themes.
 To run the isolated build, use the following command:
 
 ```bash
-cd web/themes/contrib/civictheme
+cd web/themes/contrib/civictheme_starter
 ahoy build
 ```
 
-This will assemble the full Drupal codebase in `web/themes/contrib/civictheme/build`
+This will assemble the full Drupal codebase in `web/themes/contrib/civictheme_starter/build`
 directory and will symlink the CivicTheme theme files into the
-`web/themes/contrib/civictheme/build/web/themes/custom/civictheme` directory.
+`web/themes/contrib/civictheme_starter/build/web/themes/custom/civictheme` directory.
 
 **This does not use Docker and does not require a running Docker stack.**
 
-Important: make sure to removed `web/themes/contrib/civictheme/build` directory
+Important: make sure to removed `web/themes/contrib/civictheme_starter/build` directory
 before running the `Full build` build to avoid any conflicts.
 
 ## Full build (Docker build)
@@ -98,11 +98,11 @@ To compile all assets in all themes: `ahoy fe`
 
 ```bash
 # CivicTheme Drupal theme
-cd web/themes/contrib/civictheme
+cd web/themes/contrib/civictheme_starter
 npm run build
 ```
 
-Refer to the [theme's Readme](web/themes/contrib/civictheme/README.md) for more
+Refer to the [theme's Readme](web/themes/contrib/civictheme_starter/README.md) for more
 information about switching of the UIKit version and other theme-specific
 details.
 
@@ -120,7 +120,7 @@ uses Config Devel for its `config/install` and `config/optional` directories.
 ahoy export-config
 ```
 
-To add new configuration to the export, add configuration name to `civictheme.info.yml`.
+To add new configuration to the export, add configuration name to `civictheme_starter.info.yml`.
 
 Tip: You can get the configuration name by exporting configuration with `drush cex -y`
 to `config/default` and using file names without `.yml` extension. Do not forget

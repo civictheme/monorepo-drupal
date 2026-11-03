@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
-  <img height=100px src="web/themes/contrib/civictheme/assets/logos/logo_secondary_light_mobile.png" alt="CivicTheme logo"></a>
+  <img height=100px src="web/themes/contrib/civictheme_starter/assets/logos/logo_secondary_light_mobile.png" alt="CivicTheme logo"></a>
 </p>
 
 <h1 align="center">CivicTheme - Development source site</h1>

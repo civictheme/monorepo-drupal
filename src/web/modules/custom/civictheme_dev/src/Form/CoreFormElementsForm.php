@@ -274,7 +274,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    * @phpstan-ignore-next-line
    */
   protected function createImageButton(array $form_element, FormElementBase $element): array {
-    $theme_path = $this->themeHandler->getTheme('civictheme')->getPath();
+    $theme_path = $this->themeHandler->getTheme('civictheme_starter')->getPath();
     $icon_path = '/' . $theme_path . '/assets/icons/download.svg';
     $form_element['#src'] = $icon_path;
 

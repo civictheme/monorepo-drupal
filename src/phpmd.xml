@@ -23,10 +23,10 @@
     <exclude-pattern>*/web/themes/contrib/easy_email_theme/*</exclude-pattern>
 
     <!-- Include civictheme base theme but exclude its built/generated assets. -->
-    <exclude-pattern>*/web/themes/contrib/civictheme/node_modules/*</exclude-pattern>
-    <exclude-pattern>*/web/themes/contrib/civictheme/dist/*</exclude-pattern>
-    <exclude-pattern>*/web/themes/contrib/civictheme/storybook-static/*</exclude-pattern>
-    <exclude-pattern>*/web/themes/contrib/civictheme/.storybook/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/civictheme_starter/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/civictheme_starter/dist/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/civictheme_starter/storybook-static/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/civictheme_starter/.storybook/*</exclude-pattern>
 
     <rule ref="rulesets/unusedcode.xml"/>
     <rule ref="rulesets/codesize.xml"/>

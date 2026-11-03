@@ -73,15 +73,15 @@ src/web/profiles/contrib
 # Contrib themes are Composer-managed, except CivicTheme — the committed
 # product this monorepo develops — which must ship in the image.
 src/web/themes/contrib/*
-!src/web/themes/contrib/civictheme
+!src/web/themes/contrib/civictheme_starter
 # Theme build inputs/outputs that never ship: node deps (also matched by
 # **/node_modules), Storybook output (CI-built, deployed to Netlify — never in
 # the image), and the uikit-installed components/ + dist/, which the assets
 # stage rebuilds and overlays — excluding them keeps a stale local build out
 # of the context and the layer cache honest.
-src/web/themes/contrib/civictheme/storybook-static
-src/web/themes/contrib/civictheme/components
-src/web/themes/contrib/civictheme/dist
+src/web/themes/contrib/civictheme_starter/storybook-static
+src/web/themes/contrib/civictheme_starter/components
+src/web/themes/contrib/civictheme_starter/dist
 src/drush/Commands/contrib
 src/recipes/contrib
 

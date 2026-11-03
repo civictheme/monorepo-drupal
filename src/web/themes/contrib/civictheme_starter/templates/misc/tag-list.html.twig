@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a Tag list component.
+ */
+#}
+{% set props = {
+  theme: theme|default('light'),
+  tags: tags,
+  modifier_class: modifier_class|default(''),
+  attributes: attributes is defined and attributes is not null ? attributes : create_attribute({}),
+} %}
+{% if vertical_spacing is defined and vertical_spacing is not null %}
+  {% set props = props|merge({vertical_spacing: vertical_spacing}) %}
+{% endif %}
+{% include 'civictheme_starter:tag-list' with props only %}

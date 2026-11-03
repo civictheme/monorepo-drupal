@@ -7,7 +7,7 @@ set -eu
 [ -n "${SCAFFOLD_DEBUG:-}" ] && set -x
 
 # Theme dir.
-THEME_DIR="web/themes/contrib/civictheme"
+THEME_DIR="web/themes/contrib/civictheme_starter"
 
 # Config file patterns whose config may change.
 DIFF_EXCLUDE_PATTERNS=(
@@ -53,7 +53,7 @@ cp -R "${THEME_CONFIG_DIR}"/* "${TMP_DIR_CURRENT}" >/dev/null
 rm -Rf "${THEME_CONFIG_DIR:?}"/* >/dev/null
 
 # Export config.
-drush cde civictheme >/dev/null
+drush cde civictheme_starter >/dev/null
 
 # Copy exported config into a temp dir for comparison.
 cp -R "${THEME_CONFIG_DIR}"/* "${TMP_DIR_EXPORTED}" >/dev/null
@@ -69,7 +69,7 @@ for exclude_pattern in "${DIFF_EXCLUDE_PATTERNS[@]}"; do
 done
 
 # Compare directories.
-diff "${diff_opts[@]}" "${TMP_DIR_CURRENT}/" "${TMP_DIR_EXPORTED}/" || (echo "ERROR: Configuration is not consistent. Are all configuration entries present in civictheme.info.yml?" && exit 1)
+diff "${diff_opts[@]}" "${TMP_DIR_CURRENT}/" "${TMP_DIR_EXPORTED}/" || (echo "ERROR: Configuration is not consistent. Are all configuration entries present in civictheme_starter.info.yml?" && exit 1)
 
 echo "  > OK: Configuration is consistent."
 

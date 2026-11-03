@@ -147,7 +147,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['environment_indicator.indicator']['name'] = static::ENVIRONMENT_SUT;
     $config['environment_indicator.settings']['favicon'] = TRUE;
     $config['environment_indicator.settings']['toolbar_integration'] = [TRUE];
-    $config['maintenance_theme'] = 'civictheme';
+    $config['maintenance_theme'] = 'civictheme_starter';
     $config['shield.settings']['shield_enable'] = TRUE;
     $config['system.performance']['cache']['page']['max_age'] = 900;
     $config['system.performance']['css']['preprocess'] = TRUE;
@@ -187,7 +187,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['environment_indicator.indicator']['name'] = static::ENVIRONMENT_LOCAL;
     $config['environment_indicator.settings']['favicon'] = TRUE;
     $config['environment_indicator.settings']['toolbar_integration'] = [TRUE];
-    $config['maintenance_theme'] = 'civictheme';
+    $config['maintenance_theme'] = 'civictheme_starter';
     $config['shield.settings']['shield_enable'] = FALSE;
     $config['system.logging']['error_level'] = 'all';
     $config['system.performance']['cache']['page']['max_age'] = 900;
@@ -229,7 +229,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['environment_indicator.indicator']['name'] = static::ENVIRONMENT_CI;
     $config['environment_indicator.settings']['favicon'] = TRUE;
     $config['environment_indicator.settings']['toolbar_integration'] = [TRUE];
-    $config['maintenance_theme'] = 'civictheme';
+    $config['maintenance_theme'] = 'civictheme_starter';
     $config['shield.settings']['shield_enable'] = FALSE;
     $config['system.performance']['cache']['page']['max_age'] = 900;
     $config['system.performance']['css']['preprocess'] = TRUE;
@@ -270,7 +270,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['environment_indicator.indicator']['name'] = static::ENVIRONMENT_DEV;
     $config['environment_indicator.settings']['favicon'] = TRUE;
     $config['environment_indicator.settings']['toolbar_integration'] = [TRUE];
-    $config['maintenance_theme'] = 'civictheme';
+    $config['maintenance_theme'] = 'civictheme_starter';
     $config['shield.settings']['shield_enable'] = TRUE;
     $config['system.performance']['cache']['page']['max_age'] = 900;
     $config['system.performance']['css']['preprocess'] = TRUE;
@@ -309,7 +309,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['environment_indicator.indicator']['name'] = static::ENVIRONMENT_TEST;
     $config['environment_indicator.settings']['favicon'] = TRUE;
     $config['environment_indicator.settings']['toolbar_integration'] = [TRUE];
-    $config['maintenance_theme'] = 'civictheme';
+    $config['maintenance_theme'] = 'civictheme_starter';
     $config['shield.settings']['shield_enable'] = TRUE;
     $config['system.performance']['cache']['page']['max_age'] = 900;
     $config['system.performance']['css']['preprocess'] = TRUE;
@@ -348,7 +348,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['environment_indicator.indicator']['name'] = static::ENVIRONMENT_PROD;
     $config['environment_indicator.settings']['favicon'] = TRUE;
     $config['environment_indicator.settings']['toolbar_integration'] = [TRUE];
-    $config['maintenance_theme'] = 'civictheme';
+    $config['maintenance_theme'] = 'civictheme_starter';
     $config['system.performance']['cache']['page']['max_age'] = 900;
     $config['system.performance']['css']['preprocess'] = TRUE;
     $config['system.performance']['js']['preprocess'] = TRUE;

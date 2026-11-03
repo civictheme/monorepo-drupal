@@ -11,9 +11,9 @@ const WEB_DIR = [
   path.resolve(__dirname, '../../web'),
   path.resolve(__dirname, '../../src/web'),
 ].find(fs.existsSync);
-const THEME_DIR = path.join(WEB_DIR, 'themes/contrib/civictheme');
+const THEME_DIR = path.join(WEB_DIR, 'themes/contrib/civictheme_starter');
 const CONFIG_DIRS = ['config/install'];
-const INFO_PATH = path.join(THEME_DIR, 'civictheme.info.yml');
+const INFO_PATH = path.join(THEME_DIR, 'civictheme_starter.info.yml');
 
 function getModuleDependencies(configDir) {
   const modules = new Set();

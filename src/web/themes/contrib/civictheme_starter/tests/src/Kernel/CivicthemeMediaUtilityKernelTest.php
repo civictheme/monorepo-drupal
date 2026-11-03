@@ -1,0 +1,68 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Drupal\Tests\civictheme_starter\Kernel;
+
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use Drupal\civictheme_starter\Utility\CivicthemeField;
+use Drupal\civictheme_starter\Utility\CivicthemeMedia;
+use Drupal\Core\StringTranslation\ByteSizeMarkup;
+use Drupal\Tests\media\Kernel\MediaKernelTestBase;
+
+/**
+ * Class CivicthemeMediaUtilityUnitTest.
+ *
+ * Test cases for getting media entity variables.
+ *
+ * @group CivicTheme
+ * @group site:unit
+ */
+#[Group('CivicTheme')]
+#[Group('site:unit')]
+#[RunTestsInSeparateProcesses]
+class CivicthemeMediaUtilityKernelTest extends MediaKernelTestBase {
+
+  /**
+   * Test CivicthemeMedia::getVariables().
+   */
+  public function testCivicThemeMediaGetVariables(): void {
+    $mediaType = $this->createMediaType('file');
+    $file_name = 'test.jpg';
+    $extension = 'jpg';
+    $creation_time = new \DateTime();
+    $creation_time->modify('-1 day');
+    $updated_time = new \DateTime();
+    $updated_time->modify('-1 hour');
+    $media_name = 'Test Media';
+    $media = $this->generateMedia($file_name, $mediaType);
+    $media->setCreatedTime($creation_time->getTimestamp());
+    $media->setChangedTime($updated_time->getTimestamp());
+    $media->setName($media_name);
+    $media->save();
+    /** @var \Drupal\file\FileInterface $file */
+    $file = CivicthemeField::getReferencedEntity($media, 'field_media_file');
+    $this->assertNotNull($file);
+    // VFS does not support external uri.
+    $file_url = NULL;
+    $file_size = ByteSizeMarkup::create($file->getSize());
+
+    $variables = CivicthemeMedia::getVariables($media);
+    $this->assertArrayHasKey('name', $variables);
+    $this->assertArrayHasKey('media_name', $variables);
+    $this->assertArrayHasKey('ext', $variables);
+    $this->assertArrayHasKey('url', $variables);
+    $this->assertArrayHasKey('size', $variables);
+    $this->assertArrayHasKey('created', $variables);
+    $this->assertArrayHasKey('changed', $variables);
+    $this->assertArrayHasKey('icon', $variables);
+    $this->assertEquals($file_name, $variables['name']);
+    $this->assertEquals($media_name, $variables['media_name']);
+    $this->assertEquals($extension, $variables['ext']);
+    $this->assertEquals($file_url, $variables['url']);
+    $this->assertEquals($file_size, $variables['size']);
+    $this->assertEquals('download-file', $variables['icon']);
+  }
+
+}

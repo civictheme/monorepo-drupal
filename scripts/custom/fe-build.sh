@@ -22,7 +22,7 @@ if ! command -v npm >/dev/null 2>&1; then
   exit 0
 fi
 
-dir="$HERE/src/web/themes/contrib/civictheme"
+dir="$HERE/src/web/themes/contrib/civictheme_starter"
 log "building theme: ${dir#"$HERE"/}"
 (
   cd "$dir"

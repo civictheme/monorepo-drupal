@@ -166,8 +166,8 @@
             "recurse": true,
             "replace": true,
             "require": [
-                "web/themes/contrib/civictheme/composer.json",
-                "web/themes/contrib/civictheme/recipes/*/composer.json",
+                "web/themes/contrib/civictheme_starter/composer.json",
+                "web/themes/contrib/civictheme_starter/recipes/*/composer.json",
                 "web/modules/custom/civictheme_admin/composer.json",
                 "web/modules/custom/civictheme_content/composer.json",
                 "web/modules/custom/civictheme_dev/composer.json",
@@ -189,7 +189,7 @@
         "preserve-paths": [
             "web/modules/custom",
             "web/themes/custom",
-            "web/themes/contrib/civictheme",
+            "web/themes/contrib/civictheme_starter",
             "web/drush",
             "web/sites/default/settings.php",
             "web/sites/default/services.yml",

@@ -138,7 +138,7 @@ function civictheme_dev_post_update_update_simplesitemap(): string {
  */
 function civictheme_dev_post_update_place_listing_example_blocks_into_regions(): string {
   $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
-  if ($theme_name == 'civictheme') {
+  if ($theme_name == 'civictheme_starter') {
     return 'Skipping update for the CivicTheme as blocks already exist.';
   }
 

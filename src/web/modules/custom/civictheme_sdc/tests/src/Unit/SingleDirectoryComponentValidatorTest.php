@@ -305,7 +305,7 @@ class SingleDirectoryComponentValidatorTest extends UnitTestCase {
    *   An array of component definitions.
    */
   public static function loadAllComponentDefinitionsFromCivicTheme(): array {
-    $components_dir = dirname(__DIR__, 6) . '/themes/contrib/civictheme/components';
+    $components_dir = dirname(__DIR__, 6) . '/themes/contrib/civictheme_starter/components';
     $definitions = [];
     if (!is_dir($components_dir)) {
       return $definitions;
@@ -333,7 +333,7 @@ class SingleDirectoryComponentValidatorTest extends UnitTestCase {
                 'id' => 'civictheme:' . $component_name,
                 'library' => ['css' => ['component' => ['foo.css' => []]]],
                 'path' => '',
-                'provider' => 'civictheme',
+                'provider' => 'civictheme_starter',
                 'template' => $component_name . '.twig',
                 'group' => 'civictheme-group',
                 'description' => 'CivicTheme component',

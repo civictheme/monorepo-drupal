@@ -19,8 +19,8 @@
 
 declare(strict_types=1);
 
-use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme_content\Helper;
+use Drupal\civictheme_starter\CivicthemeConfigImporter;
 use Drupal\Core\Installer\Exception\InstallerException;
 
 /**
@@ -77,7 +77,7 @@ function _civictheme_content_install_submodule(string $module): void {
   $active_theme = \Drupal::theme()->getActiveTheme();
   // Only proceed if current theme is CivicTheme, or it's sub-theme so that
   // content could be applied only to expected configurations.
-  if ($active_theme->getName() != 'civictheme' && !array_key_exists('civictheme', $active_theme->getBaseThemeExtensions())) {
+  if ($active_theme->getName() != 'civictheme_starter' && !array_key_exists('civictheme_starter', $active_theme->getBaseThemeExtensions())) {
     return;
   }
 
@@ -89,8 +89,8 @@ function _civictheme_content_install_submodule(string $module): void {
     [
       'civictheme-' => FALSE,
       'civictheme_content' => FALSE,
-      'themes/contrib/civictheme' => $active_theme->getPath(),
-      'civictheme' => $active_theme->getName(),
+      'themes/contrib/civictheme_starter' => $active_theme->getPath(),
+      'civictheme_starter' => $active_theme->getName(),
     ]
   );
 }
@@ -105,7 +105,7 @@ function civictheme_content_post_update_common(): void {
     ->save();
 
   // Provision content using provision file, if it exists.
-  $provision_file = \Drupal::service('extension.list.theme')->getPath('civictheme') . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';
+  $provision_file = \Drupal::service('extension.list.theme')->getPath('civictheme_starter') . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';
   if (is_file($provision_file)) {
     require_once $provision_file;
     // Provision user permissions.

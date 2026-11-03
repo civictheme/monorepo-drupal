@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a single page.
+ */
+#}
+{#
+# Note that variables are not scoped so that child themes could add more
+# variables without the need to change this template.
+#}
+
+{% include 'civictheme_starter:page' %}
+
+{# Hidden region #}
+{% block hidden_block %}
+  <div class="hide-xxs">{{ hidden }}</div>
+{% endblock %}

@@ -10,5 +10,5 @@ dependencies:
 #;< DEVELOPMENT
 config_devel:
   optional:
-    - civictheme.settings
+    - civictheme_starter.settings
 #;> DEVELOPMENT

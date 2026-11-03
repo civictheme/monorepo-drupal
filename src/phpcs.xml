@@ -2,7 +2,7 @@
 <ruleset name="custom">
     <description>Custom PHPCS Standard, based on Drupal standards.</description>
 
-    <file>web/themes/contrib/civictheme</file>
+    <file>web/themes/contrib/civictheme_starter</file>
     <file>web/modules/custom</file>
     <file>web/themes/custom</file>
     <file>web/sites/default/settings.php</file>
@@ -44,7 +44,7 @@
 
     <!-- Exclude generated trees: the theme's components/ is populated
          from the @civictheme/sdc package by uikit-install. -->
-    <exclude-pattern>web\/themes\/contrib\/civictheme\/components\/*</exclude-pattern>
+    <exclude-pattern>web\/themes\/contrib\/civictheme_starter\/components\/*</exclude-pattern>
 
     <!-- Exclude settings.php file. -->
     <exclude-pattern>web\/sites\/default\/settings\.php</exclude-pattern>

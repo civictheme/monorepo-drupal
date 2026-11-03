@@ -16,7 +16,7 @@ while IFS= read -r -d $'\0'; do
   targets+=("$REPLY")
 done < <(
   find \
-    "${CUR_DIR}"/src/web/themes/contrib/civictheme/docs \
+    "${CUR_DIR}"/src/web/themes/contrib/civictheme_starter/docs \
     -type f \
     \( -name "*.md" \) \
     -not -path "*vendor*" \
@@ -31,7 +31,7 @@ targets+=(docs/faqs.md)
 targets+=(docs/README.md)
 targets+=(docs/releasing.md)
 targets+=(docs/testing.md)
-targets+=(src/web/themes/contrib/civictheme/README.md)
+targets+=(src/web/themes/contrib/civictheme_starter/README.md)
 
 echo "==> Start checking spelling."
 for file in "${targets[@]}"; do

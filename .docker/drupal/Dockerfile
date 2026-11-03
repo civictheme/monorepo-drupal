@@ -36,7 +36,7 @@ WORKDIR /build/themes
 # build incl. Storybook); the explicit steps run just what the image needs.
 # `uikit-install` populates components/ from the pinned @civictheme/sdc
 # package — the SDC components are runtime content, so they ship too.
-COPY src/web/themes/contrib/civictheme ./contrib/civictheme
+COPY src/web/themes/contrib/civictheme_starter ./contrib/civictheme
 RUN set -eu; \
     cd contrib/civictheme; \
     rm -rf components dist node_modules; \
@@ -99,7 +99,7 @@ COPY --from=ghcr.io/salsadigitalauorg/shipshape:latest /usr/local/bin/shipshape 
 # wikimedia/composer-merge-plugin over the committed theme/module manifests,
 # so those must be present before `composer install`.
 COPY src/composer.json src/composer.lock* ./
-COPY src/web/themes/contrib/civictheme/composer.json ./web/themes/contrib/civictheme/
+COPY src/web/themes/contrib/civictheme_starter/composer.json ./web/themes/contrib/civictheme_starter/
 COPY src/web/modules/custom/civictheme_admin/composer.json ./web/modules/custom/civictheme_admin/
 COPY src/web/modules/custom/civictheme_content/composer.json ./web/modules/custom/civictheme_content/
 COPY src/web/modules/custom/civictheme_dev/composer.json ./web/modules/custom/civictheme_dev/
@@ -154,8 +154,8 @@ COPY src/ /opt/drupal/
 # Compiled front-end output, overlaid on the source tree. MUST come after
 # `COPY src/` — the other way round, the source copy overwrites the built
 # assets with the un-built tree.
-COPY --from=assets /export/contrib/civictheme/components ./web/themes/contrib/civictheme/components
-COPY --from=assets /export/contrib/civictheme/dist ./web/themes/contrib/civictheme/dist
+COPY --from=assets /export/contrib/civictheme/components ./web/themes/contrib/civictheme_starter/components
+COPY --from=assets /export/contrib/civictheme/dist ./web/themes/contrib/civictheme_starter/dist
 
 RUN chown -R www-data:www-data web/sites web/modules web/themes
 

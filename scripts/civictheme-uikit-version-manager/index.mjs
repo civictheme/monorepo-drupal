@@ -27,7 +27,7 @@ const __dirname = path.dirname(__filename);
 // Define paths relative to the root of the project
 const ROOT_DIR = path.resolve(__dirname, '../..');
 const ROOT_PACKAGE_JSON = path.join(ROOT_DIR, 'package.json');
-const THEME_PACKAGE_JSON = path.join(ROOT_DIR, 'web/themes/contrib/civictheme/package.json');
+const THEME_PACKAGE_JSON = path.join(ROOT_DIR, 'web/themes/contrib/civictheme_starter/package.json');
 
 // GitHub repository information
 const GITHUB_API_URL = 'https://api.github.com/repos/civictheme/uikit/branches';
@@ -323,7 +323,7 @@ async function updatePackageJsonFiles(uikitVersion, commitHash = null, installTy
         }
 
         // Update theme package-lock.json if it exists
-        const themePackageLockPath = path.join(ROOT_DIR, 'web/themes/contrib/civictheme/package-lock.json');
+        const themePackageLockPath = path.join(ROOT_DIR, 'web/themes/contrib/civictheme_starter/package-lock.json');
         try {
           await fs.access(themePackageLockPath);
           console.log(`Updating ${themePackageLockPath} with commit hash ${commitHash.substring(0, 8)}...`);
