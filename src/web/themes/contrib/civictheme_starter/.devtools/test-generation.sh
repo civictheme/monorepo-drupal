@@ -221,10 +221,15 @@ info "Asserting an override component wins negotiation."
 # in the generated overlay: a component declaring it replaces the main
 # theme's button.
 mkdir -p "${canvas_gen_dir}/components/button"
+# Core refuses a replacement unless both sides declare a props schema
+# (ComponentPluginManager), so the throwaway carries an empty one.
 cat > "${canvas_gen_dir}/components/button/button.component.yml" <<YAML
 name: Button
 status: stable
 replaces: '${GENERATED_NAME}:button'
+props:
+  type: object
+  properties: {}
 YAML
 echo '<span class="generation-test-override"></span>' > "${canvas_gen_dir}/components/button/button.twig"
 drush theme:enable "${GENERATED_NAME}_canvas"
