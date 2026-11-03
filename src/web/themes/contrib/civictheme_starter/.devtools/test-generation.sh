@@ -154,6 +154,16 @@ if [ -n "${stale_ns}" ]; then
   echo "${stale_ns}"
   exit 1
 fi
+# The @civictheme Twig-loader namespace (icon.twig's source() asset path) is
+# theme-bound too; a leftover resolves to nothing and icons silently vanish.
+# Only twig and component schemas carry it - stories and generated CSS hold
+# npm @civictheme/* package-scope references, which legitimately survive.
+stale_loader_ns="$(grep -rn '@civictheme' "${gen_dir}/components" --include='*.twig' --include='*.component.yml' || true)"
+if [ -n "${stale_loader_ns}" ]; then
+  fail "Components still reference the @civictheme Twig-loader namespace:"
+  echo "${stale_loader_ns}"
+  exit 1
+fi
 pass "Front-end built under the generated name."
 
 info "Provisioning a site with the generated theme."

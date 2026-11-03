@@ -144,6 +144,7 @@ class CivicThemeStarterNodeHooks {
     // @see node--civictheme-event--civictheme-promo-card.html.twig
     if ($node->bundle() == 'civictheme_event') {
       FieldMapper::nodeFieldDateRange($variables);
+      FieldMapper::nodeFieldLocation($variables);
       FieldMapper::nodeFieldSummary($variables, 'civictheme_event_card');
     }
     else {

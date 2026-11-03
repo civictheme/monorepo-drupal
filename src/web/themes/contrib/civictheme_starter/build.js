@@ -552,17 +552,24 @@ function lintExclusions() {
 // ships every cross-component reference under the `civictheme:` namespace;
 // Drupal registers imported components under the machine name of the theme
 // that provides them, so the references must carry this theme's machine name.
+// The `@civictheme/` Twig-loader namespace (used by icon.twig's source() call
+// to reach the theme's assets directory) is theme-bound the same way, with
+// the npm `@civictheme/*` package scope excluded - scope references only
+// appear in stories and generated CSS, which this rewrite does not touch.
 // Runs as `node build.js sdc_namespace` from `npm run uikit-install`, after
 // the copy. For a theme whose machine name is `civictheme` the rewrite is an
 // identity and no file is touched.
 function rewriteSdcNamespace() {
-  const pattern = /\bcivictheme:(?=[a-z0-9_-])/g
+  const sdcPattern = /\bcivictheme:(?=[a-z0-9_-])/g
+  const twigLoaderPattern = /@civictheme(?=\/)/g
   const files = globSync(['**/*.twig', '**/*.component.yml'], { cwd: DIR_COMPONENTS_IN })
   let rewritten = 0
   files.forEach((file) => {
     const filePath = path.join(DIR_COMPONENTS_IN, file)
     const data = fs.readFileSync(filePath, 'utf-8')
-    const replaced = data.replace(pattern, `${MACHINE_NAME}:`)
+    const replaced = data
+      .replace(sdcPattern, `${MACHINE_NAME}:`)
+      .replace(twigLoaderPattern, `@${MACHINE_NAME}`)
     if (replaced !== data) {
       fs.writeFileSync(filePath, replaced, 'utf-8')
       rewritten++
