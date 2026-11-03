@@ -1,6 +1,6 @@
 {
     "name": "drupal/civictheme",
-    "description": "CivicTheme is a Drupal component-based theme.",
+    "description": "A starterkit for CivicTheme: generate and own a component-based Drupal theme built on the CivicTheme UI Kit.",
     "type": "drupal-theme",
     "license": "GPL-2.0-or-later",
     "homepage": "https://civictheme.io",
@@ -11,5 +11,8 @@
     "require": {
         "php": ">=8.3",
         "drupal/menu_block": "^1.10"
+    },
+    "extra": {
+        "installer-name": "civictheme_starter"
     }
 }

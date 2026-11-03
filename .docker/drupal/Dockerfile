@@ -19,8 +19,8 @@ ARG NODE_VERSION=22
 # Storybook is NOT built here (decided 2026-10-29; Storybook moves to a
 # CI-built static deploy).
 #
-# The path must keep a `themes/` segment: the themes' build.js locates the
-# base theme by looking for a directory named exactly `themes` in its path.
+# The path must keep a `themes/` segment: the theme's build.js derives the
+# web-relative assets path from the `themes/` directory in its own path.
 # ─────────────────────────────────────────────────────────────────────────────
 FROM node:${NODE_VERSION}-alpine AS assets
 
