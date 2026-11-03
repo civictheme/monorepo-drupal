@@ -56,12 +56,15 @@ echo "  > Apply the CivicTheme content model recipes."
 # idempotent, so rebuild caches and retry once before giving up.
 # The container's 256M PHP limit is also marginal for the content-model
 # recipe (observed as an OOM in PdoTrait during the govcms config import),
-# so the apply gets its own headroom.
+# so the apply gets its own headroom. The memory flag needs the real PHP
+# entry point: bin/drush is composer's sh launcher, and php executed
+# against it prints the script and exits 0 without applying anything.
+DRUSH_PHP_ENTRY="${APP_ROOT}/vendor/drush/drush/drush.php"
 apply_recipe() {
-  if ! php -d memory_limit=512M "$DRUSH" -y recipe:apply "$1"; then
+  if ! php -d memory_limit=512M "$DRUSH_PHP_ENTRY" -y recipe:apply "$1"; then
     echo "  > Recipe $1 failed; rebuilding caches and retrying once."
     drush cache:rebuild
-    php -d memory_limit=512M "$DRUSH" -y recipe:apply "$1"
+    php -d memory_limit=512M "$DRUSH_PHP_ENTRY" -y recipe:apply "$1"
   fi
 }
 theme_dir="${APP_ROOT}/web/themes/contrib/civictheme_starter"
