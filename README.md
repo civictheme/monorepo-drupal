@@ -5,14 +5,14 @@
 
 <h1 align="center">CivicTheme - Development source site</h1>
 
-<p>Monorepo used to maintain CivicTheme and accompanying modules that are automatically published to another repositories on release.</p>
+<p>Monorepo used to maintain CivicTheme and accompanying modules that are automatically published to other repositories on release. The Drupal theme is distributed as a starterkit: sites generate their own theme from it with Drupal core's <code>generate-theme</code> command and own the result.</p>
 
 <div align="center">
 
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/civictheme/monorepo-drupal.svg)](https://github.com/civictheme/monorepo-drupal/pulls)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/civictheme/monorepo-drupal)
 [![CI](https://github.com/civictheme/monorepo-drupal/actions/workflows/ci.yml/badge.svg)](https://github.com/civictheme/monorepo-drupal/actions/workflows/ci.yml)
-![Drupal 10](https://img.shields.io/badge/Drupal-10-blue.svg)
+![Drupal 11](https://img.shields.io/badge/Drupal-11-blue.svg)
 ![LICENSE](https://img.shields.io/github/license/civictheme/monorepo-drupal)
 [![RenovateBot](https://img.shields.io/badge/RenovateBot-enabled-brightgreen.svg?logo=renovatebot)](https://renovatebot.com)
 

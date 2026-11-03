@@ -39,8 +39,6 @@
     <exclude-pattern>*\/dist\/*\.js</exclude-pattern>
     <exclude-pattern>\.storybook/*</exclude-pattern>
     <exclude-pattern>storybook-static/*</exclude-pattern>
-    <exclude-pattern>\.components-civictheme/*</exclude-pattern>
-    <exclude-pattern>components_combined/*</exclude-pattern>
 
     <!-- Exclude generated trees: the theme's components/ is populated
          from the @civictheme/sdc package by uikit-install. -->

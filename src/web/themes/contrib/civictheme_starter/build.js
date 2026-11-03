@@ -30,7 +30,6 @@ const config = {
   watch: false,
   cli: false,
   lintex: false,
-  combine: false,
   styles: false,
   styles_storybook: false,
   styles_editor: false,
@@ -46,7 +45,6 @@ const config = {
   assets: false,
   constants: false,
   colour_picker: false,
-  base: false,
   sdc_namespace: false,
 }
 
@@ -58,17 +56,17 @@ if (['cli', 'lintex', 'sdc_namespace'].indexOf(flags[0]) >= 0) {
   const buildWatchFlagCount = flags?.filter(f => buildType.indexOf(f) >= 0).length
 
   if (flags.length <= 2 && buildWatchFlagCount <= 2) {
-    // If build and/or watch, or neither..
+    // If build and/or watch, or neither: the same set as `npm run dist`.
     config.build = buildWatchFlagCount === 0 || flags.indexOf('build') >= 0
     config.watch = flags.indexOf('watch') >= 0
-    config.combine = true
     config.styles_storybook = true
     config.styles_editor = true
+    config.styles_admin = true
+    config.styles_layout = true
     config.styles_variables = true
     config.styles_stories = true
     config.styles_theme = true
     config.sdc_base = true
-    config.sdc_components = true
     config.assets = true
     config.constants = true
     config.colour_picker = true
@@ -91,21 +89,14 @@ const THEME_NAME                = PATH.split('/').reverse()[0]
 // (starterkit generation renames the info file along with everything else).
 // Identical to THEME_NAME for any correctly laid out theme.
 const MACHINE_NAME              = getMachineName(PATH)
-const BUILD_CONFIG_DIR          = fullPath('./build-config.json')
 const DIR_COMPONENTS_IN         = fullPath('./components/')
 const DIR_OUT                   = fullPath('./dist/')
 const DIR_ASSETS_IN             = fullPath('./assets/')
 const DIR_ASSETS_OUT            = fullPath('./dist/assets/')
 
-const DIR_CIVICTHEME            = config.base || config.cli || config.lintex || config.sdc_namespace ? null : getCivicthemeDir(PATH, 'themes', '/**/civictheme')
-const DIR_UIKIT_COMPONENTS_IN   = config.base ? null : `${DIR_CIVICTHEME}/components/`
-const DIR_UIKIT_COPY_OUT        = config.base ? null : fullPath('./.components-civictheme/')
-const DIR_COMPONENTS_OUT        = config.base ? null : fullPath('./components_combined/')
-
-const COMPONENT_DIR             = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
-const STYLE_NAME                = config.base ? MACHINE_NAME : 'styles'
-const SCRIPT_NAME               = config.base ? MACHINE_NAME : 'scripts'
-const DRUPAL_THEME_FOLDER       = config.base ? 'contrib' : 'custom'
+const COMPONENT_DIR             = DIR_COMPONENTS_IN
+const STYLE_NAME                = MACHINE_NAME
+const SCRIPT_NAME               = MACHINE_NAME
 
 const STYLE_FILE_IN             = `${COMPONENT_DIR}/style.scss`
 const STYLE_VARIABLE_FILE_IN    = `${COMPONENT_DIR}/style.css_variables.scss`
@@ -127,7 +118,7 @@ const STYLE_THEME_FILE_OUT      = `${DIR_OUT}/${STYLE_NAME}.theme.css`
 // docroot's themes/ directory so a renamed or relocated theme resolves its
 // assets without edits here. Falls back to the conventional layout.
 const THEMES_DIR_INDEX          = PATH.lastIndexOf('/themes/')
-const DIR_CT_ASSETS             = `${THEMES_DIR_INDEX >= 0 ? PATH.substring(THEMES_DIR_INDEX) : `/themes/${DRUPAL_THEME_FOLDER}/${THEME_NAME}`}/dist/assets/`
+const DIR_CT_ASSETS             = `${THEMES_DIR_INDEX >= 0 ? PATH.substring(THEMES_DIR_INDEX) : `/themes/contrib/${THEME_NAME}`}/dist/assets/`
 const DIR_SB_ASSETS             = `/assets/`
 const VAR_CT_ASSETS_DIRECTORY   = `$ct-assets-directory: '${DIR_CT_ASSETS}';`
 const VAR_SB_ASSETS_DIRECTORY   = `$ct-assets-directory: '${DIR_SB_ASSETS}';`
@@ -136,16 +127,12 @@ const JS_FILE_OUT               = `${DIR_OUT}/${SCRIPT_NAME}.js`
 const JS_STORYBOOK_FILE_OUT     = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
 const JS_CIVIC_IMPORTS          = `${COMPONENT_DIR}/**/!(*.stories|*.stories.data|*.component|*.min|*.test|*.script|*.utils).js`
 const JS_LIB_IMPORTS            = [path.join(modulePath('@popperjs/core').replace('dist/cjs/popper.js', 'dist/umd/popper.js'))]
-const JS_ASSET_IMPORTS          = [
-                                    DIR_CIVICTHEME ? `${DIR_CIVICTHEME}/assets/js/**/*.js` : false,
-                                    `${DIR_ASSETS_IN}/js/**/*.js`,
-                                  ].filter(Boolean)
+const JS_ASSET_IMPORTS          = [`${DIR_ASSETS_IN}/js/**/*.js`]
 const JS_LINT_EXCLUSION_HEADER  = '// phpcs:ignoreFile'
 
 // The uikit 2.x tokens stylesheet: colour custom properties generated from
-// the @civictheme/tokens package. The base theme sources it from the uikit
-// npm package and keeps a copy in components/ so sub-themes (which have no
-// uikit dependency) receive it through the combined components directory.
+// the @civictheme/tokens package, sourced from the uikit npm package and
+// kept as a copy in components/.
 const TOKENS_CSS_FILE           = 'style.tokens.css'
 // The colour picker app (replaces the 1.x PHP Color Selector): the picker
 // page is mount-relative and requires the two packages to be served as
@@ -169,8 +156,8 @@ const JS_SDC_STORYBOOK_BASE_FILE_OUT = `${DIR_OUT}/${SCRIPT_NAME}.base.js`
 const JS_SDC_BASE_IMPORTS            = `${COMPONENT_DIR}/00-base/**/!(*.stories|*.test|*.data|*.stories.data|*.utils).js`
 const SDC_HEADER                     = '/**\n * This file was automatically generated. Please run `npm run dist` to update.\n */\n\n';
 const SDC_STYLE_FILES_IN             = `!(00-base)/**/*.scss`
-const SDC_COMPONENT_DIR              = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_IN
-const SDC_COMPLETE_COMPONENT_DIR     = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
+const SDC_COMPONENT_DIR              = DIR_COMPONENTS_IN
+const SDC_COMPLETE_COMPONENT_DIR     = DIR_COMPONENTS_IN
 
 // @import is deprecated in Dart Sass but not removed until 3.0.0. The build
 // generates @import rules itself, so silence the warning until the codebase
@@ -209,15 +196,6 @@ function buildOutDirectory() {
   }
 }
 
-function buildCombineDirectories() {
-  if (config.combine && !config.base) {
-    runCommand(`rsync -a --delete ${DIR_UIKIT_COMPONENTS_IN}/ ${DIR_UIKIT_COPY_OUT}/`)
-    runCommand(`rsync -a --delete ${DIR_UIKIT_COPY_OUT}/ ${DIR_COMPONENTS_OUT}/`)
-    runCommand(`rsync -a ${DIR_COMPONENTS_IN}/ ${DIR_COMPONENTS_OUT}/`)
-    successReporter(`Saved: Combined folders ${time()}`)
-  }
-}
-
 function buildStyles() {
   if (config.styles) {
     const stylecss = [
@@ -225,10 +203,8 @@ function buildStyles() {
       loadStyleFile(STYLE_FILE_IN, COMPONENT_DIR),
       config.styles_variables ? getImportsFromGlob(STYLE_VARIABLE_FILE_IN, COMPONENT_DIR) : '',
       getImportsFromGlob(STYLE_THEME_FILE_IN, PATH),
-      config.base ? [
-        config.styles_admin ? getImportsFromGlob(STYLE_ADMIN_FILE_IN, PATH) : '',
-        config.styles_layout ? loadStyleFile(STYLE_LAYOUT_FILE_IN, PATH) : '',
-      ].join('\n') : '',
+      config.styles_admin ? getImportsFromGlob(STYLE_ADMIN_FILE_IN, PATH) : '',
+      config.styles_layout ? loadStyleFile(STYLE_LAYOUT_FILE_IN, PATH) : '',
     ].join('\n')
 
     const compiled = sass.compileString(stylecss, { ...SASS_OPTIONS, loadPaths: [COMPONENT_DIR, PATH] })
@@ -297,7 +273,7 @@ function buildStylesVariables() {
 }
 
 function buildColourPicker() {
-  if (config.colour_picker && config.base) {
+  if (config.colour_picker) {
     const uikitDir = path.dirname(modulePath('@civictheme/uikit/package.json'))
     fs.mkdirSync(DIR_COLOUR_PICKER_OUT, { recursive: true })
     fs.mkdirSync(DIR_COLOUR_PICKER_TOKENS_OUT, { recursive: true })
@@ -391,20 +367,6 @@ async function buildStylesSdcComponents() {
       fs.writeFileSync(`${SDC_COMPONENT_DIR}/${styleDir}/${styleName}.css`, SDC_HEADER + result.css)
     }))
     successReporter(`Saved: SDC styles (components) ${time()}`)
-  }
-}
-
-function buildStylesSdcCopyBack() {
-  if (config.sdc_components && !config.base) {
-    // Copy generated css files into the complete components directory.
-    globSync(SDC_STYLE_FILES_IN, { cwd: SDC_COMPONENT_DIR }).map(path => {
-      const filename = `${path.substring(0, path.lastIndexOf('.'))}.css`
-      return {
-        from: `${SDC_COMPONENT_DIR}/${filename}`,
-        to: `${SDC_COMPLETE_COMPONENT_DIR}/${filename}`
-      }
-    }).forEach(file => fs.copyFileSync(file.from, file.to))
-    successReporter(`Saved: SDC styles copied to combined components ${time()}`)
   }
 }
 
@@ -514,7 +476,6 @@ async function build() {
   lastTime = startTime
   try {
     buildOutDirectory()
-    buildCombineDirectories()
     buildStyles()
     buildStylesStorybook()
     buildStylesEditor()
@@ -526,7 +487,6 @@ async function build() {
     buildStylesSdcBase()
     buildStylesSdcBaseStorybook()
     await buildStylesSdcComponents()
-    buildStylesSdcCopyBack()
     buildJavascript()
     buildJavascriptSdcBase()
     buildAssetsDirectory()
@@ -635,33 +595,23 @@ function runCommand(command) {
 }
 
 function loadTokensCss() {
-  // Base theme: source the tokens stylesheet from the uikit package and keep
-  // a copy in components/ so the sub-theme combine step distributes it.
-  // Sub-theme: read the copy from the combined components directory.
-  let file = `${COMPONENT_DIR}/${TOKENS_CSS_FILE}`
-  if (config.base) {
-    const tokensDist = path.join(path.dirname(modulePath('@civictheme/uikit/package.json')), 'packages/tokens/dist')
-    file = `${DIR_COMPONENTS_IN}/${TOKENS_CSS_FILE}`
-    fs.copyFileSync(path.join(tokensDist, 'css/variables.css'), file)
-    // The uikit colours story imports the resolved tokens JSON from the
-    // tokens dist; keep copies in components/ so sub-theme storybooks (no
-    // uikit dependency) can alias the import into components_combined.
-    for (const resolved of ['resolved.light.json', 'resolved.dark.json']) {
-      const source = path.join(tokensDist, resolved)
-      if (fs.existsSync(source)) {
-        fs.copyFileSync(source, `${DIR_COMPONENTS_IN}/${resolved}`)
-      } else {
-        console.warn(`⚠️   Tokens JSON not found at ${source} - the colours story will not build in sub-theme storybooks.`)
-      }
+  // Source the tokens stylesheet from the uikit package and keep a copy in
+  // components/ alongside the imported component sources.
+  const tokensDist = path.join(path.dirname(modulePath('@civictheme/uikit/package.json')), 'packages/tokens/dist')
+  const file = `${DIR_COMPONENTS_IN}/${TOKENS_CSS_FILE}`
+  fs.copyFileSync(path.join(tokensDist, 'css/variables.css'), file)
+  // The uikit colours story imports the resolved tokens JSON from the tokens
+  // dist; keep copies in components/ next to the story that uses them.
+  for (const resolved of ['resolved.light.json', 'resolved.dark.json']) {
+    const source = path.join(tokensDist, resolved)
+    if (fs.existsSync(source)) {
+      fs.copyFileSync(source, `${DIR_COMPONENTS_IN}/${resolved}`)
+    } else {
+      console.warn(`⚠️   Tokens JSON not found at ${source} - the colours story will not build.`)
     }
   }
   if (!fs.existsSync(file)) {
-    const message = `Tokens CSS not found at ${file} - colour custom properties will be missing.`
-    if (config.base) {
-      throw new Error(message)
-    }
-    console.warn(`⚠️   ${message} Rebuild the parent CivicTheme theme (2.x) first.`)
-    return ''
+    throw new Error(`Tokens CSS not found at ${file} - colour custom properties will be missing.`)
   }
   return fs.readFileSync(file, 'utf-8')
 }
@@ -708,36 +658,6 @@ function modulePath(moduleName) {
   } catch (error) {
     throw new Error(`Could not resolve module '${moduleName}'`);
   }
-}
-
-function getCivicthemeDir(subthemeDir, parent, civicthemeGlob) {
-  if (fs.existsSync(BUILD_CONFIG_DIR)) {
-    const config = JSON.parse(fs.readFileSync(BUILD_CONFIG_DIR, 'utf-8'))
-    // Validate the cached path against the sub-theme directory, as the cache
-    // file may have been copied from another location (e.g. the starter kit).
-    if (config.civicthemeGlob === civicthemeGlob && fs.existsSync(path.resolve(subthemeDir, config.civicthemePath, 'civictheme.info.yml'))) {
-      return config.civicthemePath
-    }
-  }
-  let civicthemePath = getDirInParent(subthemeDir, parent, civicthemeGlob)
-  if (civicthemePath) {
-    civicthemePath = path.relative(subthemeDir, civicthemePath)
-    fs.writeFileSync(BUILD_CONFIG_DIR, JSON.stringify({ civicthemeGlob, civicthemePath }, null, 2), 'utf-8')
-    return civicthemePath
-  }
-  errorReporter({
-    message: 'Could not find civictheme directory.',
-    formatted: `Unable to find '${civicthemeGlob}' from '${parent}' directory.`
-  }, true)
-}
-
-function getDirInParent(currentDir, parent, destinationGlob) {
-  const pathParts = currentDir.split('/')
-  const parentIndex = pathParts.indexOf(parent)
-  const basePath = parentIndex >= 0 ? pathParts.slice(0, parentIndex + 1).join('/') : null
-  // Node's globSync uses `exclude`, not `ignore`.
-  // @see https://nodejs.org/docs/latest-v22.x/api/fs.html#fsglobsyncpattern-options
-  return basePath ? globSync(`${basePath}${destinationGlob}`, { exclude: dir => path.basename(dir) === 'node_modules' }).pop() : null
 }
 
 function time(full) {

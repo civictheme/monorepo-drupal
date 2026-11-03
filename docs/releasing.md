@@ -49,8 +49,9 @@ published repositories.
 
 Releases to Drupal.org are done manually.
 
-Every commit merged to the `develop` is pushed to Drupal.org to the `1.x-dev`
-branch, meaning that every commit may be used in a new release. This was done
+Every commit merged to the `develop` is pushed to Drupal.org to the `3.x`
+branch (the starterkit line; `1.x` carries the legacy pre-starterkit theme),
+meaning that every commit may be used in a new release. This was done
 on purpose to avoid accidental releases done in GitHub (it is not possible to
 delete releases in Drupal.org).
 
