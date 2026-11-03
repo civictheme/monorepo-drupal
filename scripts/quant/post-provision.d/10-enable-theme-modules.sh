@@ -54,11 +54,14 @@ echo "  > Apply the CivicTheme content model recipes."
 # as 'The "search_api_query" plugin does not exist' while the search recipe
 # imports its view, with the module installed moments earlier). Recipes are
 # idempotent, so rebuild caches and retry once before giving up.
+# The container's 256M PHP limit is also marginal for the content-model
+# recipe (observed as an OOM in PdoTrait during the govcms config import),
+# so the apply gets its own headroom.
 apply_recipe() {
-  if ! drush recipe:apply "$1"; then
+  if ! php -d memory_limit=512M "$DRUSH" -y recipe:apply "$1"; then
     echo "  > Recipe $1 failed; rebuilding caches and retrying once."
     drush cache:rebuild
-    drush recipe:apply "$1"
+    php -d memory_limit=512M "$DRUSH" -y recipe:apply "$1"
   fi
 }
 theme_dir="${APP_ROOT}/web/themes/contrib/civictheme"
