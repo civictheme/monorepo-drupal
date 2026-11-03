@@ -47,9 +47,24 @@ while IFS=$'\t' read -r name recipe; do
     continue
   fi
   mkdir -p "${TMP_ROUTED}/${recipe}/config"
-  # Strip the uuid and the _core hash: recipe config ships without site
-  # identity, matching what the recipe system expects.
-  awk 'BEGIN{skip=0} /^_core:/{skip=1;next} skip==1&&/^[^ ]/{skip=0} skip==1{next} /^uuid: /{next} {print}' "${src}" >"${TMP_ROUTED}/${recipe}/config/${name}.yml"
+  # Strip the uuid and the _core hash (recipe config ships without site
+  # identity) and any dependencies.theme entries: the civictheme_* layout
+  # plugins are provided by whichever theme generated from the kit is active,
+  # so the active site recalculates a theme dependency on save that the
+  # shipped, theme-name-agnostic recipe config must not carry.
+  awk '
+    BEGIN { skip = 0; indep = 0; intheme = 0 }
+    /^_core:/ { skip = 1; next }
+    skip == 1 && /^[^ ]/ { skip = 0 }
+    skip == 1 { next }
+    /^uuid: / { next }
+    /^dependencies:/ { indep = 1; print; next }
+    indep == 1 && /^[^ ]/ { indep = 0 }
+    indep == 1 && /^  theme:/ { intheme = 1; next }
+    intheme == 1 && /^    - / { next }
+    intheme == 1 { intheme = 0 }
+    { print }
+  ' "${src}" >"${TMP_ROUTED}/${recipe}/config/${name}.yml"
 done < <(jq -r '.config | to_entries[] | select(.value | test("^civictheme_")) | [.key, .value] | @tsv' "${MANIFEST}")
 
 if [ "${MODE}" = "check" ]; then

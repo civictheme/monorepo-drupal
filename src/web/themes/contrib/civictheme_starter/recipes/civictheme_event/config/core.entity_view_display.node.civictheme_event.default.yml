@@ -23,8 +23,6 @@ dependencies:
     - layout_builder_restrictions
     - text
     - user
-  theme:
-    - civictheme_starter
 third_party_settings:
   layout_builder:
     enabled: true

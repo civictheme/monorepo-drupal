@@ -49,6 +49,14 @@ Each recipe directory holds:
   Simple config (`*.settings`) is still created by the module install and is
   deliberately not imported.
 - Config files carry no `uuid` or `_core` keys.
+- Config files declare no `dependencies: theme:` entries. The layout-builder
+  displays use `civictheme_*` layout plugins that every theme generated from
+  the kit provides under its own name, so the providing theme cannot be named
+  statically. The recipes require the active theme to supply those layouts;
+  the install flow enables the theme before applying them. The active site
+  recalculates the theme dependency when the recipe saves the display
+  entities, so the export tooling (`scripts/update.recipe-config.sh`) strips
+  `dependencies.theme` when routing exported config back into the recipes.
 
 ## Tooling
 

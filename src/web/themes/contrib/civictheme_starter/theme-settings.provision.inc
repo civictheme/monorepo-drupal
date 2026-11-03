@@ -1109,7 +1109,12 @@ function civictheme_provision_permissions_map(): array {
  */
 function civictheme_enable_modules(bool $include_optional = TRUE): void {
   $dependencies = _civictheme_get_theme_dependencies('civictheme_starter', $include_optional);
-  \Drupal::getContainer()->get('module_installer')->install($dependencies);
+  // The provisioning config importer uses the config module's
+  // StorageReplaceDataWrapper. None of the theme's shipped config depends on
+  // that module (profiles like standard install it, minimal does not), so
+  // declare it here rather than as an install-time theme dependency.
+  $dependencies[] = 'config';
+  \Drupal::getContainer()->get('module_installer')->install(array_unique($dependencies));
 }
 
 /**

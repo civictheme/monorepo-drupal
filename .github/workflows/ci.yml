@@ -182,6 +182,47 @@ jobs:
           fail_ci_if_error: true
 
   # ──────────────────────────────────────────────────────────────────────────
+  # Theme generation guard: generates a theme from the starterkit with core's
+  # generate-theme, asserts the naming contract held (identity renamed,
+  # content model and brand survived, ignored trees stayed behind), builds
+  # the generated theme's front end under its own name and provisions a site
+  # with it as the default theme.
+  # ──────────────────────────────────────────────────────────────────────────
+  generation:
+    name: Theme generation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      DRUPAL_VERSION: '11.4.*'
+      DRUPAL_PROJECT_SHA: '11.x'
+    defaults:
+      run:
+        working-directory: src/web/themes/contrib/civictheme_starter
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: gd, sqlite3, pdo_sqlite, zip
+
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Assemble the codebase
+        run: .devtools/assemble.sh
+
+      - name: Start built-in PHP server
+        run: .devtools/start.sh
+
+      - name: Generate a theme and assert the naming contract
+        run: .devtools/test-generation.sh
+
+  # ──────────────────────────────────────────────────────────────────────────
   # Full-stack builds: the scaffold stack per provision variant, plus the
   # lint chain and the test suites inside it. Behat is split p0/p1 over two
   # jobs for the main variants; lint and the static suites run once per
