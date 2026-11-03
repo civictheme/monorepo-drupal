@@ -28,6 +28,8 @@ echo "  > Removing all files."
 rm -Rf "${APP_ROOT}"/web/sites/default/files/* >/dev/null 2>&1 || true
 
 echo "  > Enable modules required by CivicTheme."
+# Installs the modules the theme's optional config (block placements) depends
+# on; the recipes below install everything the content model needs.
 drush php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_enable_modules();"
 
 echo "  > Enable admin theme and set as default."
@@ -39,13 +41,29 @@ if [ "${DRUPAL_INSTALL_PROFILE:-}" = "govcms" ]; then
 elif [ "${DRUPAL_INSTALL_PROFILE:-}" = "minimal" ]; then
   drush theme-enable claro
   drush config-set system.theme admin claro
-  drush config-set node.settings use_admin_theme 1
 fi
 
 echo "  > Enable CivicTheme theme and set as default."
+# The theme must be installed before the recipes apply: the entity display
+# config they ship uses layout plugins the theme provides.
 drush theme-enable civictheme
 drush config-set system.theme default civictheme
-drush config-set media.settings standalone_url true
+
+echo "  > Apply the CivicTheme content model recipes."
+theme_dir="${APP_ROOT}/web/themes/contrib/civictheme"
+drush recipe:apply "${theme_dir}/recipes/civictheme_site"
+drush recipe:apply "${theme_dir}/recipes/civictheme_search"
+
+echo "  > Install optional config whose dependencies the recipes satisfied."
+# The theme's optional block placements depend on config the recipes created
+# (menus, block content types, views); re-run the optional config sweep so
+# they are picked up deterministically.
+drush php:eval "\Drupal::service('config.installer')->installOptionalConfig();"
+
+if [ "${DRUPAL_INSTALL_PROFILE:-}" = "minimal" ]; then
+  # Needs the node module, which the recipes installed.
+  drush config-set node.settings use_admin_theme 1
+fi
 
 drush theme-uninstall stable9 || true
 

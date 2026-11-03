@@ -335,6 +335,10 @@ jobs:
           npm --prefix scripts/civictheme-dependency-checker install --no-audit --no-fund
           node scripts/civictheme-dependency-checker/index.js check
 
+      - name: Check recipe map
+        if: matrix.lint
+        run: python3 src/web/themes/contrib/civictheme/.devtools/recipe-map.py
+
       - name: Lint components smoke test
         if: matrix.lint
         run: |

@@ -8,9 +8,10 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- * Class CivicthemeInstallOptionalTest.php.
+ * Class CivicthemeInstallRequiredTest.php.
  *
- * Tests the installation of the CivicTheme with only required dependencies.
+ * Tests that CivicTheme installs standalone, without the content model
+ * recipes applied first.
  *
  * @group civictheme:functional
  * @group site:functional
@@ -23,7 +24,7 @@ class CivicthemeInstallRequiredTest extends CivicthemeBrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $optionalDependencies = FALSE;
+  protected $applyRecipes = FALSE;
 
   /**
    * Test that a theme can be installed.

@@ -2,30 +2,21 @@
 ##
 # Update theme config from the current site config.
 #
+# Theme-owned config (civictheme.settings and the block placements) is the
+# curated list in civictheme.info.yml's config_devel block: this script
+# re-exports those items via config_devel. The content model lives in the
+# recipes under the theme's recipes/ directory and is exported separately by
+# ./scripts/update.recipe-config.sh.
+#
 # Usage:
 # ./scripts/update.theme-config.sh
-#
-# Caveat: configs in 'optional' section should be added to
-# the $EXCLUDED_CONFIGS_FILE file.
 #
 
 set -eu
 [ -n "${SCAFFOLD_DEBUG:-}" ] && set -x
 
-# File with exclusion patterns.
-EXCLUDED_CONFIGS_FILE="scripts/theme_excluded_configs.txt"
-
 # Theme info file.
 THEME_INFO="web/themes/contrib/civictheme/civictheme.info.yml"
-
-# Temp dir.
-TMP_DIR="/tmp/civictheme"
-
-# Temp dir for exported config.
-TMP_DIR_EXPORTED="${TMP_DIR}/config_exported"
-
-# Temp file for exported configs.
-TMP_FILE="${TMP_DIR}/config_exported_file.txt"
 
 #-------------------------------------------------------------------------------
 
@@ -37,42 +28,10 @@ echo "==> Make sure that CivicTheme theme configuration is captured."
 echo "==> Navigate to Appearance -> CivicTheme and save the form."
 echo "==> "
 
-[ ! -f "${EXCLUDED_CONFIGS_FILE}" ] && "ERROR: ${EXCLUDED_CONFIGS_FILE} does not exist"
 [ ! -f "${THEME_INFO}" ] && "ERROR: ${THEME_INFO} does not exist"
 
-# Remove temp directories that may exist from the previous run.
-rm -Rf "${TMP_DIR_EXPORTED:?}" >/dev/null || true
-rm -Rf "${TMP_FILE:?}" >/dev/null || true
-
-# Create temp dirs.
-mkdir -p "${TMP_DIR_EXPORTED}" >/dev/null
-
-echo "  > Loading excluded patterns from ${EXCLUDED_CONFIGS_FILE}"
-excluded_config_patterns=()
-while IFS= read -r; do excluded_config_patterns+=("$REPLY"); done <"${EXCLUDED_CONFIGS_FILE}"
-
-echo "  > Exporting current config to ${TMP_DIR_EXPORTED}"
-drush -q cex -y --destination="${TMP_DIR_EXPORTED}"
-
-echo "  > Removing excluded config items"
-for exclude_pattern in "${excluded_config_patterns[@]}"; do
-  # shellcheck disable=SC2086
-  rm -f "${TMP_DIR_EXPORTED}"/${exclude_pattern}.yml || true
-done
-
-echo "  > Compiling a list of theme configs"
-echo "  install:" >>"${TMP_FILE}"
-for file in "${TMP_DIR_EXPORTED}"/*; do
-  filename="$(basename "$file")"
-  filename=${filename%".yml"}
-  echo "    - $filename" >>"${TMP_FILE}"
-done
-echo "  optional:" >>"${TMP_FILE}"
-
-echo "  > Writing config to theme info ${THEME_INFO}"
-sed -i -e '/install:/,/optional:/!b' -e "/optional:/!d;r ${TMP_FILE}" -e 'd' "${THEME_INFO}"
-
-# Remove config files as the command below does not remove files of deleted config.
+# Remove config files as the command below does not remove files of deleted
+# config.
 theme_dir="$(dirname ${THEME_INFO})"
 theme_config_install_dir="${theme_dir}/config/install"
 theme_config_optional_dir="${theme_dir}/config/optional"
@@ -83,11 +42,13 @@ rm "${theme_config_optional_dir}"/* >/dev/null
 echo "  > Exporting theme configs"
 drush -q cde civictheme
 
+echo "  > Exporting recipe configs"
+./scripts/update.recipe-config.sh
+
 echo "==> Finished."
 
 echo
 echo "Next steps:"
-echo " - Review changes in ${THEME_INFO}."
-echo " - Review newly added configs."
+echo " - Review newly exported configs (theme config/ and recipes */config)."
 echo " - Commit changes."
 echo
