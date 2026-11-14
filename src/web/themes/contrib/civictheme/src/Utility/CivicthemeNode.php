@@ -25,12 +25,12 @@ final class CivicthemeNode {
       /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
       $route_match = \Drupal::service('current_route_match');
       $node_revision = $route_match->getParameter('node_revision');
-      if ($node_revision instanceof NodeInterface) {
-        $node = $node_revision;
-      }
+      $node = $node_revision instanceof NodeInterface
+        ? $node_revision
+        : \Drupal::entityTypeManager()->getStorage('node')->load($node);
     }
 
-    return $node;
+    return $node instanceof NodeInterface ? $node : NULL;
   }
 
   /**

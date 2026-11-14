@@ -9,6 +9,7 @@ use Drupal\civictheme\Theme\HtmlContentProcessor;
 use Drupal\civictheme\Utility\CivicthemeField;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\FileInterface;
@@ -118,9 +119,11 @@ class MediaHooks {
         $html = $doc->saveHTML($iframe_elements[0]);
       }
 
+      // Render as markup: the oEmbed HTML must not be compiled as a Twig
+      // template, as the media name embedded in the 'title' attribute is
+      // user-provided text.
       $variables['raw_source'] = [
-        '#type' => 'inline_template',
-        '#template' => $html,
+        '#markup' => Markup::create($html),
       ];
       $this->preprocessVideoTheme($variables);
       $this->preprocessVideoLinks($variables);

@@ -72,6 +72,7 @@ final class MobileNavigationBuilder {
 
       $tree = $menu_tree_service->load($menu_name, $menu_parameters);
       $manipulators = [
+        ['callable' => 'menu.default_tree_manipulators:checkAccess'],
         ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
       ];
       $tree = $menu_tree_service->transform($tree, $manipulators);

@@ -17,9 +17,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
  * phpcs:disable Drupal.Commenting.FunctionComment.Missing
  */
 #[Group('site:unit')]
-#[Group('scripts
-phpcs:disable Drupal.Commenting.DocComment.MissingShort
-phpcs:disable Drupal.Commenting.FunctionComment.Missing')]
+#[Group('scripts')]
 class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
 
   /**
