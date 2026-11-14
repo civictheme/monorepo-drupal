@@ -81,19 +81,24 @@ final class CivicthemeMedia {
     }
 
     $variables = self::getVariables($media);
+    if ($variables === NULL) {
+      return NULL;
+    }
 
     if ($variables['ext'] == 'svg') {
       $image_style = NULL;
     }
 
     $url = self::getImageUrl($media, $image_style);
+    if ($url === NULL) {
+      return NULL;
+    }
     $image_url = \Drupal::service('file_url_generator')->generateString($url);
     $variables['url'] = \Drupal::service('file_url_generator')->transformRelative($image_url);
 
     $image = $media
       ->get($media->getSource()->getConfiguration()['source_field'])
-      ->first()
-      ->getValue();
+      ->first()?->getValue() ?? [];
 
     $variables['alt'] = $image['alt'] ?? '';
     $variables['title'] = $image['title'] ?? '';

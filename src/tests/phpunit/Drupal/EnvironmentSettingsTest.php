@@ -22,11 +22,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
  * phpcs:disable Squiz.WhiteSpace.FunctionSpacing.AfterLast
  * phpcs:disable Drupal.Classes.ClassDeclaration.CloseBraceAfterBody
  */
-#[Group('drupal_settings
-phpcs:disable Squiz.WhiteSpace.FunctionSpacing.Before
-phpcs:disable Squiz.WhiteSpace.FunctionSpacing.After
-phpcs:disable Squiz.WhiteSpace.FunctionSpacing.AfterLast
-phpcs:disable Drupal.Classes.ClassDeclaration.CloseBraceAfterBody')]
+#[Group('drupal_settings')]
 class EnvironmentSettingsTest extends SettingsTestCase {
 
   /**
