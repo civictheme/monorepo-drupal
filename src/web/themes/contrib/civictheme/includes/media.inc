@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Render\FormattableMarkup;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
@@ -94,9 +95,11 @@ function civictheme_preprocess_media__civictheme_remote_video(array &$variables)
       $html = $doc->saveHTML($iframe_elements[0]);
     }
 
+    // Render as markup: the oEmbed HTML must not be compiled as a Twig
+    // template, as the media name embedded in the 'title' attribute is
+    // user-provided text.
     $variables['raw_source'] = [
-      '#type' => 'inline_template',
-      '#template' => $html,
+      '#markup' => Markup::create($html),
     ];
     _civictheme_preprocess_media__civictheme_video_theme($variables);
     _civictheme_preprocess_media__civictheme_video_links($variables);
