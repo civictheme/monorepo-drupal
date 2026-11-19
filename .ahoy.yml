@@ -574,7 +574,7 @@ commands:
     usage: Run BDD tests (uses chrome service profile).
     cmd: |
       set -e
-      docker compose --profile test up -d chrome
+      docker compose --profile test up -d --wait --wait-timeout 120 chrome
       scripts/quant/exec.sh php -d memory_limit=-1 bin/behat --colors "$@"
 
   test-bats:
