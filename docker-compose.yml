@@ -121,6 +121,17 @@ services:
       quant.type: none
     profiles:
       - test
+    # Selenium takes several seconds to start listening on 4444 after the
+    # container is up. Behat connects the moment it reaches a JS scenario, so
+    # every `up` of this service must use `--wait` to block until this
+    # healthcheck passes — otherwise JS scenarios fail their BeforeScenario
+    # hooks with "Failed to connect to chrome port 4444".
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:4444/status | grep -q '\"ready\": *true'"]
+      interval: 5s
+      timeout: 10s
+      retries: 12
+      start_period: 5s
 
   # Chromium + Node container for the Puppeteer-driven accessibility scans
   # (`ahoy test-a11y`, suite in src/tests/a11y). Local-only, same as chrome

@@ -330,7 +330,7 @@ jobs:
         env:
           BEHAT_PROFILE: ${{ matrix.behat_profile }}
         run: |
-          docker compose --profile test up -d chrome
+          docker compose --profile test up -d --wait --wait-timeout 120 chrome
           # Prove chrome-container → app connectivity up front so a network
           # regression fails in seconds with diagnostics instead of minutes
           # into behat. Probes the app.test alias behat uses (see behat.yml
@@ -474,7 +474,7 @@ jobs:
       - name: Test with Behat (smoke)
         timeout-minutes: 45
         run: |
-          docker compose --profile test up -d chrome
+          docker compose --profile test up -d --wait --wait-timeout 120 chrome
           # See the build job's behat step for why this preflight exists.
           if ! docker compose exec -T chrome curl -sS -o /dev/null --retry 15 --retry-connrefused --retry-delay 2 --max-time 60 http://app.test/; then
             echo "::error::The chrome container cannot reach http://app.test — selenium scenarios cannot run."
