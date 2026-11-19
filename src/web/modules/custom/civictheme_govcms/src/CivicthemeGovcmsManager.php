@@ -32,15 +32,15 @@ final class CivicthemeGovcmsManager {
   ) {
     $this->removalList = [
       // Item name in CLI => callable.
-      'media_types' => [static::class, 'removeGovcmsMediaTypes'],
-      'text_format' => [static::class, 'removeGovcmsTextFormat'],
-      'fields' => [static::class, 'removeGovcmsFields'],
-      'content_types' => [static::class, 'removeGovcmsContentTypes'],
-      'vocabularies' => [static::class, 'removeGovcmsVocabularies'],
-      'user_roles' => [static::class, 'removeGovcmsUserRoles'],
-      'menus' => [static::class, 'removeGovcmsMenus'],
-      'pathauto_patterns' => [static::class, 'removeGovcmsPathautoPatterns'],
-      'workflows' => [static::class, 'removeGovcmsWorkflows'],
+      'media_types' => $this->removeGovcmsMediaTypes(...),
+      'text_format' => $this->removeGovcmsTextFormat(...),
+      'fields' => $this->removeGovcmsFields(...),
+      'content_types' => $this->removeGovcmsContentTypes(...),
+      'vocabularies' => $this->removeGovcmsVocabularies(...),
+      'user_roles' => $this->removeGovcmsUserRoles(...),
+      'menus' => $this->removeGovcmsMenus(...),
+      'pathauto_patterns' => $this->removeGovcmsPathautoPatterns(...),
+      'workflows' => $this->removeGovcmsWorkflows(...),
     ];
   }
 
@@ -65,7 +65,7 @@ final class CivicthemeGovcmsManager {
       $preserve_list = explode(',', $preserve);
     }
     foreach ($this->removalList as $key => $function) {
-      if (!in_array($key, $preserve_list)) {
+      if (!in_array($key, $preserve_list, TRUE)) {
         call_user_func($function);
       }
     }
@@ -111,8 +111,8 @@ final class CivicthemeGovcmsManager {
   /**
    * Removes GovCMS fields.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   protected function removeGovcmsFields(): void {
     // A list of shared fields that should be deleted before deleting

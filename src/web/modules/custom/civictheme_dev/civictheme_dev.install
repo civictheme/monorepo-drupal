@@ -7,8 +7,10 @@
 
 declare(strict_types=1);
 
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Database\StatementInterface;
+use Drupal\Core\Extension\Requirement\RequirementSeverity;
 use Drupal\user\Entity\User;
 
 /**
@@ -69,7 +71,7 @@ function civictheme_dev_update_10001(): string {
   $query = $database->query('SELECT @@character_set_database AS charset, @@collation_database AS collation');
   assert($query instanceof StatementInterface);
   $defaultSettings = $query->fetchAssoc();
-  if ($defaultSettings !== FALSE && is_array($defaultSettings)) {
+  if ($defaultSettings !== FALSE) {
     echo 'Default Character Set: ' . $defaultSettings['charset'], PHP_EOL;
     echo 'Default Collation: ' . $defaultSettings['collation'], PHP_EOL;
   }
@@ -162,7 +164,7 @@ function civictheme_dev_update_10002(): string {
  * @phpstan-return array<string, array{
  *   title: string,
  *   value: string,
- *   severity: int,
+ *   severity: int|\Drupal\Core\Extension\Requirement\RequirementSeverity,
  *   description?: string
  * }>
  */
@@ -183,7 +185,7 @@ function civictheme_dev_requirements(string $phase): array {
 
     if (empty($tables)) {
       $status = 'All tables are using utf8mb4_general_ci collation.';
-      $severity = REQUIREMENT_OK;
+      $severity = DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '11.2.0', fn(): RequirementSeverity => RequirementSeverity::OK, fn() => REQUIREMENT_OK);
     }
     else {
       $table_list = [];
@@ -195,7 +197,7 @@ function civictheme_dev_requirements(string $phase): array {
         $tableCount,
         implode(', ', $table_list)
       );
-      $severity = REQUIREMENT_ERROR;
+      $severity = DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '11.2.0', fn(): RequirementSeverity => RequirementSeverity::Error, fn() => REQUIREMENT_ERROR);
     }
 
     $requirements['civictheme_dev_database_collation'] = [

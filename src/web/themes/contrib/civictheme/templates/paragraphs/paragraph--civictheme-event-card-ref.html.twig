@@ -1,7 +1,10 @@
 {#
 /**
  * @file
- * CivicTheme implementation to display a Event card reference.
+ * CivicTheme implementation to display an Event card reference.
+ *
+ * The referenced node is rendered in the Promo card view mode: the node
+ * render pipeline swaps event nodes to the Event card component.
  */
 #}
-{% include 'civictheme:event-card' %}
+{{ reference }}

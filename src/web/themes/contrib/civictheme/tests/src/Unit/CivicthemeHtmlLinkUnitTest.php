@@ -5,6 +5,9 @@ declare(strict_types=1);
 // phpcs:disable Drupal.Arrays.Array.LongLineDeclaration
 namespace Drupal\Tests\civictheme\Unit;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\DataProvider;
+use Drupal\civictheme\Theme\HtmlContentProcessor;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 
 /**
@@ -15,6 +18,8 @@ use Drupal\Core\DependencyInjection\ContainerBuilder;
  * @group CivicTheme
  * @group site:unit
  */
+#[Group('CivicTheme')]
+#[Group('site:unit')]
 class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
 
   /**
@@ -44,6 +49,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
    *
    * @dataProvider dataProviderLinkIsExternal
    */
+  #[DataProvider('dataProviderLinkIsExternal')]
   public function testLinkIsExternal(string $url, string $base_url, array $overridden_domains, bool $expected): void {
     $actual = civictheme_url_is_external($url, $base_url, $overridden_domains);
     $this->assertEquals($expected, $actual);
@@ -124,19 +130,20 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
   }
 
   /**
-   * Test for _civictheme_process_html_links().
+   * Test for HtmlContentProcessor::processLinks().
    *
    * @dataProvider dataProviderProcessHtmlLinks
    */
+  #[DataProvider('dataProviderProcessHtmlLinks')]
   public function testProcessHtmlLinks(string $html, string $base_url, bool $new_window, bool $external_new_window, array $override_domains, string $expected): void {
-    $actual = _civictheme_process_html_content_links($html, $base_url, $new_window, $external_new_window, $override_domains);
+    $actual = HtmlContentProcessor::processLinks($html, $base_url, $new_window, $external_new_window, $override_domains);
     $this->assertEquals($expected, $actual);
   }
 
   /**
    * Data provider for testProcessHtmlLinks().
    *
-   * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+   * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
    */
   public static function dataProviderProcessHtmlLinks(): array {
     $attrs = self::NEW_WINDOW_ATTRIBUTES;

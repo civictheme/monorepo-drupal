@@ -42,7 +42,7 @@ class CivicthemeSettingsFormSectionVersion extends CivicthemeSettingsFormSection
   /**
    * {@inheritdoc}
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function form(array &$form, FormStateInterface $form_state): void {
     $version_uri = $this->versionManager->source() . '/tree/develop';

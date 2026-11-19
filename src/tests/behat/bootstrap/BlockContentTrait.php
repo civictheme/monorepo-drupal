@@ -80,7 +80,7 @@ trait BlockContentTrait {
         'type' => $block_content_type,
       ]);
 
-    if (count($found) == 0) {
+    if (count($found) === 0) {
       throw new \Exception(sprintf('Block content "%s" of type "%s" does not exist', $name, $type));
     }
   }
@@ -193,7 +193,7 @@ trait BlockContentTrait {
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   protected function createBlockContent(string $type, array $values): BlockContent {
     $block_content = (object) $values;

@@ -15,8 +15,8 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
  * @return array<int, array<string, mixed>>
  *   Variations.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
  */
 function _cs_generated_content_create_node_civictheme_page__variations__manual_list(): array {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */

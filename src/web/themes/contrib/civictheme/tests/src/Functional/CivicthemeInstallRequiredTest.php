@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\civictheme\Functional;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+
 /**
  * Class CivicthemeInstallOptionalTest.php.
  *
@@ -12,6 +15,9 @@ namespace Drupal\Tests\civictheme\Functional;
  * @group civictheme:functional
  * @group site:functional
  */
+#[Group('civictheme:functional')]
+#[Group('site:functional')]
+#[RunTestsInSeparateProcesses]
 class CivicthemeInstallRequiredTest extends CivicthemeBrowserTestBase {
 
   /**

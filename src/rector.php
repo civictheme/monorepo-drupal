@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 use DrupalFinder\DrupalFinderComposerRuntime;
 use DrupalRector\Set\Drupal10SetList;
+use DrupalRector\Set\Drupal11SetList;
 use DrupalRector\Set\Drupal8SetList;
 use DrupalRector\Set\Drupal9SetList;
 use Rector\CodeQuality\Rector\ClassMethod\InlineArrayReturnAssignRector;
 use Rector\CodeQuality\Rector\Empty_\SimplifyEmptyCheckOnEmptyArrayRector;
 use Rector\CodingStyle\Rector\ClassMethod\NewlineBeforeNewAssignSetRector;
-use Rector\CodingStyle\Rector\FuncCall\CountArrayToEmptyArrayComparisonRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\If_\RemoveAlwaysTrueIfConditionRector;
@@ -59,13 +59,19 @@ return static function (RectorConfig $rectorConfig): void {
     Drupal8SetList::DRUPAL_8,
     Drupal9SetList::DRUPAL_9,
     Drupal10SetList::DRUPAL_10,
+    Drupal11SetList::DRUPAL_11,
+    // The "breaking" sets rewrite to replacement symbols introduced in the
+    // named minor, so they require core_version_requirement >= that minor.
+    Drupal11SetList::DRUPAL_111_BREAKING,
+    Drupal11SetList::DRUPAL_112_BREAKING,
+    Drupal11SetList::DRUPAL_113_BREAKING,
+    Drupal11SetList::DRUPAL_114_BREAKING,
   ]);
 
   $rectorConfig->rule(DeclareStrictTypesRector::class);
 
   $rectorConfig->skip([
     // Rules added by Rector's rule sets.
-    CountArrayToEmptyArrayComparisonRector::class,
     DisallowedEmptyRuleFixerRector::class,
     InlineArrayReturnAssignRector::class,
     NewlineAfterStatementRector::class,

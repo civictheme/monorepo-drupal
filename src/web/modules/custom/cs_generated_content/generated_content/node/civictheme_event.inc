@@ -29,8 +29,8 @@ function cs_generated_content_generated_content_create_node_civictheme_event_tra
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
  *
  * @phpstan-ignore-next-line
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.ElseExpression)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.ElseExpression")
  */
 function cs_generated_content_generated_content_create_node_civictheme_event(): array {
   $nodes = [];
@@ -114,9 +114,9 @@ function cs_generated_content_generated_content_create_node_civictheme_event(): 
 /**
  * Processor to convert variation values to 'civictheme_event' node fields.
  *
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.NPathComplexity)
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+ * @SuppressWarnings("PHPMD.NPathComplexity")
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function _cs_generated_content_create_node_civictheme_event__variation_to_fields(NodeInterface $node, array $variation): void {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
