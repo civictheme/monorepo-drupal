@@ -78,9 +78,10 @@ function _civictheme_preprocess_views_view__pager(array &$variables): void {
   /** @var \Drupal\views\ViewExecutable $view */
   $view = &$variables['view'];
 
-  // Hide pager if there is only one result page.
-  $view_pager = $view->display_handler->getOption('pager');
-  if ($view->total_rows <= (int) $view_pager['options']['items_per_page']) {
+  // Hide pager if there is only one result page. Use the live pager plugin
+  // rather than the configured display options so an exposed 'items per
+  // page' selection is taken into account.
+  if ($view->total_rows <= (int) $view->getPager()->getItemsPerPage()) {
     unset($variables['pager']);
   }
   elseif ($view->getPager()->getPluginId() === 'mini') {
