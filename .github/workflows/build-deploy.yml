@@ -13,6 +13,9 @@ name: Build and Push civictheme-monorepo-drupal to Quant Cloud
     - project/*
     tags:
     - '*'
+  # Emergency/manual deploy of any ref without waiting for CI. Restricted to
+  # administrators by the first job step.
+  workflow_dispatch: {}
 
 # Checkout needs contents, the CI gate reads workflow runs; the Quant actions
 # and the gha build cache authenticate with their own credentials.
@@ -29,18 +32,40 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
 
+    # Manual dispatches bypass the CI gate below, so only administrators may
+    # run them. Anyone with write access can press "Run workflow"; this step
+    # fails the run unless the dispatching user's effective repository
+    # permission is admin (org owners/admins qualify on every repo).
+    - name: Require admin permission for manual dispatch
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        # On a re-run GITHUB_ACTOR stays the original dispatcher while
+        # GITHUB_TRIGGERING_ACTOR is the re-runner, so both must be admins.
+        for user in $(printf '%s\n%s\n' "${GITHUB_ACTOR}" "${GITHUB_TRIGGERING_ACTOR}" | sort -u); do
+          permission="$(gh api "repos/${GITHUB_REPOSITORY}/collaborators/${user}/permission" --jq .permission)"
+          echo "User '${user}' has '${permission}' permission."
+          if [ "${permission}" != "admin" ]; then
+            echo "::error::Manual deploys bypass the CI gate and are restricted to administrators."
+            exit 1
+          fi
+        done
+
     # Deploys of refs that feed real sites wait for the commit's CI run:
     # develop also redeploys the three content environments and production
     # reinstalls from profile on deploy, so a red commit takes sites down.
     # Preview branches (feature/release/hotfix/project) deploy immediately —
     # fast iteration on a broken branch is what their environments are for.
+    # Manual dispatches (admin-gated above) skip the wait entirely.
     - name: Wait for CI to pass on this commit
       if: >-
-        github.ref == 'refs/heads/develop' ||
+        github.event_name == 'push' &&
+        (github.ref == 'refs/heads/develop' ||
         github.ref == 'refs/heads/2.x' ||
         github.ref == 'refs/heads/main' ||
         github.ref == 'refs/heads/master' ||
-        startsWith(github.ref, 'refs/tags/')
+        startsWith(github.ref, 'refs/tags/'))
       timeout-minutes: 60
       env:
         GH_TOKEN: ${{ github.token }}
