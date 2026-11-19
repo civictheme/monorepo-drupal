@@ -12,10 +12,12 @@ and tags:
    generated `civictheme_demo` sub-theme and built front-end assets are all
    baked in; servers never run composer or npm.
 3. It pushes the image and redeploys the matching environment (creating it
-   from `production` if absent). A `develop` push also redeploys the three
+   from `production` if absent). A `develop` push also updates the three
    content environments (`content-corporate`, `content-government`,
-   `content-highereducation`), which run the develop image with
-   `CIVICTHEME_CONTENT_PROFILE` set.
+   `content-highereducation`) to the freshly pushed develop image and
+   redeploys them; they run that image with `CIVICTHEME_CONTENT_PROFILE`
+   set. The update step matters: a bare redeploy only restarts the image
+   reference already recorded in the environment definition.
 
 ## Fresh install on every deploy
 

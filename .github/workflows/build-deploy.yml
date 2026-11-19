@@ -199,9 +199,30 @@ jobs:
     # exec, so no wait-for-rollout gate is needed here.
 
     # Content environments (corporate / government / highereducation) are
-    # env-var-only Quant environments running the develop image; develop's
-    # deploy triggers their redeploy so they pick up each new image.
-    - name: Redeploy content environments
+    # env-var-only Quant environments running the develop image. A bare
+    # redeploy restarts the image reference recorded in the environment
+    # definition — it never picks up a newly pushed app-develop image (the
+    # environments sat on an October image while every redeploy "succeeded").
+    # Each one therefore needs the same update-then-redeploy pair the develop
+    # environment gets: the update rewrites the definition to the image this
+    # run just pushed, the redeploy restarts onto it. Their
+    # CIVICTHEME_CONTENT_PROFILE variable lives in the dashboard, not in the
+    # compose file — verify it survives the update on the first run after
+    # changing these steps.
+    - name: Update content environment (corporate)
+      if: ${{ github.ref == 'refs/heads/develop' }}
+      uses: quantcdn/quant-cloud-environment-action@v4
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        app_name: ${{ steps.init.outputs.quant_application }}
+        environment_name: content-corporate
+        operation: update
+        compose_spec: ${{ steps.compose.outputs.translated_compose }}
+        image_suffix: ${{ steps.override-outputs.outputs.image_suffix_clean }}
+      continue-on-error: true
+
+    - name: Redeploy content environment (corporate)
       if: ${{ github.ref == 'refs/heads/develop' }}
       uses: quantcdn/quant-cloud-environment-state-action@v4
       with:
@@ -210,6 +231,19 @@ jobs:
         application: ${{ steps.init.outputs.quant_application }}
         environment: content-corporate
         action: redeploy
+      continue-on-error: true
+
+    - name: Update content environment (government)
+      if: ${{ github.ref == 'refs/heads/develop' }}
+      uses: quantcdn/quant-cloud-environment-action@v4
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        app_name: ${{ steps.init.outputs.quant_application }}
+        environment_name: content-government
+        operation: update
+        compose_spec: ${{ steps.compose.outputs.translated_compose }}
+        image_suffix: ${{ steps.override-outputs.outputs.image_suffix_clean }}
       continue-on-error: true
 
     - name: Redeploy content environment (government)
@@ -221,6 +255,19 @@ jobs:
         application: ${{ steps.init.outputs.quant_application }}
         environment: content-government
         action: redeploy
+      continue-on-error: true
+
+    - name: Update content environment (highereducation)
+      if: ${{ github.ref == 'refs/heads/develop' }}
+      uses: quantcdn/quant-cloud-environment-action@v4
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        app_name: ${{ steps.init.outputs.quant_application }}
+        environment_name: content-highereducation
+        operation: update
+        compose_spec: ${{ steps.compose.outputs.translated_compose }}
+        image_suffix: ${{ steps.override-outputs.outputs.image_suffix_clean }}
       continue-on-error: true
 
     - name: Redeploy content environment (highereducation)
