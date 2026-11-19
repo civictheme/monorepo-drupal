@@ -63,12 +63,10 @@ function civictheme_load_node_or_revision(array $variables): ?NodeInterface {
     /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
     $route_match = \Drupal::service('current_route_match');
     $node_revision = $route_match->getParameter('node_revision');
-    if ($node_revision instanceof NodeInterface) {
-      $node = $node_revision;
-    }
+    $node = $node_revision instanceof NodeInterface ? $node_revision : Node::load($node);
   }
 
-  return $node;
+  return $node instanceof NodeInterface ? $node : NULL;
 }
 
 /**
