@@ -160,7 +160,7 @@ HTML;
    * @return array<string, mixed>|null
    *   Decoded Composer config file as an array or NULL if file does not exist.
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   protected function readComposerJson(string $filename = 'composer.json'): ?array {
     $json = NULL;

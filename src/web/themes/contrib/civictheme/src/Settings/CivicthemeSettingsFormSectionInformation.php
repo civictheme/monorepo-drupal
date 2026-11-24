@@ -23,7 +23,7 @@ class CivicthemeSettingsFormSectionInformation extends CivicthemeSettingsFormSec
   /**
    * {@inheritdoc}
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function form(array &$form, FormStateInterface $form_state): void {
     $message = $this->t('<div class="messages messages--info">@documentation<br/>@design_system<br/>@repository<br/>@issues</div>', [

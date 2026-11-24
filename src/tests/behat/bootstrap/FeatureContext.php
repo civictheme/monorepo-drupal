@@ -41,8 +41,8 @@ use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
 /**
  * Defines application features from the specific context.
  *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.TooManyPublicMethods")
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
 class FeatureContext extends DrupalContext {
 
@@ -202,7 +202,7 @@ class FeatureContext extends DrupalContext {
    *
    * @When :field_name in :bundle :entity_type parent :parent_entity_field in :parent_entity_bundle :parent_entity_type with :parent_entity_field_name of :parent_entity_field_identifer delta :delta has :paragraph_type paragraph:
    *
-   * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+   * @SuppressWarnings("PHPMD.ExcessiveParameterList")
    */
   public function paragraphsAddToParentEntityWithFields(string $field_name, string $bundle, string $entity_type, string $parent_entity_field, string $parent_entity_bundle, string $parent_entity_type, string $parent_entity_field_name, string $parent_entity_field_identifer, int $delta, string $paragraph_type, TableNode $fields): void {
     // Get paragraph field name for this entity type.
@@ -402,7 +402,7 @@ class FeatureContext extends DrupalContext {
    *
    * @When I set the current theme setting :key to :value
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function themeSetCurrentThemeSetting(string $key, string $value): void {
     $theme = \Drupal::theme()->getActiveTheme()->getName();
@@ -417,7 +417,7 @@ class FeatureContext extends DrupalContext {
    *
    * @When I visit :name theme settings page
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function themeVisitSettings(?string $name = NULL): void {
     if (!$name || $name === 'current') {
@@ -522,7 +522,7 @@ class FeatureContext extends DrupalContext {
    *
    * @When I index :type :title for search
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function searchApiIndexContent(string $type, string $title): void {
     $nids = $this->contentLoadMultiple($type, [
@@ -685,10 +685,9 @@ class FeatureContext extends DrupalContext {
    *
    * @When I disable :filter filter on :text_format
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function disableFilterOnTextFormat(string $filter, string $text_format): void {
-    /** @var \Drupal\filter\Entity\FilterFormat $format */
     $format = FilterFormat::load($text_format);
     if (!$format instanceof FilterFormat) {
       throw new \Exception(sprintf('Text format "%s" not found', $text_format));
@@ -703,10 +702,9 @@ class FeatureContext extends DrupalContext {
    *
    * @When I enable :filter filter on :text_format
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function enableFilterOnTextFormat(string $filter, string $text_format): void {
-    /** @var \Drupal\filter\Entity\FilterFormat $format */
     $format = FilterFormat::load($text_format);
     if (!$format instanceof FilterFormat) {
       throw new \Exception(sprintf('Text format "%s" not found', $text_format));

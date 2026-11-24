@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\DataProvider;
+
 /**
  * Class ToggleableSettingsTest.
  *
@@ -15,6 +18,7 @@ namespace Drupal;
  *
  * @group drupal_settings
  */
+#[Group('drupal_settings')]
 class SwitchableSettingsTest extends SettingsTestCase {
 
   /**
@@ -22,6 +26,7 @@ class SwitchableSettingsTest extends SettingsTestCase {
    *
    * @dataProvider dataProviderEnvironmentIndicator
    */
+  #[DataProvider('dataProviderEnvironmentIndicator')]
   public function testEnvironmentIndicator(string $env, array $expected_present, array $expected_absent = []): void {
     $this->setEnvVars([
       'DRUPAL_ENVIRONMENT' => $env,
@@ -88,6 +93,7 @@ class SwitchableSettingsTest extends SettingsTestCase {
    *
    * @dataProvider dataProviderShield
    */
+  #[DataProvider('dataProviderShield')]
   public function testShield(string $env, array $vars, array $expected_present, array $expected_absent = []): void {
     $this->setEnvVars($vars + ['DRUPAL_ENVIRONMENT' => $env] + static::serverRequiredVars());
 

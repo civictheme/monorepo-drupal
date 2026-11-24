@@ -36,7 +36,7 @@ final class CivicthemeUtility {
   public static function multilineToArray(string|array $string): array {
     $lines = is_array($string) ? $string : explode("\n", str_replace("\r\n", "\n", $string));
 
-    return array_values(array_filter(array_map('trim', $lines)));
+    return array_values(array_filter(array_map(trim(...), $lines)));
   }
 
   /**
@@ -50,7 +50,7 @@ final class CivicthemeUtility {
    * @return string
    *   Converted string.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
    */
   public static function camelise($string, $first = FALSE): string {
     $out = '';
@@ -110,7 +110,7 @@ final class CivicthemeUtility {
    * @return array<string, mixed>
    *   Flattened one-dimensional array with keys from other arrays.
    *
-   * @SuppressWarnings(ElseExpression)
+   * @SuppressWarnings("ElseExpression")
    */
   public static function flattenArray(array $array, string $separator = '.', string $prefix = ''): array {
     $result = [];
@@ -152,6 +152,23 @@ final class CivicthemeUtility {
     }
 
     return $result;
+  }
+
+  /**
+   * Render a render array to string.
+   *
+   * @param mixed $render
+   *   Array or an object to render.
+   *
+   * @return string
+   *   Rendered string.
+   *
+   * @SuppressWarnings("PHPMD.StaticAccess")
+   */
+  public static function render(mixed $render): string {
+    $render = is_array($render) ? $render : ['#markup' => $render];
+
+    return (string) \Drupal::service('renderer')->render($render);
   }
 
 }

@@ -169,11 +169,17 @@ final class CivicthemeConstants {
    * Defines the image style constants.
    */
   const CAMPAIGN_IMAGE_STYLE = 'civictheme_campaign';
+
   const EVENT_CARD_IMAGE_STYLE = 'civictheme_event_card';
+
   const NAVIGATION_CARD_IMAGE_STYLE = 'civictheme_navigation_card';
+
   const PROMO_CARD_IMAGE_STYLE = 'civictheme_promo_card';
+
   const PUBLICATION_CARD_IMAGE_STYLE = 'civictheme_publication_card';
+
   const SLIDER_SLIDE_IMAGE_STYLE = 'civictheme_slider_slide';
+
   const SUBJECT_CARD_IMAGE_STYLE = 'civictheme_subject_card';
 
   /**

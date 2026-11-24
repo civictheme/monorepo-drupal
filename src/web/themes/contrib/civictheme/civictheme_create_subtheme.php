@@ -103,7 +103,7 @@ function main(array $argv, int $argc): int {
  * @param string $default_new_theme_dir
  *   Default new theme directory.
  *
- * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+ * @SuppressWarnings("PHPMD.UnusedLocalVariable")
  */
 function print_command_help($default_new_theme_dir): void {
   $script_name = basename(__FILE__);
@@ -163,7 +163,7 @@ EOF;
 /**
  * Validate theme machine name.
  *
- * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings("PHPMD.MissingImport")
  */
 function validate_theme_machine_name(string $name): void {
   if (!preg_match('/^[a-z][a-z_0-9]*$/', $name)) {
@@ -188,7 +188,7 @@ function prepare_stub(): string {
 /**
  * Process stub directory.
  *
- * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings("PHPMD.NPathComplexity")
  */
 function process_stub(string $dir, array $options): void {
   $machine_name_hyphenated = str_replace('_', '-', (string) $options['machine_name']);
@@ -215,7 +215,7 @@ function process_stub(string $dir, array $options): void {
     // Remove Drupal.org packaging that is added to the starter theme info.yml.
     // @see https://www.drupal.org/project/civictheme/issues/3554770
     $lines = $content ? explode("\n", $content) : [];
-    $lines = array_filter($lines, static function ($line) {
+    $lines = array_filter($lines, static function (string $line): bool {
       $lines_to_remove = [
         '# Information added by Drupal.org',
         'version:',
@@ -269,9 +269,9 @@ function process_stub(string $dir, array $options): void {
  * @throws \Exception
  *   If directory does not exist.
  *
- * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings("PHPMD.MissingImport")
  */
-function find_starter_kit_dir() {
+function find_starter_kit_dir(): string {
   $dir = __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_starter_kit';
 
   if (!file_exists($dir)) {
@@ -290,7 +290,7 @@ function find_starter_kit_dir() {
  * @return array<string, mixed>
  *   Decoded composer.json.
  *
- * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings("PHPMD.MissingImport")
  */
 function find_composerjson(string $dir): array {
   $filepath = $dir . DIRECTORY_SEPARATOR . 'composer.json';
@@ -311,7 +311,7 @@ function find_composerjson(string $dir): array {
  * @return array<string, mixed>
  *   Decoded package.json.
  *
- * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings("PHPMD.MissingImport")
  */
 function find_packagejson(string $dir): array {
   $filepath = $dir . DIRECTORY_SEPARATOR . 'package.json';
@@ -346,9 +346,9 @@ function find_packagejson(string $dir): array {
  * @return bool
  *   TRUE if the result of copy was successful, FALSE otherwise.
  *
- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
+ * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+ * @SuppressWarnings("PHPMD.NPathComplexity")
  */
 function file_copy_recursively(string $src, string $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE): bool {
   $parent = dirname($dst);
@@ -375,11 +375,12 @@ function file_copy_recursively(string $src, string $dst, array $exclude = [], $p
 
     $ret = TRUE;
     if (!is_readable(basename($dst))) {
-      if (empty(readlink($src))) {
+      $src_target = readlink($src);
+      if (empty($src_target)) {
         throw new \Exception(sprintf('Symlink target "%s" does not exist.', $src));
       }
 
-      $ret = symlink(readlink($src), basename($dst));
+      $ret = symlink($src_target, basename($dst));
     }
 
     chdir($cur_dir);
@@ -407,7 +408,7 @@ function file_copy_recursively(string $src, string $dst, array $exclude = [], $p
 
   $dir = dir($src);
   while ($dir && FALSE !== $entry = $dir->read()) {
-    if ($entry == '.' || $entry == '..' || in_array($entry, $exclude)) {
+    if ($entry === '.' || $entry === '..' || in_array($entry, $exclude)) {
       continue;
     }
 
@@ -502,7 +503,7 @@ function file_remove_dir(string $dir): void {
  * @return array<string>
  *   Array of discovered files.
  *
- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
  */
 function file_scandir_recursive(string $dir, array $ignore_paths = [], bool $include_dirs = FALSE): array {
   $discovered = [];
@@ -585,7 +586,7 @@ function file_is_excluded_from_processing(string $filename): bool {
 /**
  * Creates a random unique temporary directory.
  *
- * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings("PHPMD.MissingImport")
  */
 function file_tempdir(?string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
   if (is_null($dir)) {
@@ -669,9 +670,9 @@ function file_get_relative_dir(string $dir1, string $dir2): string {
  *
  * @see https://datatracker.ietf.org/doc/html/rfc3986#section-5.2.4
  *
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.NPathComplexity)
- * @SuppressWarnings(PHPMD.IfStatementAssignment)
+ * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+ * @SuppressWarnings("PHPMD.NPathComplexity")
+ * @SuppressWarnings("PHPMD.IfStatementAssignment")
  */
 function file_path_canonicalize(string $path): string {
   $output = '';
@@ -782,13 +783,13 @@ if (getenv('SCRIPT_RUN_SKIP') != 1) {
   });
 
   try {
-    $code = main($argv, $argc);
+    $code = main((array) ($GLOBALS['argv'] ?? []), (int) ($GLOBALS['argc'] ?? 0));
     exit($code);
   }
   catch (\ErrorException $exception) {
     if ($exception->getSeverity() <= ERROR_LEVEL) {
       print PHP_EOL . 'RUNTIME ERROR: ' . $exception->getMessage() . PHP_EOL;
-      exit($exception->getCode() == 0 ? EXIT_ERROR : $exception->getCode());
+      exit($exception->getCode() === 0 ? EXIT_ERROR : $exception->getCode());
     }
   }
   catch (\Exception $exception) {

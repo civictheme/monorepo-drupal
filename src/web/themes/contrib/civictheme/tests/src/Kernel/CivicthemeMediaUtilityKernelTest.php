@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\civictheme\Kernel;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Tests\media\Kernel\MediaKernelTestBase;
 
@@ -15,6 +17,9 @@ use Drupal\Tests\media\Kernel\MediaKernelTestBase;
  * @group CivicTheme
  * @group site:unit
  */
+#[Group('CivicTheme')]
+#[Group('site:unit')]
+#[RunTestsInSeparateProcesses]
 class CivicthemeMediaUtilityKernelTest extends MediaKernelTestBase {
 
   /**
@@ -29,7 +34,7 @@ class CivicthemeMediaUtilityKernelTest extends MediaKernelTestBase {
   /**
    * Test civictheme_media_get_variables function.
    */
-  public function testCivicThemeMediaGetVariables() {
+  public function testCivicThemeMediaGetVariables(): void {
     $mediaType = $this->createMediaType('file');
     $file_name = 'test.jpg';
     $extension = 'jpg';

@@ -27,7 +27,7 @@ class Helper {
    * @param string|\Stringable $message
    *   String containing message.
    *
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   public static function log(string|\Stringable $message): void {
     if (PHP_SAPI === 'cli') {
@@ -55,7 +55,7 @@ class Helper {
    * @return \Drupal\node\Entity\Node
    *   Found node object or NULL if the node was not found.
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public static function loadNodeByTitle(string $title, ?string $type = NULL): ?Node {
     $query = \Drupal::entityQuery('node')->accessCheck(FALSE);
@@ -80,7 +80,7 @@ class Helper {
    * @param string $title
    *   Node title to set as a homepage.
    *
-   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings("PHPMD.MissingImport")
    */
   public static function setHomepageFromNode(string $title): void {
     $node = static::loadNodeByTitle($title, 'civictheme_page');

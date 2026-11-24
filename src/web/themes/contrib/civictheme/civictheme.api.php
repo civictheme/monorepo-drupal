@@ -101,7 +101,7 @@ function hook_civictheme_automated_list_view_alter(ViewExecutable $view): void {
  *   - layout_builder_settings_per_view_mode: An array of the layout builder
  *     settings keyed by view mode.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function hook_civictheme_layout_suppress_page_regions_alter(array &$variables, array $context): void {
   /** @var \Drupal\node\NodeInterface $node */
