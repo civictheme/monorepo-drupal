@@ -27,7 +27,7 @@ final class CivicthemeNode {
       $node_revision = $route_match->getParameter('node_revision');
       $node = $node_revision instanceof NodeInterface
         ? $node_revision
-        : \Drupal::entityTypeManager()->getStorage('node')->load($node);
+        : \Drupal::entityTypeManager()->getStorage('node')->load((int) $node);
     }
 
     return $node instanceof NodeInterface ? $node : NULL;
